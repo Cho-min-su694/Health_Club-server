@@ -5,6 +5,7 @@ import { LoginType } from 'prisma/basic';
 import { AuthService } from './auth/auth.service';
 import { loginCryptoConstants } from './auth/jwtConstants';
 import * as crypto from 'crypto';
+import { CreateUserDto } from './users/dto/create-user.dto';
 
 @Controller()
 export class AppController {
@@ -45,5 +46,11 @@ export class AppController {
     .createHmac('sha512', loginCryptoConstants.secret)
     .update(password)
     .digest('base64');
+  }
+
+  @Public()
+  @Post('signup')
+  signUp(@Body() userDto: CreateUserDto) {
+    return this.authService.signUp(userDto);
   }
 }

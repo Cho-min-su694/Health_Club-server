@@ -116,6 +116,7 @@ exports.Prisma.UserScalarFieldEnum = {
   loginType: 'loginType',
   userType: 'userType',
   nickname: 'nickname',
+  phone: 'phone',
   isDisable: 'isDisable'
 };
 
@@ -253,10 +254,19 @@ exports.Prisma.FavoriteGymScalarFieldEnum = {
 
 exports.Prisma.GymAccessHistoryScalarFieldEnum = {
   id: 'id',
+  createdAt: 'createdAt',
   gymId: 'gymId',
   userId: 'userId',
   entryAt: 'entryAt',
   exitAt: 'exitAt'
+};
+
+exports.Prisma.GymPassHistoryScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  gymId: 'gymId',
+  userId: 'userId',
+  hash: 'hash'
 };
 
 exports.Prisma.SortOrder = {
@@ -302,7 +312,8 @@ exports.Prisma.ModelName = {
   GymMembership: 'GymMembership',
   GymMembershipCancellation: 'GymMembershipCancellation',
   FavoriteGym: 'FavoriteGym',
-  GymAccessHistory: 'GymAccessHistory'
+  GymAccessHistory: 'GymAccessHistory',
+  GymPassHistory: 'GymPassHistory'
 };
 
 /**

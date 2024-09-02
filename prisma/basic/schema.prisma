@@ -36,6 +36,7 @@ model User {
   loginType                 LoginType
   userType                  UserType
   nickname                  String
+  phone                     String    @default("")
   isDisable                 Boolean   @default(false)
 
   Board                     Board[]
@@ -48,6 +49,7 @@ model User {
   FavoriteGyms              FavoriteGym[]
   GymEquipmentUserHistory   GymEquipmentUserHistory[]
   GymAccessHistory          GymAccessHistory[]
+  GymPassHistory            GymPassHistory[]
 
   @@unique([loginType, loginId], name: "loginUnique")
 }
@@ -92,7 +94,7 @@ model Board {
   boardType  BoardType    @default(BTALK) //처음에는 보드타입(잡담)
 }
 
-// 이벤트 이미지
+// 게시물 이미지
 model BoardImage {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
@@ -108,7 +110,7 @@ model BoardImage {
   Board   Board @relation(fields: [boardId], references: [id])
 }
 
-// 이벤트 댓글
+// 게시물 댓글
 model BoardReply {
   id        Int       @id @default(autoincrement())
   createdAt DateTime  @default(now())
@@ -149,6 +151,23 @@ model GymEquipment {
 
   BodyParts BodyPartsOnGymEquipments[]
   Gyms      GymEuquipmentsOnGyms[]
+  GymEquipmentImage   GymEquipmentImage[]
+}
+
+// 운동기기 이미지
+model GymEquipmentImage {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  url    String @db.Text
+  width  Int
+  height Int
+  size   Int
+
+  isThumb Boolean @default(false) // 썸네일이미지 여부 true 썸네일 false 상세
+
+  gymEquipmentId  Int
+  GymEquipment    GymEquipment @relation(fields: [gymEquipmentId], references: [id])
 }
 
 // 기기 운동부위 관계
@@ -187,6 +206,8 @@ model Gym {
   GymAccessHistory        GymAccessHistory[]
 
   GymMembership           GymMembership[]
+
+  GymPassHistory          GymPassHistory[]
 }
 
 // 헬스장 내 기구 목록
@@ -260,8 +281,10 @@ model FavoriteGym {
   @@id([gymId, userId])
 }
 
+// 헬스장 출입 기록
 model GymAccessHistory {
   id            Int       @id @default(autoincrement())
+  createdAt     DateTime  @default(now())
 
   Gym           Gym       @relation(fields: [gymId], references: [id])
   gymId         Int
@@ -271,4 +294,18 @@ model GymAccessHistory {
 
   entryAt       DateTime  @default(now())
   exitAt        DateTime?
+}
+
+// 헬스장 출입증 기록
+model GymPassHistory {
+  id            Int       @id @default(autoincrement())
+  createdAt     DateTime  @default(now())
+
+  Gym           Gym       @relation(fields: [gymId], references: [id])
+  gymId         Int
+
+  userId        Int
+  User          User      @relation(fields: [userId], references: [id])
+
+  hash          String
 }

@@ -93,6 +93,11 @@ export type FavoriteGym = $Result.DefaultSelection<Prisma.$FavoriteGymPayload>
  * 
  */
 export type GymAccessHistory = $Result.DefaultSelection<Prisma.$GymAccessHistoryPayload>
+/**
+ * Model GymPassHistory
+ * 
+ */
+export type GymPassHistory = $Result.DefaultSelection<Prisma.$GymPassHistoryPayload>
 
 /**
  * Enums
@@ -419,6 +424,16 @@ export class PrismaClient<
     * ```
     */
   get gymAccessHistory(): Prisma.GymAccessHistoryDelegate<ExtArgs>;
+
+  /**
+   * `prisma.gymPassHistory`: Exposes CRUD operations for the **GymPassHistory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GymPassHistories
+    * const gymPassHistories = await prisma.gymPassHistory.findMany()
+    * ```
+    */
+  get gymPassHistory(): Prisma.GymPassHistoryDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -904,7 +919,8 @@ export namespace Prisma {
     GymMembership: 'GymMembership',
     GymMembershipCancellation: 'GymMembershipCancellation',
     FavoriteGym: 'FavoriteGym',
-    GymAccessHistory: 'GymAccessHistory'
+    GymAccessHistory: 'GymAccessHistory',
+    GymPassHistory: 'GymPassHistory'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -921,7 +937,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'notice' | 'board' | 'boardImage' | 'boardReply' | 'bodyPart' | 'gymEquipment' | 'gymEquipmentImage' | 'bodyPartsOnGymEquipments' | 'gym' | 'gymEuquipmentsOnGyms' | 'gymEquipmentUserHistory' | 'gymMembership' | 'gymMembershipCancellation' | 'favoriteGym' | 'gymAccessHistory'
+      modelProps: 'user' | 'notice' | 'board' | 'boardImage' | 'boardReply' | 'bodyPart' | 'gymEquipment' | 'gymEquipmentImage' | 'bodyPartsOnGymEquipments' | 'gym' | 'gymEuquipmentsOnGyms' | 'gymEquipmentUserHistory' | 'gymMembership' | 'gymMembershipCancellation' | 'favoriteGym' | 'gymAccessHistory' | 'gymPassHistory'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1981,6 +1997,72 @@ export namespace Prisma {
           }
         }
       }
+      GymPassHistory: {
+        payload: Prisma.$GymPassHistoryPayload<ExtArgs>
+        fields: Prisma.GymPassHistoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GymPassHistoryFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GymPassHistoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GymPassHistoryFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GymPassHistoryPayload>
+          }
+          findFirst: {
+            args: Prisma.GymPassHistoryFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GymPassHistoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GymPassHistoryFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GymPassHistoryPayload>
+          }
+          findMany: {
+            args: Prisma.GymPassHistoryFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GymPassHistoryPayload>[]
+          }
+          create: {
+            args: Prisma.GymPassHistoryCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GymPassHistoryPayload>
+          }
+          createMany: {
+            args: Prisma.GymPassHistoryCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.GymPassHistoryDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GymPassHistoryPayload>
+          }
+          update: {
+            args: Prisma.GymPassHistoryUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GymPassHistoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.GymPassHistoryDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GymPassHistoryUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.GymPassHistoryUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GymPassHistoryPayload>
+          }
+          aggregate: {
+            args: Prisma.GymPassHistoryAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateGymPassHistory>
+          }
+          groupBy: {
+            args: Prisma.GymPassHistoryGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<GymPassHistoryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GymPassHistoryCountArgs<ExtArgs>,
+            result: $Utils.Optional<GymPassHistoryCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2140,6 +2222,7 @@ export namespace Prisma {
     FavoriteGyms: number
     GymEquipmentUserHistory: number
     GymAccessHistory: number
+    GymPassHistory: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2153,6 +2236,7 @@ export namespace Prisma {
     FavoriteGyms?: boolean | UserCountOutputTypeCountFavoriteGymsArgs
     GymEquipmentUserHistory?: boolean | UserCountOutputTypeCountGymEquipmentUserHistoryArgs
     GymAccessHistory?: boolean | UserCountOutputTypeCountGymAccessHistoryArgs
+    GymPassHistory?: boolean | UserCountOutputTypeCountGymPassHistoryArgs
   }
 
   // Custom InputTypes
@@ -2245,6 +2329,14 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountGymAccessHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: GymAccessHistoryWhereInput
+  }
+
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountGymPassHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GymPassHistoryWhereInput
   }
 
 
@@ -2424,6 +2516,7 @@ export namespace Prisma {
     FavoriteUsers: number
     GymAccessHistory: number
     GymMembership: number
+    GymPassHistory: number
   }
 
   export type GymCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2431,6 +2524,7 @@ export namespace Prisma {
     FavoriteUsers?: boolean | GymCountOutputTypeCountFavoriteUsersArgs
     GymAccessHistory?: boolean | GymCountOutputTypeCountGymAccessHistoryArgs
     GymMembership?: boolean | GymCountOutputTypeCountGymMembershipArgs
+    GymPassHistory?: boolean | GymCountOutputTypeCountGymPassHistoryArgs
   }
 
   // Custom InputTypes
@@ -2475,6 +2569,14 @@ export namespace Prisma {
    */
   export type GymCountOutputTypeCountGymMembershipArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: GymMembershipWhereInput
+  }
+
+
+  /**
+   * GymCountOutputType without action
+   */
+  export type GymCountOutputTypeCountGymPassHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GymPassHistoryWhereInput
   }
 
 
@@ -2580,6 +2682,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType | null
     userType: $Enums.UserType | null
     nickname: string | null
+    phone: string | null
     isDisable: boolean | null
   }
 
@@ -2592,6 +2695,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType | null
     userType: $Enums.UserType | null
     nickname: string | null
+    phone: string | null
     isDisable: boolean | null
   }
 
@@ -2604,6 +2708,7 @@ export namespace Prisma {
     loginType: number
     userType: number
     nickname: number
+    phone: number
     isDisable: number
     _all: number
   }
@@ -2626,6 +2731,7 @@ export namespace Prisma {
     loginType?: true
     userType?: true
     nickname?: true
+    phone?: true
     isDisable?: true
   }
 
@@ -2638,6 +2744,7 @@ export namespace Prisma {
     loginType?: true
     userType?: true
     nickname?: true
+    phone?: true
     isDisable?: true
   }
 
@@ -2650,6 +2757,7 @@ export namespace Prisma {
     loginType?: true
     userType?: true
     nickname?: true
+    phone?: true
     isDisable?: true
     _all?: true
   }
@@ -2749,6 +2857,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone: string
     isDisable: boolean
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
@@ -2780,6 +2889,7 @@ export namespace Prisma {
     loginType?: boolean
     userType?: boolean
     nickname?: boolean
+    phone?: boolean
     isDisable?: boolean
     Board?: boolean | User$BoardArgs<ExtArgs>
     BoardReply?: boolean | User$BoardReplyArgs<ExtArgs>
@@ -2791,6 +2901,7 @@ export namespace Prisma {
     FavoriteGyms?: boolean | User$FavoriteGymsArgs<ExtArgs>
     GymEquipmentUserHistory?: boolean | User$GymEquipmentUserHistoryArgs<ExtArgs>
     GymAccessHistory?: boolean | User$GymAccessHistoryArgs<ExtArgs>
+    GymPassHistory?: boolean | User$GymPassHistoryArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2803,6 +2914,7 @@ export namespace Prisma {
     loginType?: boolean
     userType?: boolean
     nickname?: boolean
+    phone?: boolean
     isDisable?: boolean
   }
 
@@ -2817,6 +2929,7 @@ export namespace Prisma {
     FavoriteGyms?: boolean | User$FavoriteGymsArgs<ExtArgs>
     GymEquipmentUserHistory?: boolean | User$GymEquipmentUserHistoryArgs<ExtArgs>
     GymAccessHistory?: boolean | User$GymAccessHistoryArgs<ExtArgs>
+    GymPassHistory?: boolean | User$GymPassHistoryArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2834,6 +2947,7 @@ export namespace Prisma {
       FavoriteGyms: Prisma.$FavoriteGymPayload<ExtArgs>[]
       GymEquipmentUserHistory: Prisma.$GymEquipmentUserHistoryPayload<ExtArgs>[]
       GymAccessHistory: Prisma.$GymAccessHistoryPayload<ExtArgs>[]
+      GymPassHistory: Prisma.$GymPassHistoryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2844,6 +2958,7 @@ export namespace Prisma {
       loginType: $Enums.LoginType
       userType: $Enums.UserType
       nickname: string
+      phone: string
       isDisable: boolean
     }, ExtArgs["result"]["user"]>
     composites: {}
@@ -3230,6 +3345,8 @@ export namespace Prisma {
 
     GymAccessHistory<T extends User$GymAccessHistoryArgs<ExtArgs> = {}>(args?: Subset<T, User$GymAccessHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GymAccessHistoryPayload<ExtArgs>, T, 'findMany'> | Null>;
 
+    GymPassHistory<T extends User$GymPassHistoryArgs<ExtArgs> = {}>(args?: Subset<T, User$GymPassHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GymPassHistoryPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3266,6 +3383,7 @@ export namespace Prisma {
     readonly loginType: FieldRef<"User", 'LoginType'>
     readonly userType: FieldRef<"User", 'UserType'>
     readonly nickname: FieldRef<"User", 'String'>
+    readonly phone: FieldRef<"User", 'String'>
     readonly isDisable: FieldRef<"User", 'Boolean'>
   }
     
@@ -3785,6 +3903,27 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: GymAccessHistoryScalarFieldEnum | GymAccessHistoryScalarFieldEnum[]
+  }
+
+
+  /**
+   * User.GymPassHistory
+   */
+  export type User$GymPassHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymPassHistory
+     */
+    select?: GymPassHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymPassHistoryInclude<ExtArgs> | null
+    where?: GymPassHistoryWhereInput
+    orderBy?: GymPassHistoryOrderByWithRelationInput | GymPassHistoryOrderByWithRelationInput[]
+    cursor?: GymPassHistoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GymPassHistoryScalarFieldEnum | GymPassHistoryScalarFieldEnum[]
   }
 
 
@@ -12098,6 +12237,7 @@ export namespace Prisma {
     FavoriteUsers?: boolean | Gym$FavoriteUsersArgs<ExtArgs>
     GymAccessHistory?: boolean | Gym$GymAccessHistoryArgs<ExtArgs>
     GymMembership?: boolean | Gym$GymMembershipArgs<ExtArgs>
+    GymPassHistory?: boolean | Gym$GymPassHistoryArgs<ExtArgs>
     _count?: boolean | GymCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["gym"]>
 
@@ -12124,6 +12264,7 @@ export namespace Prisma {
     FavoriteUsers?: boolean | Gym$FavoriteUsersArgs<ExtArgs>
     GymAccessHistory?: boolean | Gym$GymAccessHistoryArgs<ExtArgs>
     GymMembership?: boolean | Gym$GymMembershipArgs<ExtArgs>
+    GymPassHistory?: boolean | Gym$GymPassHistoryArgs<ExtArgs>
     _count?: boolean | GymCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -12136,6 +12277,7 @@ export namespace Prisma {
       FavoriteUsers: Prisma.$FavoriteGymPayload<ExtArgs>[]
       GymAccessHistory: Prisma.$GymAccessHistoryPayload<ExtArgs>[]
       GymMembership: Prisma.$GymMembershipPayload<ExtArgs>[]
+      GymPassHistory: Prisma.$GymPassHistoryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -12526,6 +12668,8 @@ export namespace Prisma {
     GymAccessHistory<T extends Gym$GymAccessHistoryArgs<ExtArgs> = {}>(args?: Subset<T, Gym$GymAccessHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GymAccessHistoryPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     GymMembership<T extends Gym$GymMembershipArgs<ExtArgs> = {}>(args?: Subset<T, Gym$GymMembershipArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GymMembershipPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    GymPassHistory<T extends Gym$GymPassHistoryArgs<ExtArgs> = {}>(args?: Subset<T, Gym$GymPassHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GymPassHistoryPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -12961,6 +13105,27 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: GymMembershipScalarFieldEnum | GymMembershipScalarFieldEnum[]
+  }
+
+
+  /**
+   * Gym.GymPassHistory
+   */
+  export type Gym$GymPassHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymPassHistory
+     */
+    select?: GymPassHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymPassHistoryInclude<ExtArgs> | null
+    where?: GymPassHistoryWhereInput
+    orderBy?: GymPassHistoryOrderByWithRelationInput | GymPassHistoryOrderByWithRelationInput[]
+    cursor?: GymPassHistoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GymPassHistoryScalarFieldEnum | GymPassHistoryScalarFieldEnum[]
   }
 
 
@@ -17897,6 +18062,7 @@ export namespace Prisma {
 
   export type GymAccessHistoryMinAggregateOutputType = {
     id: number | null
+    createdAt: Date | null
     gymId: number | null
     userId: number | null
     entryAt: Date | null
@@ -17905,6 +18071,7 @@ export namespace Prisma {
 
   export type GymAccessHistoryMaxAggregateOutputType = {
     id: number | null
+    createdAt: Date | null
     gymId: number | null
     userId: number | null
     entryAt: Date | null
@@ -17913,6 +18080,7 @@ export namespace Prisma {
 
   export type GymAccessHistoryCountAggregateOutputType = {
     id: number
+    createdAt: number
     gymId: number
     userId: number
     entryAt: number
@@ -17935,6 +18103,7 @@ export namespace Prisma {
 
   export type GymAccessHistoryMinAggregateInputType = {
     id?: true
+    createdAt?: true
     gymId?: true
     userId?: true
     entryAt?: true
@@ -17943,6 +18112,7 @@ export namespace Prisma {
 
   export type GymAccessHistoryMaxAggregateInputType = {
     id?: true
+    createdAt?: true
     gymId?: true
     userId?: true
     entryAt?: true
@@ -17951,6 +18121,7 @@ export namespace Prisma {
 
   export type GymAccessHistoryCountAggregateInputType = {
     id?: true
+    createdAt?: true
     gymId?: true
     userId?: true
     entryAt?: true
@@ -18046,6 +18217,7 @@ export namespace Prisma {
 
   export type GymAccessHistoryGroupByOutputType = {
     id: number
+    createdAt: Date
     gymId: number
     userId: number
     entryAt: Date
@@ -18073,6 +18245,7 @@ export namespace Prisma {
 
   export type GymAccessHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    createdAt?: boolean
     gymId?: boolean
     userId?: boolean
     entryAt?: boolean
@@ -18083,6 +18256,7 @@ export namespace Prisma {
 
   export type GymAccessHistorySelectScalar = {
     id?: boolean
+    createdAt?: boolean
     gymId?: boolean
     userId?: boolean
     entryAt?: boolean
@@ -18103,6 +18277,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      createdAt: Date
       gymId: number
       userId: number
       entryAt: Date
@@ -18505,6 +18680,7 @@ export namespace Prisma {
    */ 
   interface GymAccessHistoryFieldRefs {
     readonly id: FieldRef<"GymAccessHistory", 'Int'>
+    readonly createdAt: FieldRef<"GymAccessHistory", 'DateTime'>
     readonly gymId: FieldRef<"GymAccessHistory", 'Int'>
     readonly userId: FieldRef<"GymAccessHistory", 'Int'>
     readonly entryAt: FieldRef<"GymAccessHistory", 'DateTime'>
@@ -18837,6 +19013,971 @@ export namespace Prisma {
 
 
   /**
+   * Model GymPassHistory
+   */
+
+  export type AggregateGymPassHistory = {
+    _count: GymPassHistoryCountAggregateOutputType | null
+    _avg: GymPassHistoryAvgAggregateOutputType | null
+    _sum: GymPassHistorySumAggregateOutputType | null
+    _min: GymPassHistoryMinAggregateOutputType | null
+    _max: GymPassHistoryMaxAggregateOutputType | null
+  }
+
+  export type GymPassHistoryAvgAggregateOutputType = {
+    id: number | null
+    gymId: number | null
+    userId: number | null
+  }
+
+  export type GymPassHistorySumAggregateOutputType = {
+    id: number | null
+    gymId: number | null
+    userId: number | null
+  }
+
+  export type GymPassHistoryMinAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    gymId: number | null
+    userId: number | null
+    hash: string | null
+  }
+
+  export type GymPassHistoryMaxAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    gymId: number | null
+    userId: number | null
+    hash: string | null
+  }
+
+  export type GymPassHistoryCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    gymId: number
+    userId: number
+    hash: number
+    _all: number
+  }
+
+
+  export type GymPassHistoryAvgAggregateInputType = {
+    id?: true
+    gymId?: true
+    userId?: true
+  }
+
+  export type GymPassHistorySumAggregateInputType = {
+    id?: true
+    gymId?: true
+    userId?: true
+  }
+
+  export type GymPassHistoryMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    gymId?: true
+    userId?: true
+    hash?: true
+  }
+
+  export type GymPassHistoryMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    gymId?: true
+    userId?: true
+    hash?: true
+  }
+
+  export type GymPassHistoryCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    gymId?: true
+    userId?: true
+    hash?: true
+    _all?: true
+  }
+
+  export type GymPassHistoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GymPassHistory to aggregate.
+     */
+    where?: GymPassHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GymPassHistories to fetch.
+     */
+    orderBy?: GymPassHistoryOrderByWithRelationInput | GymPassHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GymPassHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GymPassHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GymPassHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned GymPassHistories
+    **/
+    _count?: true | GymPassHistoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GymPassHistoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GymPassHistorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GymPassHistoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GymPassHistoryMaxAggregateInputType
+  }
+
+  export type GetGymPassHistoryAggregateType<T extends GymPassHistoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateGymPassHistory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGymPassHistory[P]>
+      : GetScalarType<T[P], AggregateGymPassHistory[P]>
+  }
+
+
+
+
+  export type GymPassHistoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GymPassHistoryWhereInput
+    orderBy?: GymPassHistoryOrderByWithAggregationInput | GymPassHistoryOrderByWithAggregationInput[]
+    by: GymPassHistoryScalarFieldEnum[] | GymPassHistoryScalarFieldEnum
+    having?: GymPassHistoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GymPassHistoryCountAggregateInputType | true
+    _avg?: GymPassHistoryAvgAggregateInputType
+    _sum?: GymPassHistorySumAggregateInputType
+    _min?: GymPassHistoryMinAggregateInputType
+    _max?: GymPassHistoryMaxAggregateInputType
+  }
+
+  export type GymPassHistoryGroupByOutputType = {
+    id: number
+    createdAt: Date
+    gymId: number
+    userId: number
+    hash: string
+    _count: GymPassHistoryCountAggregateOutputType | null
+    _avg: GymPassHistoryAvgAggregateOutputType | null
+    _sum: GymPassHistorySumAggregateOutputType | null
+    _min: GymPassHistoryMinAggregateOutputType | null
+    _max: GymPassHistoryMaxAggregateOutputType | null
+  }
+
+  type GetGymPassHistoryGroupByPayload<T extends GymPassHistoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GymPassHistoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GymPassHistoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GymPassHistoryGroupByOutputType[P]>
+            : GetScalarType<T[P], GymPassHistoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GymPassHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    gymId?: boolean
+    userId?: boolean
+    hash?: boolean
+    Gym?: boolean | GymDefaultArgs<ExtArgs>
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["gymPassHistory"]>
+
+  export type GymPassHistorySelectScalar = {
+    id?: boolean
+    createdAt?: boolean
+    gymId?: boolean
+    userId?: boolean
+    hash?: boolean
+  }
+
+  export type GymPassHistoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Gym?: boolean | GymDefaultArgs<ExtArgs>
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+
+  export type $GymPassHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "GymPassHistory"
+    objects: {
+      Gym: Prisma.$GymPayload<ExtArgs>
+      User: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      createdAt: Date
+      gymId: number
+      userId: number
+      hash: string
+    }, ExtArgs["result"]["gymPassHistory"]>
+    composites: {}
+  }
+
+
+  type GymPassHistoryGetPayload<S extends boolean | null | undefined | GymPassHistoryDefaultArgs> = $Result.GetResult<Prisma.$GymPassHistoryPayload, S>
+
+  type GymPassHistoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<GymPassHistoryFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: GymPassHistoryCountAggregateInputType | true
+    }
+
+  export interface GymPassHistoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GymPassHistory'], meta: { name: 'GymPassHistory' } }
+    /**
+     * Find zero or one GymPassHistory that matches the filter.
+     * @param {GymPassHistoryFindUniqueArgs} args - Arguments to find a GymPassHistory
+     * @example
+     * // Get one GymPassHistory
+     * const gymPassHistory = await prisma.gymPassHistory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends GymPassHistoryFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, GymPassHistoryFindUniqueArgs<ExtArgs>>
+    ): Prisma__GymPassHistoryClient<$Result.GetResult<Prisma.$GymPassHistoryPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one GymPassHistory that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {GymPassHistoryFindUniqueOrThrowArgs} args - Arguments to find a GymPassHistory
+     * @example
+     * // Get one GymPassHistory
+     * const gymPassHistory = await prisma.gymPassHistory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends GymPassHistoryFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, GymPassHistoryFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__GymPassHistoryClient<$Result.GetResult<Prisma.$GymPassHistoryPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first GymPassHistory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GymPassHistoryFindFirstArgs} args - Arguments to find a GymPassHistory
+     * @example
+     * // Get one GymPassHistory
+     * const gymPassHistory = await prisma.gymPassHistory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends GymPassHistoryFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, GymPassHistoryFindFirstArgs<ExtArgs>>
+    ): Prisma__GymPassHistoryClient<$Result.GetResult<Prisma.$GymPassHistoryPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first GymPassHistory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GymPassHistoryFindFirstOrThrowArgs} args - Arguments to find a GymPassHistory
+     * @example
+     * // Get one GymPassHistory
+     * const gymPassHistory = await prisma.gymPassHistory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends GymPassHistoryFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, GymPassHistoryFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__GymPassHistoryClient<$Result.GetResult<Prisma.$GymPassHistoryPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more GymPassHistories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GymPassHistoryFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all GymPassHistories
+     * const gymPassHistories = await prisma.gymPassHistory.findMany()
+     * 
+     * // Get first 10 GymPassHistories
+     * const gymPassHistories = await prisma.gymPassHistory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const gymPassHistoryWithIdOnly = await prisma.gymPassHistory.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends GymPassHistoryFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GymPassHistoryFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GymPassHistoryPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a GymPassHistory.
+     * @param {GymPassHistoryCreateArgs} args - Arguments to create a GymPassHistory.
+     * @example
+     * // Create one GymPassHistory
+     * const GymPassHistory = await prisma.gymPassHistory.create({
+     *   data: {
+     *     // ... data to create a GymPassHistory
+     *   }
+     * })
+     * 
+    **/
+    create<T extends GymPassHistoryCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, GymPassHistoryCreateArgs<ExtArgs>>
+    ): Prisma__GymPassHistoryClient<$Result.GetResult<Prisma.$GymPassHistoryPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many GymPassHistories.
+     *     @param {GymPassHistoryCreateManyArgs} args - Arguments to create many GymPassHistories.
+     *     @example
+     *     // Create many GymPassHistories
+     *     const gymPassHistory = await prisma.gymPassHistory.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends GymPassHistoryCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GymPassHistoryCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a GymPassHistory.
+     * @param {GymPassHistoryDeleteArgs} args - Arguments to delete one GymPassHistory.
+     * @example
+     * // Delete one GymPassHistory
+     * const GymPassHistory = await prisma.gymPassHistory.delete({
+     *   where: {
+     *     // ... filter to delete one GymPassHistory
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends GymPassHistoryDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, GymPassHistoryDeleteArgs<ExtArgs>>
+    ): Prisma__GymPassHistoryClient<$Result.GetResult<Prisma.$GymPassHistoryPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one GymPassHistory.
+     * @param {GymPassHistoryUpdateArgs} args - Arguments to update one GymPassHistory.
+     * @example
+     * // Update one GymPassHistory
+     * const gymPassHistory = await prisma.gymPassHistory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends GymPassHistoryUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, GymPassHistoryUpdateArgs<ExtArgs>>
+    ): Prisma__GymPassHistoryClient<$Result.GetResult<Prisma.$GymPassHistoryPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more GymPassHistories.
+     * @param {GymPassHistoryDeleteManyArgs} args - Arguments to filter GymPassHistories to delete.
+     * @example
+     * // Delete a few GymPassHistories
+     * const { count } = await prisma.gymPassHistory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends GymPassHistoryDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GymPassHistoryDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GymPassHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GymPassHistoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many GymPassHistories
+     * const gymPassHistory = await prisma.gymPassHistory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends GymPassHistoryUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, GymPassHistoryUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one GymPassHistory.
+     * @param {GymPassHistoryUpsertArgs} args - Arguments to update or create a GymPassHistory.
+     * @example
+     * // Update or create a GymPassHistory
+     * const gymPassHistory = await prisma.gymPassHistory.upsert({
+     *   create: {
+     *     // ... data to create a GymPassHistory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the GymPassHistory we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends GymPassHistoryUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, GymPassHistoryUpsertArgs<ExtArgs>>
+    ): Prisma__GymPassHistoryClient<$Result.GetResult<Prisma.$GymPassHistoryPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of GymPassHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GymPassHistoryCountArgs} args - Arguments to filter GymPassHistories to count.
+     * @example
+     * // Count the number of GymPassHistories
+     * const count = await prisma.gymPassHistory.count({
+     *   where: {
+     *     // ... the filter for the GymPassHistories we want to count
+     *   }
+     * })
+    **/
+    count<T extends GymPassHistoryCountArgs>(
+      args?: Subset<T, GymPassHistoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GymPassHistoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a GymPassHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GymPassHistoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GymPassHistoryAggregateArgs>(args: Subset<T, GymPassHistoryAggregateArgs>): Prisma.PrismaPromise<GetGymPassHistoryAggregateType<T>>
+
+    /**
+     * Group by GymPassHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GymPassHistoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GymPassHistoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GymPassHistoryGroupByArgs['orderBy'] }
+        : { orderBy?: GymPassHistoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GymPassHistoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGymPassHistoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the GymPassHistory model
+   */
+  readonly fields: GymPassHistoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for GymPassHistory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GymPassHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    Gym<T extends GymDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GymDefaultArgs<ExtArgs>>): Prisma__GymClient<$Result.GetResult<Prisma.$GymPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    User<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the GymPassHistory model
+   */ 
+  interface GymPassHistoryFieldRefs {
+    readonly id: FieldRef<"GymPassHistory", 'Int'>
+    readonly createdAt: FieldRef<"GymPassHistory", 'DateTime'>
+    readonly gymId: FieldRef<"GymPassHistory", 'Int'>
+    readonly userId: FieldRef<"GymPassHistory", 'Int'>
+    readonly hash: FieldRef<"GymPassHistory", 'String'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * GymPassHistory findUnique
+   */
+  export type GymPassHistoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymPassHistory
+     */
+    select?: GymPassHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymPassHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which GymPassHistory to fetch.
+     */
+    where: GymPassHistoryWhereUniqueInput
+  }
+
+
+  /**
+   * GymPassHistory findUniqueOrThrow
+   */
+  export type GymPassHistoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymPassHistory
+     */
+    select?: GymPassHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymPassHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which GymPassHistory to fetch.
+     */
+    where: GymPassHistoryWhereUniqueInput
+  }
+
+
+  /**
+   * GymPassHistory findFirst
+   */
+  export type GymPassHistoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymPassHistory
+     */
+    select?: GymPassHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymPassHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which GymPassHistory to fetch.
+     */
+    where?: GymPassHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GymPassHistories to fetch.
+     */
+    orderBy?: GymPassHistoryOrderByWithRelationInput | GymPassHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GymPassHistories.
+     */
+    cursor?: GymPassHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GymPassHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GymPassHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GymPassHistories.
+     */
+    distinct?: GymPassHistoryScalarFieldEnum | GymPassHistoryScalarFieldEnum[]
+  }
+
+
+  /**
+   * GymPassHistory findFirstOrThrow
+   */
+  export type GymPassHistoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymPassHistory
+     */
+    select?: GymPassHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymPassHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which GymPassHistory to fetch.
+     */
+    where?: GymPassHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GymPassHistories to fetch.
+     */
+    orderBy?: GymPassHistoryOrderByWithRelationInput | GymPassHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GymPassHistories.
+     */
+    cursor?: GymPassHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GymPassHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GymPassHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GymPassHistories.
+     */
+    distinct?: GymPassHistoryScalarFieldEnum | GymPassHistoryScalarFieldEnum[]
+  }
+
+
+  /**
+   * GymPassHistory findMany
+   */
+  export type GymPassHistoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymPassHistory
+     */
+    select?: GymPassHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymPassHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which GymPassHistories to fetch.
+     */
+    where?: GymPassHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GymPassHistories to fetch.
+     */
+    orderBy?: GymPassHistoryOrderByWithRelationInput | GymPassHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing GymPassHistories.
+     */
+    cursor?: GymPassHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GymPassHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GymPassHistories.
+     */
+    skip?: number
+    distinct?: GymPassHistoryScalarFieldEnum | GymPassHistoryScalarFieldEnum[]
+  }
+
+
+  /**
+   * GymPassHistory create
+   */
+  export type GymPassHistoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymPassHistory
+     */
+    select?: GymPassHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymPassHistoryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a GymPassHistory.
+     */
+    data: XOR<GymPassHistoryCreateInput, GymPassHistoryUncheckedCreateInput>
+  }
+
+
+  /**
+   * GymPassHistory createMany
+   */
+  export type GymPassHistoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many GymPassHistories.
+     */
+    data: GymPassHistoryCreateManyInput | GymPassHistoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * GymPassHistory update
+   */
+  export type GymPassHistoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymPassHistory
+     */
+    select?: GymPassHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymPassHistoryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a GymPassHistory.
+     */
+    data: XOR<GymPassHistoryUpdateInput, GymPassHistoryUncheckedUpdateInput>
+    /**
+     * Choose, which GymPassHistory to update.
+     */
+    where: GymPassHistoryWhereUniqueInput
+  }
+
+
+  /**
+   * GymPassHistory updateMany
+   */
+  export type GymPassHistoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update GymPassHistories.
+     */
+    data: XOR<GymPassHistoryUpdateManyMutationInput, GymPassHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which GymPassHistories to update
+     */
+    where?: GymPassHistoryWhereInput
+  }
+
+
+  /**
+   * GymPassHistory upsert
+   */
+  export type GymPassHistoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymPassHistory
+     */
+    select?: GymPassHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymPassHistoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the GymPassHistory to update in case it exists.
+     */
+    where: GymPassHistoryWhereUniqueInput
+    /**
+     * In case the GymPassHistory found by the `where` argument doesn't exist, create a new GymPassHistory with this data.
+     */
+    create: XOR<GymPassHistoryCreateInput, GymPassHistoryUncheckedCreateInput>
+    /**
+     * In case the GymPassHistory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GymPassHistoryUpdateInput, GymPassHistoryUncheckedUpdateInput>
+  }
+
+
+  /**
+   * GymPassHistory delete
+   */
+  export type GymPassHistoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymPassHistory
+     */
+    select?: GymPassHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymPassHistoryInclude<ExtArgs> | null
+    /**
+     * Filter which GymPassHistory to delete.
+     */
+    where: GymPassHistoryWhereUniqueInput
+  }
+
+
+  /**
+   * GymPassHistory deleteMany
+   */
+  export type GymPassHistoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GymPassHistories to delete
+     */
+    where?: GymPassHistoryWhereInput
+  }
+
+
+  /**
+   * GymPassHistory without action
+   */
+  export type GymPassHistoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymPassHistory
+     */
+    select?: GymPassHistorySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymPassHistoryInclude<ExtArgs> | null
+  }
+
+
+
+  /**
    * Enums
    */
 
@@ -18859,6 +20000,7 @@ export namespace Prisma {
     loginType: 'loginType',
     userType: 'userType',
     nickname: 'nickname',
+    phone: 'phone',
     isDisable: 'isDisable'
   };
 
@@ -19041,6 +20183,7 @@ export namespace Prisma {
 
   export const GymAccessHistoryScalarFieldEnum: {
     id: 'id',
+    createdAt: 'createdAt',
     gymId: 'gymId',
     userId: 'userId',
     entryAt: 'entryAt',
@@ -19048,6 +20191,17 @@ export namespace Prisma {
   };
 
   export type GymAccessHistoryScalarFieldEnum = (typeof GymAccessHistoryScalarFieldEnum)[keyof typeof GymAccessHistoryScalarFieldEnum]
+
+
+  export const GymPassHistoryScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    gymId: 'gymId',
+    userId: 'userId',
+    hash: 'hash'
+  };
+
+  export type GymPassHistoryScalarFieldEnum = (typeof GymPassHistoryScalarFieldEnum)[keyof typeof GymPassHistoryScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -19142,6 +20296,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFilter<"User"> | $Enums.LoginType
     userType?: EnumUserTypeFilter<"User"> | $Enums.UserType
     nickname?: StringFilter<"User"> | string
+    phone?: StringFilter<"User"> | string
     isDisable?: BoolFilter<"User"> | boolean
     Board?: BoardListRelationFilter
     BoardReply?: BoardReplyListRelationFilter
@@ -19153,6 +20308,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymListRelationFilter
     GymEquipmentUserHistory?: GymEquipmentUserHistoryListRelationFilter
     GymAccessHistory?: GymAccessHistoryListRelationFilter
+    GymPassHistory?: GymPassHistoryListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -19164,6 +20320,7 @@ export namespace Prisma {
     loginType?: SortOrder
     userType?: SortOrder
     nickname?: SortOrder
+    phone?: SortOrder
     isDisable?: SortOrder
     Board?: BoardOrderByRelationAggregateInput
     BoardReply?: BoardReplyOrderByRelationAggregateInput
@@ -19175,6 +20332,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymOrderByRelationAggregateInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryOrderByRelationAggregateInput
     GymAccessHistory?: GymAccessHistoryOrderByRelationAggregateInput
+    GymPassHistory?: GymPassHistoryOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -19190,6 +20348,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFilter<"User"> | $Enums.LoginType
     userType?: EnumUserTypeFilter<"User"> | $Enums.UserType
     nickname?: StringFilter<"User"> | string
+    phone?: StringFilter<"User"> | string
     isDisable?: BoolFilter<"User"> | boolean
     Board?: BoardListRelationFilter
     BoardReply?: BoardReplyListRelationFilter
@@ -19201,6 +20360,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymListRelationFilter
     GymEquipmentUserHistory?: GymEquipmentUserHistoryListRelationFilter
     GymAccessHistory?: GymAccessHistoryListRelationFilter
+    GymPassHistory?: GymPassHistoryListRelationFilter
   }, "id" | "loginUnique">
 
   export type UserOrderByWithAggregationInput = {
@@ -19212,6 +20372,7 @@ export namespace Prisma {
     loginType?: SortOrder
     userType?: SortOrder
     nickname?: SortOrder
+    phone?: SortOrder
     isDisable?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
@@ -19232,6 +20393,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeWithAggregatesFilter<"User"> | $Enums.LoginType
     userType?: EnumUserTypeWithAggregatesFilter<"User"> | $Enums.UserType
     nickname?: StringWithAggregatesFilter<"User"> | string
+    phone?: StringWithAggregatesFilter<"User"> | string
     isDisable?: BoolWithAggregatesFilter<"User"> | boolean
   }
 
@@ -19799,6 +20961,7 @@ export namespace Prisma {
     FavoriteUsers?: FavoriteGymListRelationFilter
     GymAccessHistory?: GymAccessHistoryListRelationFilter
     GymMembership?: GymMembershipListRelationFilter
+    GymPassHistory?: GymPassHistoryListRelationFilter
   }
 
   export type GymOrderByWithRelationInput = {
@@ -19821,6 +20984,7 @@ export namespace Prisma {
     FavoriteUsers?: FavoriteGymOrderByRelationAggregateInput
     GymAccessHistory?: GymAccessHistoryOrderByRelationAggregateInput
     GymMembership?: GymMembershipOrderByRelationAggregateInput
+    GymPassHistory?: GymPassHistoryOrderByRelationAggregateInput
   }
 
   export type GymWhereUniqueInput = Prisma.AtLeast<{
@@ -19846,6 +21010,7 @@ export namespace Prisma {
     FavoriteUsers?: FavoriteGymListRelationFilter
     GymAccessHistory?: GymAccessHistoryListRelationFilter
     GymMembership?: GymMembershipListRelationFilter
+    GymPassHistory?: GymPassHistoryListRelationFilter
   }, "id">
 
   export type GymOrderByWithAggregationInput = {
@@ -20200,6 +21365,7 @@ export namespace Prisma {
     OR?: GymAccessHistoryWhereInput[]
     NOT?: GymAccessHistoryWhereInput | GymAccessHistoryWhereInput[]
     id?: IntFilter<"GymAccessHistory"> | number
+    createdAt?: DateTimeFilter<"GymAccessHistory"> | Date | string
     gymId?: IntFilter<"GymAccessHistory"> | number
     userId?: IntFilter<"GymAccessHistory"> | number
     entryAt?: DateTimeFilter<"GymAccessHistory"> | Date | string
@@ -20210,6 +21376,7 @@ export namespace Prisma {
 
   export type GymAccessHistoryOrderByWithRelationInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     gymId?: SortOrder
     userId?: SortOrder
     entryAt?: SortOrder
@@ -20223,6 +21390,7 @@ export namespace Prisma {
     AND?: GymAccessHistoryWhereInput | GymAccessHistoryWhereInput[]
     OR?: GymAccessHistoryWhereInput[]
     NOT?: GymAccessHistoryWhereInput | GymAccessHistoryWhereInput[]
+    createdAt?: DateTimeFilter<"GymAccessHistory"> | Date | string
     gymId?: IntFilter<"GymAccessHistory"> | number
     userId?: IntFilter<"GymAccessHistory"> | number
     entryAt?: DateTimeFilter<"GymAccessHistory"> | Date | string
@@ -20233,6 +21401,7 @@ export namespace Prisma {
 
   export type GymAccessHistoryOrderByWithAggregationInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     gymId?: SortOrder
     userId?: SortOrder
     entryAt?: SortOrder
@@ -20249,10 +21418,71 @@ export namespace Prisma {
     OR?: GymAccessHistoryScalarWhereWithAggregatesInput[]
     NOT?: GymAccessHistoryScalarWhereWithAggregatesInput | GymAccessHistoryScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"GymAccessHistory"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"GymAccessHistory"> | Date | string
     gymId?: IntWithAggregatesFilter<"GymAccessHistory"> | number
     userId?: IntWithAggregatesFilter<"GymAccessHistory"> | number
     entryAt?: DateTimeWithAggregatesFilter<"GymAccessHistory"> | Date | string
     exitAt?: DateTimeNullableWithAggregatesFilter<"GymAccessHistory"> | Date | string | null
+  }
+
+  export type GymPassHistoryWhereInput = {
+    AND?: GymPassHistoryWhereInput | GymPassHistoryWhereInput[]
+    OR?: GymPassHistoryWhereInput[]
+    NOT?: GymPassHistoryWhereInput | GymPassHistoryWhereInput[]
+    id?: IntFilter<"GymPassHistory"> | number
+    createdAt?: DateTimeFilter<"GymPassHistory"> | Date | string
+    gymId?: IntFilter<"GymPassHistory"> | number
+    userId?: IntFilter<"GymPassHistory"> | number
+    hash?: StringFilter<"GymPassHistory"> | string
+    Gym?: XOR<GymRelationFilter, GymWhereInput>
+    User?: XOR<UserRelationFilter, UserWhereInput>
+  }
+
+  export type GymPassHistoryOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    gymId?: SortOrder
+    userId?: SortOrder
+    hash?: SortOrder
+    Gym?: GymOrderByWithRelationInput
+    User?: UserOrderByWithRelationInput
+  }
+
+  export type GymPassHistoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: GymPassHistoryWhereInput | GymPassHistoryWhereInput[]
+    OR?: GymPassHistoryWhereInput[]
+    NOT?: GymPassHistoryWhereInput | GymPassHistoryWhereInput[]
+    createdAt?: DateTimeFilter<"GymPassHistory"> | Date | string
+    gymId?: IntFilter<"GymPassHistory"> | number
+    userId?: IntFilter<"GymPassHistory"> | number
+    hash?: StringFilter<"GymPassHistory"> | string
+    Gym?: XOR<GymRelationFilter, GymWhereInput>
+    User?: XOR<UserRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type GymPassHistoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    gymId?: SortOrder
+    userId?: SortOrder
+    hash?: SortOrder
+    _count?: GymPassHistoryCountOrderByAggregateInput
+    _avg?: GymPassHistoryAvgOrderByAggregateInput
+    _max?: GymPassHistoryMaxOrderByAggregateInput
+    _min?: GymPassHistoryMinOrderByAggregateInput
+    _sum?: GymPassHistorySumOrderByAggregateInput
+  }
+
+  export type GymPassHistoryScalarWhereWithAggregatesInput = {
+    AND?: GymPassHistoryScalarWhereWithAggregatesInput | GymPassHistoryScalarWhereWithAggregatesInput[]
+    OR?: GymPassHistoryScalarWhereWithAggregatesInput[]
+    NOT?: GymPassHistoryScalarWhereWithAggregatesInput | GymPassHistoryScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"GymPassHistory"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"GymPassHistory"> | Date | string
+    gymId?: IntWithAggregatesFilter<"GymPassHistory"> | number
+    userId?: IntWithAggregatesFilter<"GymPassHistory"> | number
+    hash?: StringWithAggregatesFilter<"GymPassHistory"> | string
   }
 
   export type UserCreateInput = {
@@ -20263,6 +21493,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
     Board?: BoardCreateNestedManyWithoutUserInput
     BoardReply?: BoardReplyCreateNestedManyWithoutUserInput
@@ -20274,6 +21505,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -20285,6 +21517,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
     Board?: BoardUncheckedCreateNestedManyWithoutUserInput
     BoardReply?: BoardReplyUncheckedCreateNestedManyWithoutUserInput
@@ -20296,6 +21529,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -20306,6 +21540,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     Board?: BoardUpdateManyWithoutUserNestedInput
     BoardReply?: BoardReplyUpdateManyWithoutUserNestedInput
@@ -20317,6 +21552,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUpdateManyWithoutUserNestedInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserNestedInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserNestedInput
+    GymPassHistory?: GymPassHistoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -20328,6 +21564,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     Board?: BoardUncheckedUpdateManyWithoutUserNestedInput
     BoardReply?: BoardReplyUncheckedUpdateManyWithoutUserNestedInput
@@ -20339,6 +21576,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserNestedInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserNestedInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserNestedInput
+    GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -20350,6 +21588,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
   }
 
@@ -20361,6 +21600,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -20373,6 +21613,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -20924,6 +22165,7 @@ export namespace Prisma {
     FavoriteUsers?: FavoriteGymCreateNestedManyWithoutGymInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutGymInput
     GymMembership?: GymMembershipCreateNestedManyWithoutGymInput
+    GymPassHistory?: GymPassHistoryCreateNestedManyWithoutGymInput
   }
 
   export type GymUncheckedCreateInput = {
@@ -20945,6 +22187,7 @@ export namespace Prisma {
     FavoriteUsers?: FavoriteGymUncheckedCreateNestedManyWithoutGymInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutGymInput
     GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutGymInput
+    GymPassHistory?: GymPassHistoryUncheckedCreateNestedManyWithoutGymInput
   }
 
   export type GymUpdateInput = {
@@ -20965,6 +22208,7 @@ export namespace Prisma {
     FavoriteUsers?: FavoriteGymUpdateManyWithoutGymNestedInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutGymNestedInput
     GymMembership?: GymMembershipUpdateManyWithoutGymNestedInput
+    GymPassHistory?: GymPassHistoryUpdateManyWithoutGymNestedInput
   }
 
   export type GymUncheckedUpdateInput = {
@@ -20986,6 +22230,7 @@ export namespace Prisma {
     FavoriteUsers?: FavoriteGymUncheckedUpdateManyWithoutGymNestedInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutGymNestedInput
     GymMembership?: GymMembershipUncheckedUpdateManyWithoutGymNestedInput
+    GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutGymNestedInput
   }
 
   export type GymCreateManyInput = {
@@ -21296,6 +22541,7 @@ export namespace Prisma {
   }
 
   export type GymAccessHistoryCreateInput = {
+    createdAt?: Date | string
     entryAt?: Date | string
     exitAt?: Date | string | null
     Gym: GymCreateNestedOneWithoutGymAccessHistoryInput
@@ -21304,6 +22550,7 @@ export namespace Prisma {
 
   export type GymAccessHistoryUncheckedCreateInput = {
     id?: number
+    createdAt?: Date | string
     gymId: number
     userId: number
     entryAt?: Date | string
@@ -21311,6 +22558,7 @@ export namespace Prisma {
   }
 
   export type GymAccessHistoryUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     entryAt?: DateTimeFieldUpdateOperationsInput | Date | string
     exitAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Gym?: GymUpdateOneRequiredWithoutGymAccessHistoryNestedInput
@@ -21319,6 +22567,7 @@ export namespace Prisma {
 
   export type GymAccessHistoryUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gymId?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     entryAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21327,6 +22576,7 @@ export namespace Prisma {
 
   export type GymAccessHistoryCreateManyInput = {
     id?: number
+    createdAt?: Date | string
     gymId: number
     userId: number
     entryAt?: Date | string
@@ -21334,16 +22584,69 @@ export namespace Prisma {
   }
 
   export type GymAccessHistoryUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     entryAt?: DateTimeFieldUpdateOperationsInput | Date | string
     exitAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type GymAccessHistoryUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gymId?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     entryAt?: DateTimeFieldUpdateOperationsInput | Date | string
     exitAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type GymPassHistoryCreateInput = {
+    createdAt?: Date | string
+    hash: string
+    Gym: GymCreateNestedOneWithoutGymPassHistoryInput
+    User: UserCreateNestedOneWithoutGymPassHistoryInput
+  }
+
+  export type GymPassHistoryUncheckedCreateInput = {
+    id?: number
+    createdAt?: Date | string
+    gymId: number
+    userId: number
+    hash: string
+  }
+
+  export type GymPassHistoryUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    hash?: StringFieldUpdateOperationsInput | string
+    Gym?: GymUpdateOneRequiredWithoutGymPassHistoryNestedInput
+    User?: UserUpdateOneRequiredWithoutGymPassHistoryNestedInput
+  }
+
+  export type GymPassHistoryUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gymId?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    hash?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GymPassHistoryCreateManyInput = {
+    id?: number
+    createdAt?: Date | string
+    gymId: number
+    userId: number
+    hash: string
+  }
+
+  export type GymPassHistoryUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    hash?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GymPassHistoryUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gymId?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    hash?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -21469,6 +22772,12 @@ export namespace Prisma {
     none?: GymAccessHistoryWhereInput
   }
 
+  export type GymPassHistoryListRelationFilter = {
+    every?: GymPassHistoryWhereInput
+    some?: GymPassHistoryWhereInput
+    none?: GymPassHistoryWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -21510,6 +22819,10 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type GymPassHistoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserLoginUniqueCompoundUniqueInput = {
     loginType: $Enums.LoginType
     loginId: string
@@ -21524,6 +22837,7 @@ export namespace Prisma {
     loginType?: SortOrder
     userType?: SortOrder
     nickname?: SortOrder
+    phone?: SortOrder
     isDisable?: SortOrder
   }
 
@@ -21540,6 +22854,7 @@ export namespace Prisma {
     loginType?: SortOrder
     userType?: SortOrder
     nickname?: SortOrder
+    phone?: SortOrder
     isDisable?: SortOrder
   }
 
@@ -21552,6 +22867,7 @@ export namespace Prisma {
     loginType?: SortOrder
     userType?: SortOrder
     nickname?: SortOrder
+    phone?: SortOrder
     isDisable?: SortOrder
   }
 
@@ -22360,6 +23676,7 @@ export namespace Prisma {
 
   export type GymAccessHistoryCountOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     gymId?: SortOrder
     userId?: SortOrder
     entryAt?: SortOrder
@@ -22374,6 +23691,7 @@ export namespace Prisma {
 
   export type GymAccessHistoryMaxOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     gymId?: SortOrder
     userId?: SortOrder
     entryAt?: SortOrder
@@ -22382,6 +23700,7 @@ export namespace Prisma {
 
   export type GymAccessHistoryMinOrderByAggregateInput = {
     id?: SortOrder
+    createdAt?: SortOrder
     gymId?: SortOrder
     userId?: SortOrder
     entryAt?: SortOrder
@@ -22389,6 +23708,42 @@ export namespace Prisma {
   }
 
   export type GymAccessHistorySumOrderByAggregateInput = {
+    id?: SortOrder
+    gymId?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type GymPassHistoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    gymId?: SortOrder
+    userId?: SortOrder
+    hash?: SortOrder
+  }
+
+  export type GymPassHistoryAvgOrderByAggregateInput = {
+    id?: SortOrder
+    gymId?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type GymPassHistoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    gymId?: SortOrder
+    userId?: SortOrder
+    hash?: SortOrder
+  }
+
+  export type GymPassHistoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    gymId?: SortOrder
+    userId?: SortOrder
+    hash?: SortOrder
+  }
+
+  export type GymPassHistorySumOrderByAggregateInput = {
     id?: SortOrder
     gymId?: SortOrder
     userId?: SortOrder
@@ -22464,6 +23819,13 @@ export namespace Prisma {
     connect?: GymAccessHistoryWhereUniqueInput | GymAccessHistoryWhereUniqueInput[]
   }
 
+  export type GymPassHistoryCreateNestedManyWithoutUserInput = {
+    create?: XOR<GymPassHistoryCreateWithoutUserInput, GymPassHistoryUncheckedCreateWithoutUserInput> | GymPassHistoryCreateWithoutUserInput[] | GymPassHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: GymPassHistoryCreateOrConnectWithoutUserInput | GymPassHistoryCreateOrConnectWithoutUserInput[]
+    createMany?: GymPassHistoryCreateManyUserInputEnvelope
+    connect?: GymPassHistoryWhereUniqueInput | GymPassHistoryWhereUniqueInput[]
+  }
+
   export type BoardUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<BoardCreateWithoutUserInput, BoardUncheckedCreateWithoutUserInput> | BoardCreateWithoutUserInput[] | BoardUncheckedCreateWithoutUserInput[]
     connectOrCreate?: BoardCreateOrConnectWithoutUserInput | BoardCreateOrConnectWithoutUserInput[]
@@ -22532,6 +23894,13 @@ export namespace Prisma {
     connectOrCreate?: GymAccessHistoryCreateOrConnectWithoutUserInput | GymAccessHistoryCreateOrConnectWithoutUserInput[]
     createMany?: GymAccessHistoryCreateManyUserInputEnvelope
     connect?: GymAccessHistoryWhereUniqueInput | GymAccessHistoryWhereUniqueInput[]
+  }
+
+  export type GymPassHistoryUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<GymPassHistoryCreateWithoutUserInput, GymPassHistoryUncheckedCreateWithoutUserInput> | GymPassHistoryCreateWithoutUserInput[] | GymPassHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: GymPassHistoryCreateOrConnectWithoutUserInput | GymPassHistoryCreateOrConnectWithoutUserInput[]
+    createMany?: GymPassHistoryCreateManyUserInputEnvelope
+    connect?: GymPassHistoryWhereUniqueInput | GymPassHistoryWhereUniqueInput[]
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -22698,6 +24067,20 @@ export namespace Prisma {
     deleteMany?: GymAccessHistoryScalarWhereInput | GymAccessHistoryScalarWhereInput[]
   }
 
+  export type GymPassHistoryUpdateManyWithoutUserNestedInput = {
+    create?: XOR<GymPassHistoryCreateWithoutUserInput, GymPassHistoryUncheckedCreateWithoutUserInput> | GymPassHistoryCreateWithoutUserInput[] | GymPassHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: GymPassHistoryCreateOrConnectWithoutUserInput | GymPassHistoryCreateOrConnectWithoutUserInput[]
+    upsert?: GymPassHistoryUpsertWithWhereUniqueWithoutUserInput | GymPassHistoryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: GymPassHistoryCreateManyUserInputEnvelope
+    set?: GymPassHistoryWhereUniqueInput | GymPassHistoryWhereUniqueInput[]
+    disconnect?: GymPassHistoryWhereUniqueInput | GymPassHistoryWhereUniqueInput[]
+    delete?: GymPassHistoryWhereUniqueInput | GymPassHistoryWhereUniqueInput[]
+    connect?: GymPassHistoryWhereUniqueInput | GymPassHistoryWhereUniqueInput[]
+    update?: GymPassHistoryUpdateWithWhereUniqueWithoutUserInput | GymPassHistoryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: GymPassHistoryUpdateManyWithWhereWithoutUserInput | GymPassHistoryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: GymPassHistoryScalarWhereInput | GymPassHistoryScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -22844,6 +24227,20 @@ export namespace Prisma {
     update?: GymAccessHistoryUpdateWithWhereUniqueWithoutUserInput | GymAccessHistoryUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: GymAccessHistoryUpdateManyWithWhereWithoutUserInput | GymAccessHistoryUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: GymAccessHistoryScalarWhereInput | GymAccessHistoryScalarWhereInput[]
+  }
+
+  export type GymPassHistoryUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<GymPassHistoryCreateWithoutUserInput, GymPassHistoryUncheckedCreateWithoutUserInput> | GymPassHistoryCreateWithoutUserInput[] | GymPassHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: GymPassHistoryCreateOrConnectWithoutUserInput | GymPassHistoryCreateOrConnectWithoutUserInput[]
+    upsert?: GymPassHistoryUpsertWithWhereUniqueWithoutUserInput | GymPassHistoryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: GymPassHistoryCreateManyUserInputEnvelope
+    set?: GymPassHistoryWhereUniqueInput | GymPassHistoryWhereUniqueInput[]
+    disconnect?: GymPassHistoryWhereUniqueInput | GymPassHistoryWhereUniqueInput[]
+    delete?: GymPassHistoryWhereUniqueInput | GymPassHistoryWhereUniqueInput[]
+    connect?: GymPassHistoryWhereUniqueInput | GymPassHistoryWhereUniqueInput[]
+    update?: GymPassHistoryUpdateWithWhereUniqueWithoutUserInput | GymPassHistoryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: GymPassHistoryUpdateManyWithWhereWithoutUserInput | GymPassHistoryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: GymPassHistoryScalarWhereInput | GymPassHistoryScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutNoticeInput = {
@@ -23318,6 +24715,13 @@ export namespace Prisma {
     connect?: GymMembershipWhereUniqueInput | GymMembershipWhereUniqueInput[]
   }
 
+  export type GymPassHistoryCreateNestedManyWithoutGymInput = {
+    create?: XOR<GymPassHistoryCreateWithoutGymInput, GymPassHistoryUncheckedCreateWithoutGymInput> | GymPassHistoryCreateWithoutGymInput[] | GymPassHistoryUncheckedCreateWithoutGymInput[]
+    connectOrCreate?: GymPassHistoryCreateOrConnectWithoutGymInput | GymPassHistoryCreateOrConnectWithoutGymInput[]
+    createMany?: GymPassHistoryCreateManyGymInputEnvelope
+    connect?: GymPassHistoryWhereUniqueInput | GymPassHistoryWhereUniqueInput[]
+  }
+
   export type GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutGymInput = {
     create?: XOR<GymEuquipmentsOnGymsCreateWithoutGymInput, GymEuquipmentsOnGymsUncheckedCreateWithoutGymInput> | GymEuquipmentsOnGymsCreateWithoutGymInput[] | GymEuquipmentsOnGymsUncheckedCreateWithoutGymInput[]
     connectOrCreate?: GymEuquipmentsOnGymsCreateOrConnectWithoutGymInput | GymEuquipmentsOnGymsCreateOrConnectWithoutGymInput[]
@@ -23344,6 +24748,13 @@ export namespace Prisma {
     connectOrCreate?: GymMembershipCreateOrConnectWithoutGymInput | GymMembershipCreateOrConnectWithoutGymInput[]
     createMany?: GymMembershipCreateManyGymInputEnvelope
     connect?: GymMembershipWhereUniqueInput | GymMembershipWhereUniqueInput[]
+  }
+
+  export type GymPassHistoryUncheckedCreateNestedManyWithoutGymInput = {
+    create?: XOR<GymPassHistoryCreateWithoutGymInput, GymPassHistoryUncheckedCreateWithoutGymInput> | GymPassHistoryCreateWithoutGymInput[] | GymPassHistoryUncheckedCreateWithoutGymInput[]
+    connectOrCreate?: GymPassHistoryCreateOrConnectWithoutGymInput | GymPassHistoryCreateOrConnectWithoutGymInput[]
+    createMany?: GymPassHistoryCreateManyGymInputEnvelope
+    connect?: GymPassHistoryWhereUniqueInput | GymPassHistoryWhereUniqueInput[]
   }
 
   export type UserUpdateOneRequiredWithoutGymNestedInput = {
@@ -23410,6 +24821,20 @@ export namespace Prisma {
     deleteMany?: GymMembershipScalarWhereInput | GymMembershipScalarWhereInput[]
   }
 
+  export type GymPassHistoryUpdateManyWithoutGymNestedInput = {
+    create?: XOR<GymPassHistoryCreateWithoutGymInput, GymPassHistoryUncheckedCreateWithoutGymInput> | GymPassHistoryCreateWithoutGymInput[] | GymPassHistoryUncheckedCreateWithoutGymInput[]
+    connectOrCreate?: GymPassHistoryCreateOrConnectWithoutGymInput | GymPassHistoryCreateOrConnectWithoutGymInput[]
+    upsert?: GymPassHistoryUpsertWithWhereUniqueWithoutGymInput | GymPassHistoryUpsertWithWhereUniqueWithoutGymInput[]
+    createMany?: GymPassHistoryCreateManyGymInputEnvelope
+    set?: GymPassHistoryWhereUniqueInput | GymPassHistoryWhereUniqueInput[]
+    disconnect?: GymPassHistoryWhereUniqueInput | GymPassHistoryWhereUniqueInput[]
+    delete?: GymPassHistoryWhereUniqueInput | GymPassHistoryWhereUniqueInput[]
+    connect?: GymPassHistoryWhereUniqueInput | GymPassHistoryWhereUniqueInput[]
+    update?: GymPassHistoryUpdateWithWhereUniqueWithoutGymInput | GymPassHistoryUpdateWithWhereUniqueWithoutGymInput[]
+    updateMany?: GymPassHistoryUpdateManyWithWhereWithoutGymInput | GymPassHistoryUpdateManyWithWhereWithoutGymInput[]
+    deleteMany?: GymPassHistoryScalarWhereInput | GymPassHistoryScalarWhereInput[]
+  }
+
   export type GymEuquipmentsOnGymsUncheckedUpdateManyWithoutGymNestedInput = {
     create?: XOR<GymEuquipmentsOnGymsCreateWithoutGymInput, GymEuquipmentsOnGymsUncheckedCreateWithoutGymInput> | GymEuquipmentsOnGymsCreateWithoutGymInput[] | GymEuquipmentsOnGymsUncheckedCreateWithoutGymInput[]
     connectOrCreate?: GymEuquipmentsOnGymsCreateOrConnectWithoutGymInput | GymEuquipmentsOnGymsCreateOrConnectWithoutGymInput[]
@@ -23464,6 +24889,20 @@ export namespace Prisma {
     update?: GymMembershipUpdateWithWhereUniqueWithoutGymInput | GymMembershipUpdateWithWhereUniqueWithoutGymInput[]
     updateMany?: GymMembershipUpdateManyWithWhereWithoutGymInput | GymMembershipUpdateManyWithWhereWithoutGymInput[]
     deleteMany?: GymMembershipScalarWhereInput | GymMembershipScalarWhereInput[]
+  }
+
+  export type GymPassHistoryUncheckedUpdateManyWithoutGymNestedInput = {
+    create?: XOR<GymPassHistoryCreateWithoutGymInput, GymPassHistoryUncheckedCreateWithoutGymInput> | GymPassHistoryCreateWithoutGymInput[] | GymPassHistoryUncheckedCreateWithoutGymInput[]
+    connectOrCreate?: GymPassHistoryCreateOrConnectWithoutGymInput | GymPassHistoryCreateOrConnectWithoutGymInput[]
+    upsert?: GymPassHistoryUpsertWithWhereUniqueWithoutGymInput | GymPassHistoryUpsertWithWhereUniqueWithoutGymInput[]
+    createMany?: GymPassHistoryCreateManyGymInputEnvelope
+    set?: GymPassHistoryWhereUniqueInput | GymPassHistoryWhereUniqueInput[]
+    disconnect?: GymPassHistoryWhereUniqueInput | GymPassHistoryWhereUniqueInput[]
+    delete?: GymPassHistoryWhereUniqueInput | GymPassHistoryWhereUniqueInput[]
+    connect?: GymPassHistoryWhereUniqueInput | GymPassHistoryWhereUniqueInput[]
+    update?: GymPassHistoryUpdateWithWhereUniqueWithoutGymInput | GymPassHistoryUpdateWithWhereUniqueWithoutGymInput[]
+    updateMany?: GymPassHistoryUpdateManyWithWhereWithoutGymInput | GymPassHistoryUpdateManyWithWhereWithoutGymInput[]
+    deleteMany?: GymPassHistoryScalarWhereInput | GymPassHistoryScalarWhereInput[]
   }
 
   export type GymCreateNestedOneWithoutGymEquipmentsInput = {
@@ -23732,6 +25171,34 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutGymAccessHistoryInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutGymAccessHistoryInput, UserUpdateWithoutGymAccessHistoryInput>, UserUncheckedUpdateWithoutGymAccessHistoryInput>
+  }
+
+  export type GymCreateNestedOneWithoutGymPassHistoryInput = {
+    create?: XOR<GymCreateWithoutGymPassHistoryInput, GymUncheckedCreateWithoutGymPassHistoryInput>
+    connectOrCreate?: GymCreateOrConnectWithoutGymPassHistoryInput
+    connect?: GymWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutGymPassHistoryInput = {
+    create?: XOR<UserCreateWithoutGymPassHistoryInput, UserUncheckedCreateWithoutGymPassHistoryInput>
+    connectOrCreate?: UserCreateOrConnectWithoutGymPassHistoryInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type GymUpdateOneRequiredWithoutGymPassHistoryNestedInput = {
+    create?: XOR<GymCreateWithoutGymPassHistoryInput, GymUncheckedCreateWithoutGymPassHistoryInput>
+    connectOrCreate?: GymCreateOrConnectWithoutGymPassHistoryInput
+    upsert?: GymUpsertWithoutGymPassHistoryInput
+    connect?: GymWhereUniqueInput
+    update?: XOR<XOR<GymUpdateToOneWithWhereWithoutGymPassHistoryInput, GymUpdateWithoutGymPassHistoryInput>, GymUncheckedUpdateWithoutGymPassHistoryInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutGymPassHistoryNestedInput = {
+    create?: XOR<UserCreateWithoutGymPassHistoryInput, UserUncheckedCreateWithoutGymPassHistoryInput>
+    connectOrCreate?: UserCreateOrConnectWithoutGymPassHistoryInput
+    upsert?: UserUpsertWithoutGymPassHistoryInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutGymPassHistoryInput, UserUpdateWithoutGymPassHistoryInput>, UserUncheckedUpdateWithoutGymPassHistoryInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -24098,6 +25565,7 @@ export namespace Prisma {
     FavoriteUsers?: FavoriteGymCreateNestedManyWithoutGymInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutGymInput
     GymMembership?: GymMembershipCreateNestedManyWithoutGymInput
+    GymPassHistory?: GymPassHistoryCreateNestedManyWithoutGymInput
   }
 
   export type GymUncheckedCreateWithoutUserInput = {
@@ -24118,6 +25586,7 @@ export namespace Prisma {
     FavoriteUsers?: FavoriteGymUncheckedCreateNestedManyWithoutGymInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutGymInput
     GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutGymInput
+    GymPassHistory?: GymPassHistoryUncheckedCreateNestedManyWithoutGymInput
   }
 
   export type GymCreateOrConnectWithoutUserInput = {
@@ -24257,6 +25726,7 @@ export namespace Prisma {
   }
 
   export type GymAccessHistoryCreateWithoutUserInput = {
+    createdAt?: Date | string
     entryAt?: Date | string
     exitAt?: Date | string | null
     Gym: GymCreateNestedOneWithoutGymAccessHistoryInput
@@ -24264,6 +25734,7 @@ export namespace Prisma {
 
   export type GymAccessHistoryUncheckedCreateWithoutUserInput = {
     id?: number
+    createdAt?: Date | string
     gymId: number
     entryAt?: Date | string
     exitAt?: Date | string | null
@@ -24276,6 +25747,29 @@ export namespace Prisma {
 
   export type GymAccessHistoryCreateManyUserInputEnvelope = {
     data: GymAccessHistoryCreateManyUserInput | GymAccessHistoryCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type GymPassHistoryCreateWithoutUserInput = {
+    createdAt?: Date | string
+    hash: string
+    Gym: GymCreateNestedOneWithoutGymPassHistoryInput
+  }
+
+  export type GymPassHistoryUncheckedCreateWithoutUserInput = {
+    id?: number
+    createdAt?: Date | string
+    gymId: number
+    hash: string
+  }
+
+  export type GymPassHistoryCreateOrConnectWithoutUserInput = {
+    where: GymPassHistoryWhereUniqueInput
+    create: XOR<GymPassHistoryCreateWithoutUserInput, GymPassHistoryUncheckedCreateWithoutUserInput>
+  }
+
+  export type GymPassHistoryCreateManyUserInputEnvelope = {
+    data: GymPassHistoryCreateManyUserInput | GymPassHistoryCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -24552,10 +26046,38 @@ export namespace Prisma {
     OR?: GymAccessHistoryScalarWhereInput[]
     NOT?: GymAccessHistoryScalarWhereInput | GymAccessHistoryScalarWhereInput[]
     id?: IntFilter<"GymAccessHistory"> | number
+    createdAt?: DateTimeFilter<"GymAccessHistory"> | Date | string
     gymId?: IntFilter<"GymAccessHistory"> | number
     userId?: IntFilter<"GymAccessHistory"> | number
     entryAt?: DateTimeFilter<"GymAccessHistory"> | Date | string
     exitAt?: DateTimeNullableFilter<"GymAccessHistory"> | Date | string | null
+  }
+
+  export type GymPassHistoryUpsertWithWhereUniqueWithoutUserInput = {
+    where: GymPassHistoryWhereUniqueInput
+    update: XOR<GymPassHistoryUpdateWithoutUserInput, GymPassHistoryUncheckedUpdateWithoutUserInput>
+    create: XOR<GymPassHistoryCreateWithoutUserInput, GymPassHistoryUncheckedCreateWithoutUserInput>
+  }
+
+  export type GymPassHistoryUpdateWithWhereUniqueWithoutUserInput = {
+    where: GymPassHistoryWhereUniqueInput
+    data: XOR<GymPassHistoryUpdateWithoutUserInput, GymPassHistoryUncheckedUpdateWithoutUserInput>
+  }
+
+  export type GymPassHistoryUpdateManyWithWhereWithoutUserInput = {
+    where: GymPassHistoryScalarWhereInput
+    data: XOR<GymPassHistoryUpdateManyMutationInput, GymPassHistoryUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type GymPassHistoryScalarWhereInput = {
+    AND?: GymPassHistoryScalarWhereInput | GymPassHistoryScalarWhereInput[]
+    OR?: GymPassHistoryScalarWhereInput[]
+    NOT?: GymPassHistoryScalarWhereInput | GymPassHistoryScalarWhereInput[]
+    id?: IntFilter<"GymPassHistory"> | number
+    createdAt?: DateTimeFilter<"GymPassHistory"> | Date | string
+    gymId?: IntFilter<"GymPassHistory"> | number
+    userId?: IntFilter<"GymPassHistory"> | number
+    hash?: StringFilter<"GymPassHistory"> | string
   }
 
   export type UserCreateWithoutNoticeInput = {
@@ -24566,6 +26088,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
     Board?: BoardCreateNestedManyWithoutUserInput
     BoardReply?: BoardReplyCreateNestedManyWithoutUserInput
@@ -24576,6 +26099,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutNoticeInput = {
@@ -24587,6 +26111,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
     Board?: BoardUncheckedCreateNestedManyWithoutUserInput
     BoardReply?: BoardReplyUncheckedCreateNestedManyWithoutUserInput
@@ -24597,6 +26122,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutNoticeInput = {
@@ -24623,6 +26149,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     Board?: BoardUpdateManyWithoutUserNestedInput
     BoardReply?: BoardReplyUpdateManyWithoutUserNestedInput
@@ -24633,6 +26160,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUpdateManyWithoutUserNestedInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserNestedInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserNestedInput
+    GymPassHistory?: GymPassHistoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNoticeInput = {
@@ -24644,6 +26172,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     Board?: BoardUncheckedUpdateManyWithoutUserNestedInput
     BoardReply?: BoardReplyUncheckedUpdateManyWithoutUserNestedInput
@@ -24654,6 +26183,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserNestedInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserNestedInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserNestedInput
+    GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BoardImageCreateWithoutBoardInput = {
@@ -24726,6 +26256,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
     BoardReply?: BoardReplyCreateNestedManyWithoutUserInput
     Notice?: NoticeCreateNestedManyWithoutUserInput
@@ -24736,6 +26267,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBoardInput = {
@@ -24747,6 +26279,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
     BoardReply?: BoardReplyUncheckedCreateNestedManyWithoutUserInput
     Notice?: NoticeUncheckedCreateNestedManyWithoutUserInput
@@ -24757,6 +26290,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBoardInput = {
@@ -24829,6 +26363,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     BoardReply?: BoardReplyUpdateManyWithoutUserNestedInput
     Notice?: NoticeUpdateManyWithoutUserNestedInput
@@ -24839,6 +26374,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUpdateManyWithoutUserNestedInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserNestedInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserNestedInput
+    GymPassHistory?: GymPassHistoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBoardInput = {
@@ -24850,6 +26386,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     BoardReply?: BoardReplyUncheckedUpdateManyWithoutUserNestedInput
     Notice?: NoticeUncheckedUpdateManyWithoutUserNestedInput
@@ -24860,6 +26397,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserNestedInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserNestedInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserNestedInput
+    GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BoardCreateWithoutBoardImageInput = {
@@ -24940,6 +26478,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
     Board?: BoardCreateNestedManyWithoutUserInput
     Notice?: NoticeCreateNestedManyWithoutUserInput
@@ -24950,6 +26489,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBoardReplyInput = {
@@ -24961,6 +26501,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
     Board?: BoardUncheckedCreateNestedManyWithoutUserInput
     Notice?: NoticeUncheckedCreateNestedManyWithoutUserInput
@@ -24971,6 +26512,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBoardReplyInput = {
@@ -25090,6 +26632,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     Board?: BoardUpdateManyWithoutUserNestedInput
     Notice?: NoticeUpdateManyWithoutUserNestedInput
@@ -25100,6 +26643,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUpdateManyWithoutUserNestedInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserNestedInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserNestedInput
+    GymPassHistory?: GymPassHistoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBoardReplyInput = {
@@ -25111,6 +26655,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     Board?: BoardUncheckedUpdateManyWithoutUserNestedInput
     Notice?: NoticeUncheckedUpdateManyWithoutUserNestedInput
@@ -25121,6 +26666,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserNestedInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserNestedInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserNestedInput
+    GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BoardUpsertWithoutBoardReplyInput = {
@@ -25542,6 +27088,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
     Board?: BoardCreateNestedManyWithoutUserInput
     BoardReply?: BoardReplyCreateNestedManyWithoutUserInput
@@ -25552,6 +27099,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutGymInput = {
@@ -25563,6 +27111,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
     Board?: BoardUncheckedCreateNestedManyWithoutUserInput
     BoardReply?: BoardReplyUncheckedCreateNestedManyWithoutUserInput
@@ -25573,6 +27122,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutGymInput = {
@@ -25626,6 +27176,7 @@ export namespace Prisma {
   }
 
   export type GymAccessHistoryCreateWithoutGymInput = {
+    createdAt?: Date | string
     entryAt?: Date | string
     exitAt?: Date | string | null
     User: UserCreateNestedOneWithoutGymAccessHistoryInput
@@ -25633,6 +27184,7 @@ export namespace Prisma {
 
   export type GymAccessHistoryUncheckedCreateWithoutGymInput = {
     id?: number
+    createdAt?: Date | string
     userId: number
     entryAt?: Date | string
     exitAt?: Date | string | null
@@ -25677,6 +27229,29 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type GymPassHistoryCreateWithoutGymInput = {
+    createdAt?: Date | string
+    hash: string
+    User: UserCreateNestedOneWithoutGymPassHistoryInput
+  }
+
+  export type GymPassHistoryUncheckedCreateWithoutGymInput = {
+    id?: number
+    createdAt?: Date | string
+    userId: number
+    hash: string
+  }
+
+  export type GymPassHistoryCreateOrConnectWithoutGymInput = {
+    where: GymPassHistoryWhereUniqueInput
+    create: XOR<GymPassHistoryCreateWithoutGymInput, GymPassHistoryUncheckedCreateWithoutGymInput>
+  }
+
+  export type GymPassHistoryCreateManyGymInputEnvelope = {
+    data: GymPassHistoryCreateManyGymInput | GymPassHistoryCreateManyGymInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithoutGymInput = {
     update: XOR<UserUpdateWithoutGymInput, UserUncheckedUpdateWithoutGymInput>
     create: XOR<UserCreateWithoutGymInput, UserUncheckedCreateWithoutGymInput>
@@ -25696,6 +27271,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     Board?: BoardUpdateManyWithoutUserNestedInput
     BoardReply?: BoardReplyUpdateManyWithoutUserNestedInput
@@ -25706,6 +27282,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUpdateManyWithoutUserNestedInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserNestedInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserNestedInput
+    GymPassHistory?: GymPassHistoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutGymInput = {
@@ -25717,6 +27294,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     Board?: BoardUncheckedUpdateManyWithoutUserNestedInput
     BoardReply?: BoardReplyUncheckedUpdateManyWithoutUserNestedInput
@@ -25727,6 +27305,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserNestedInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserNestedInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserNestedInput
+    GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type GymEuquipmentsOnGymsUpsertWithWhereUniqueWithoutGymInput = {
@@ -25793,6 +27372,22 @@ export namespace Prisma {
     data: XOR<GymMembershipUpdateManyMutationInput, GymMembershipUncheckedUpdateManyWithoutGymInput>
   }
 
+  export type GymPassHistoryUpsertWithWhereUniqueWithoutGymInput = {
+    where: GymPassHistoryWhereUniqueInput
+    update: XOR<GymPassHistoryUpdateWithoutGymInput, GymPassHistoryUncheckedUpdateWithoutGymInput>
+    create: XOR<GymPassHistoryCreateWithoutGymInput, GymPassHistoryUncheckedCreateWithoutGymInput>
+  }
+
+  export type GymPassHistoryUpdateWithWhereUniqueWithoutGymInput = {
+    where: GymPassHistoryWhereUniqueInput
+    data: XOR<GymPassHistoryUpdateWithoutGymInput, GymPassHistoryUncheckedUpdateWithoutGymInput>
+  }
+
+  export type GymPassHistoryUpdateManyWithWhereWithoutGymInput = {
+    where: GymPassHistoryScalarWhereInput
+    data: XOR<GymPassHistoryUpdateManyMutationInput, GymPassHistoryUncheckedUpdateManyWithoutGymInput>
+  }
+
   export type GymCreateWithoutGymEquipmentsInput = {
     createdAt?: Date | string
     ceoName: string
@@ -25810,6 +27405,7 @@ export namespace Prisma {
     FavoriteUsers?: FavoriteGymCreateNestedManyWithoutGymInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutGymInput
     GymMembership?: GymMembershipCreateNestedManyWithoutGymInput
+    GymPassHistory?: GymPassHistoryCreateNestedManyWithoutGymInput
   }
 
   export type GymUncheckedCreateWithoutGymEquipmentsInput = {
@@ -25830,6 +27426,7 @@ export namespace Prisma {
     FavoriteUsers?: FavoriteGymUncheckedCreateNestedManyWithoutGymInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutGymInput
     GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutGymInput
+    GymPassHistory?: GymPassHistoryUncheckedCreateNestedManyWithoutGymInput
   }
 
   export type GymCreateOrConnectWithoutGymEquipmentsInput = {
@@ -25867,6 +27464,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
     Board?: BoardCreateNestedManyWithoutUserInput
     BoardReply?: BoardReplyCreateNestedManyWithoutUserInput
@@ -25877,6 +27475,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAssignedGymEquipmentsInput = {
@@ -25888,6 +27487,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
     Board?: BoardUncheckedCreateNestedManyWithoutUserInput
     BoardReply?: BoardReplyUncheckedCreateNestedManyWithoutUserInput
@@ -25898,6 +27498,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAssignedGymEquipmentsInput = {
@@ -25956,6 +27557,7 @@ export namespace Prisma {
     FavoriteUsers?: FavoriteGymUpdateManyWithoutGymNestedInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutGymNestedInput
     GymMembership?: GymMembershipUpdateManyWithoutGymNestedInput
+    GymPassHistory?: GymPassHistoryUpdateManyWithoutGymNestedInput
   }
 
   export type GymUncheckedUpdateWithoutGymEquipmentsInput = {
@@ -25976,6 +27578,7 @@ export namespace Prisma {
     FavoriteUsers?: FavoriteGymUncheckedUpdateManyWithoutGymNestedInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutGymNestedInput
     GymMembership?: GymMembershipUncheckedUpdateManyWithoutGymNestedInput
+    GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutGymNestedInput
   }
 
   export type GymEquipmentUpsertWithoutGymsInput = {
@@ -26025,6 +27628,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     Board?: BoardUpdateManyWithoutUserNestedInput
     BoardReply?: BoardReplyUpdateManyWithoutUserNestedInput
@@ -26035,6 +27639,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUpdateManyWithoutUserNestedInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserNestedInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserNestedInput
+    GymPassHistory?: GymPassHistoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAssignedGymEquipmentsInput = {
@@ -26046,6 +27651,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     Board?: BoardUncheckedUpdateManyWithoutUserNestedInput
     BoardReply?: BoardReplyUncheckedUpdateManyWithoutUserNestedInput
@@ -26056,6 +27662,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserNestedInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserNestedInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserNestedInput
+    GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type GymEquipmentUserHistoryUpsertWithWhereUniqueWithoutGymEuquipmentsOnGymsInput = {
@@ -26102,6 +27709,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
     Board?: BoardCreateNestedManyWithoutUserInput
     BoardReply?: BoardReplyCreateNestedManyWithoutUserInput
@@ -26112,6 +27720,7 @@ export namespace Prisma {
     assignedGymMemberships?: GymMembershipCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutGymEquipmentUserHistoryInput = {
@@ -26123,6 +27732,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
     Board?: BoardUncheckedCreateNestedManyWithoutUserInput
     BoardReply?: BoardReplyUncheckedCreateNestedManyWithoutUserInput
@@ -26133,6 +27743,7 @@ export namespace Prisma {
     assignedGymMemberships?: GymMembershipUncheckedCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutGymEquipmentUserHistoryInput = {
@@ -26185,6 +27796,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     Board?: BoardUpdateManyWithoutUserNestedInput
     BoardReply?: BoardReplyUpdateManyWithoutUserNestedInput
@@ -26195,6 +27807,7 @@ export namespace Prisma {
     assignedGymMemberships?: GymMembershipUpdateManyWithoutAssignUserNestedInput
     FavoriteGyms?: FavoriteGymUpdateManyWithoutUserNestedInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserNestedInput
+    GymPassHistory?: GymPassHistoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutGymEquipmentUserHistoryInput = {
@@ -26206,6 +27819,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     Board?: BoardUncheckedUpdateManyWithoutUserNestedInput
     BoardReply?: BoardReplyUncheckedUpdateManyWithoutUserNestedInput
@@ -26216,6 +27830,7 @@ export namespace Prisma {
     assignedGymMemberships?: GymMembershipUncheckedUpdateManyWithoutAssignUserNestedInput
     FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserNestedInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserNestedInput
+    GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutGymMembershipInput = {
@@ -26226,6 +27841,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
     Board?: BoardCreateNestedManyWithoutUserInput
     BoardReply?: BoardReplyCreateNestedManyWithoutUserInput
@@ -26236,6 +27852,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutGymMembershipInput = {
@@ -26247,6 +27864,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
     Board?: BoardUncheckedCreateNestedManyWithoutUserInput
     BoardReply?: BoardReplyUncheckedCreateNestedManyWithoutUserInput
@@ -26257,6 +27875,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutGymMembershipInput = {
@@ -26281,6 +27900,7 @@ export namespace Prisma {
     GymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutGymInput
     FavoriteUsers?: FavoriteGymCreateNestedManyWithoutGymInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutGymInput
+    GymPassHistory?: GymPassHistoryCreateNestedManyWithoutGymInput
   }
 
   export type GymUncheckedCreateWithoutGymMembershipInput = {
@@ -26301,6 +27921,7 @@ export namespace Prisma {
     GymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutGymInput
     FavoriteUsers?: FavoriteGymUncheckedCreateNestedManyWithoutGymInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutGymInput
+    GymPassHistory?: GymPassHistoryUncheckedCreateNestedManyWithoutGymInput
   }
 
   export type GymCreateOrConnectWithoutGymMembershipInput = {
@@ -26316,6 +27937,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
     Board?: BoardCreateNestedManyWithoutUserInput
     BoardReply?: BoardReplyCreateNestedManyWithoutUserInput
@@ -26326,6 +27948,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAssignedGymMembershipsInput = {
@@ -26337,6 +27960,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
     Board?: BoardUncheckedCreateNestedManyWithoutUserInput
     BoardReply?: BoardReplyUncheckedCreateNestedManyWithoutUserInput
@@ -26347,6 +27971,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAssignedGymMembershipsInput = {
@@ -26389,6 +28014,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     Board?: BoardUpdateManyWithoutUserNestedInput
     BoardReply?: BoardReplyUpdateManyWithoutUserNestedInput
@@ -26399,6 +28025,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUpdateManyWithoutUserNestedInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserNestedInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserNestedInput
+    GymPassHistory?: GymPassHistoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutGymMembershipInput = {
@@ -26410,6 +28037,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     Board?: BoardUncheckedUpdateManyWithoutUserNestedInput
     BoardReply?: BoardReplyUncheckedUpdateManyWithoutUserNestedInput
@@ -26420,6 +28048,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserNestedInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserNestedInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserNestedInput
+    GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type GymUpsertWithoutGymMembershipInput = {
@@ -26450,6 +28079,7 @@ export namespace Prisma {
     GymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutGymNestedInput
     FavoriteUsers?: FavoriteGymUpdateManyWithoutGymNestedInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutGymNestedInput
+    GymPassHistory?: GymPassHistoryUpdateManyWithoutGymNestedInput
   }
 
   export type GymUncheckedUpdateWithoutGymMembershipInput = {
@@ -26470,6 +28100,7 @@ export namespace Prisma {
     GymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutGymNestedInput
     FavoriteUsers?: FavoriteGymUncheckedUpdateManyWithoutGymNestedInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutGymNestedInput
+    GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutGymNestedInput
   }
 
   export type UserUpsertWithoutAssignedGymMembershipsInput = {
@@ -26491,6 +28122,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     Board?: BoardUpdateManyWithoutUserNestedInput
     BoardReply?: BoardReplyUpdateManyWithoutUserNestedInput
@@ -26501,6 +28133,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUpdateManyWithoutUserNestedInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserNestedInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserNestedInput
+    GymPassHistory?: GymPassHistoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAssignedGymMembershipsInput = {
@@ -26512,6 +28145,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     Board?: BoardUncheckedUpdateManyWithoutUserNestedInput
     BoardReply?: BoardReplyUncheckedUpdateManyWithoutUserNestedInput
@@ -26522,6 +28156,7 @@ export namespace Prisma {
     FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserNestedInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserNestedInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserNestedInput
+    GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type GymMembershipCancellationUpsertWithoutGymMembershipInput = {
@@ -26608,6 +28243,7 @@ export namespace Prisma {
     GymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutGymInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutGymInput
     GymMembership?: GymMembershipCreateNestedManyWithoutGymInput
+    GymPassHistory?: GymPassHistoryCreateNestedManyWithoutGymInput
   }
 
   export type GymUncheckedCreateWithoutFavoriteUsersInput = {
@@ -26628,6 +28264,7 @@ export namespace Prisma {
     GymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutGymInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutGymInput
     GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutGymInput
+    GymPassHistory?: GymPassHistoryUncheckedCreateNestedManyWithoutGymInput
   }
 
   export type GymCreateOrConnectWithoutFavoriteUsersInput = {
@@ -26643,6 +28280,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
     Board?: BoardCreateNestedManyWithoutUserInput
     BoardReply?: BoardReplyCreateNestedManyWithoutUserInput
@@ -26653,6 +28291,7 @@ export namespace Prisma {
     assignedGymMemberships?: GymMembershipCreateNestedManyWithoutAssignUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFavoriteGymsInput = {
@@ -26664,6 +28303,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
     Board?: BoardUncheckedCreateNestedManyWithoutUserInput
     BoardReply?: BoardReplyUncheckedCreateNestedManyWithoutUserInput
@@ -26674,6 +28314,7 @@ export namespace Prisma {
     assignedGymMemberships?: GymMembershipUncheckedCreateNestedManyWithoutAssignUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFavoriteGymsInput = {
@@ -26709,6 +28350,7 @@ export namespace Prisma {
     GymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutGymNestedInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutGymNestedInput
     GymMembership?: GymMembershipUpdateManyWithoutGymNestedInput
+    GymPassHistory?: GymPassHistoryUpdateManyWithoutGymNestedInput
   }
 
   export type GymUncheckedUpdateWithoutFavoriteUsersInput = {
@@ -26729,6 +28371,7 @@ export namespace Prisma {
     GymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutGymNestedInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutGymNestedInput
     GymMembership?: GymMembershipUncheckedUpdateManyWithoutGymNestedInput
+    GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutGymNestedInput
   }
 
   export type UserUpsertWithoutFavoriteGymsInput = {
@@ -26750,6 +28393,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     Board?: BoardUpdateManyWithoutUserNestedInput
     BoardReply?: BoardReplyUpdateManyWithoutUserNestedInput
@@ -26760,6 +28404,7 @@ export namespace Prisma {
     assignedGymMemberships?: GymMembershipUpdateManyWithoutAssignUserNestedInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserNestedInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserNestedInput
+    GymPassHistory?: GymPassHistoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFavoriteGymsInput = {
@@ -26771,6 +28416,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     Board?: BoardUncheckedUpdateManyWithoutUserNestedInput
     BoardReply?: BoardReplyUncheckedUpdateManyWithoutUserNestedInput
@@ -26781,6 +28427,7 @@ export namespace Prisma {
     assignedGymMemberships?: GymMembershipUncheckedUpdateManyWithoutAssignUserNestedInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserNestedInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserNestedInput
+    GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type GymCreateWithoutGymAccessHistoryInput = {
@@ -26800,6 +28447,7 @@ export namespace Prisma {
     GymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutGymInput
     FavoriteUsers?: FavoriteGymCreateNestedManyWithoutGymInput
     GymMembership?: GymMembershipCreateNestedManyWithoutGymInput
+    GymPassHistory?: GymPassHistoryCreateNestedManyWithoutGymInput
   }
 
   export type GymUncheckedCreateWithoutGymAccessHistoryInput = {
@@ -26820,6 +28468,7 @@ export namespace Prisma {
     GymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutGymInput
     FavoriteUsers?: FavoriteGymUncheckedCreateNestedManyWithoutGymInput
     GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutGymInput
+    GymPassHistory?: GymPassHistoryUncheckedCreateNestedManyWithoutGymInput
   }
 
   export type GymCreateOrConnectWithoutGymAccessHistoryInput = {
@@ -26835,6 +28484,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
     Board?: BoardCreateNestedManyWithoutUserInput
     BoardReply?: BoardReplyCreateNestedManyWithoutUserInput
@@ -26845,6 +28495,7 @@ export namespace Prisma {
     assignedGymMemberships?: GymMembershipCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutGymAccessHistoryInput = {
@@ -26856,6 +28507,7 @@ export namespace Prisma {
     loginType: $Enums.LoginType
     userType: $Enums.UserType
     nickname: string
+    phone?: string
     isDisable?: boolean
     Board?: BoardUncheckedCreateNestedManyWithoutUserInput
     BoardReply?: BoardReplyUncheckedCreateNestedManyWithoutUserInput
@@ -26866,6 +28518,7 @@ export namespace Prisma {
     assignedGymMemberships?: GymMembershipUncheckedCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutGymAccessHistoryInput = {
@@ -26901,6 +28554,7 @@ export namespace Prisma {
     GymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutGymNestedInput
     FavoriteUsers?: FavoriteGymUpdateManyWithoutGymNestedInput
     GymMembership?: GymMembershipUpdateManyWithoutGymNestedInput
+    GymPassHistory?: GymPassHistoryUpdateManyWithoutGymNestedInput
   }
 
   export type GymUncheckedUpdateWithoutGymAccessHistoryInput = {
@@ -26921,6 +28575,7 @@ export namespace Prisma {
     GymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutGymNestedInput
     FavoriteUsers?: FavoriteGymUncheckedUpdateManyWithoutGymNestedInput
     GymMembership?: GymMembershipUncheckedUpdateManyWithoutGymNestedInput
+    GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutGymNestedInput
   }
 
   export type UserUpsertWithoutGymAccessHistoryInput = {
@@ -26942,6 +28597,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     Board?: BoardUpdateManyWithoutUserNestedInput
     BoardReply?: BoardReplyUpdateManyWithoutUserNestedInput
@@ -26952,6 +28608,7 @@ export namespace Prisma {
     assignedGymMemberships?: GymMembershipUpdateManyWithoutAssignUserNestedInput
     FavoriteGyms?: FavoriteGymUpdateManyWithoutUserNestedInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserNestedInput
+    GymPassHistory?: GymPassHistoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutGymAccessHistoryInput = {
@@ -26963,6 +28620,7 @@ export namespace Prisma {
     loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
     userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     Board?: BoardUncheckedUpdateManyWithoutUserNestedInput
     BoardReply?: BoardReplyUncheckedUpdateManyWithoutUserNestedInput
@@ -26973,6 +28631,211 @@ export namespace Prisma {
     assignedGymMemberships?: GymMembershipUncheckedUpdateManyWithoutAssignUserNestedInput
     FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserNestedInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserNestedInput
+    GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type GymCreateWithoutGymPassHistoryInput = {
+    createdAt?: Date | string
+    ceoName: string
+    companyName: string
+    businessNumber: string
+    postcode: string
+    mainAddress: string
+    subAddress: string
+    phone: string
+    cellPhone: string
+    fax: string
+    email: string
+    isCertified?: boolean
+    User: UserCreateNestedOneWithoutGymInput
+    GymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutGymInput
+    FavoriteUsers?: FavoriteGymCreateNestedManyWithoutGymInput
+    GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutGymInput
+    GymMembership?: GymMembershipCreateNestedManyWithoutGymInput
+  }
+
+  export type GymUncheckedCreateWithoutGymPassHistoryInput = {
+    id?: number
+    createdAt?: Date | string
+    ceoName: string
+    companyName: string
+    businessNumber: string
+    postcode: string
+    mainAddress: string
+    subAddress: string
+    phone: string
+    cellPhone: string
+    fax: string
+    email: string
+    isCertified?: boolean
+    userId: number
+    GymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutGymInput
+    FavoriteUsers?: FavoriteGymUncheckedCreateNestedManyWithoutGymInput
+    GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutGymInput
+    GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutGymInput
+  }
+
+  export type GymCreateOrConnectWithoutGymPassHistoryInput = {
+    where: GymWhereUniqueInput
+    create: XOR<GymCreateWithoutGymPassHistoryInput, GymUncheckedCreateWithoutGymPassHistoryInput>
+  }
+
+  export type UserCreateWithoutGymPassHistoryInput = {
+    createdAt?: Date | string
+    loginId: string
+    loginPw?: string | null
+    username: string
+    loginType: $Enums.LoginType
+    userType: $Enums.UserType
+    nickname: string
+    phone?: string
+    isDisable?: boolean
+    Board?: BoardCreateNestedManyWithoutUserInput
+    BoardReply?: BoardReplyCreateNestedManyWithoutUserInput
+    Notice?: NoticeCreateNestedManyWithoutUserInput
+    Gym?: GymCreateNestedManyWithoutUserInput
+    assignedGymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutAssignUserInput
+    GymMembership?: GymMembershipCreateNestedManyWithoutUserInput
+    assignedGymMemberships?: GymMembershipCreateNestedManyWithoutAssignUserInput
+    FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
+    GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
+    GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutGymPassHistoryInput = {
+    id?: number
+    createdAt?: Date | string
+    loginId: string
+    loginPw?: string | null
+    username: string
+    loginType: $Enums.LoginType
+    userType: $Enums.UserType
+    nickname: string
+    phone?: string
+    isDisable?: boolean
+    Board?: BoardUncheckedCreateNestedManyWithoutUserInput
+    BoardReply?: BoardReplyUncheckedCreateNestedManyWithoutUserInput
+    Notice?: NoticeUncheckedCreateNestedManyWithoutUserInput
+    Gym?: GymUncheckedCreateNestedManyWithoutUserInput
+    assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutAssignUserInput
+    GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutUserInput
+    assignedGymMemberships?: GymMembershipUncheckedCreateNestedManyWithoutAssignUserInput
+    FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
+    GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
+    GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutGymPassHistoryInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutGymPassHistoryInput, UserUncheckedCreateWithoutGymPassHistoryInput>
+  }
+
+  export type GymUpsertWithoutGymPassHistoryInput = {
+    update: XOR<GymUpdateWithoutGymPassHistoryInput, GymUncheckedUpdateWithoutGymPassHistoryInput>
+    create: XOR<GymCreateWithoutGymPassHistoryInput, GymUncheckedCreateWithoutGymPassHistoryInput>
+    where?: GymWhereInput
+  }
+
+  export type GymUpdateToOneWithWhereWithoutGymPassHistoryInput = {
+    where?: GymWhereInput
+    data: XOR<GymUpdateWithoutGymPassHistoryInput, GymUncheckedUpdateWithoutGymPassHistoryInput>
+  }
+
+  export type GymUpdateWithoutGymPassHistoryInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ceoName?: StringFieldUpdateOperationsInput | string
+    companyName?: StringFieldUpdateOperationsInput | string
+    businessNumber?: StringFieldUpdateOperationsInput | string
+    postcode?: StringFieldUpdateOperationsInput | string
+    mainAddress?: StringFieldUpdateOperationsInput | string
+    subAddress?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    cellPhone?: StringFieldUpdateOperationsInput | string
+    fax?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    isCertified?: BoolFieldUpdateOperationsInput | boolean
+    User?: UserUpdateOneRequiredWithoutGymNestedInput
+    GymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutGymNestedInput
+    FavoriteUsers?: FavoriteGymUpdateManyWithoutGymNestedInput
+    GymAccessHistory?: GymAccessHistoryUpdateManyWithoutGymNestedInput
+    GymMembership?: GymMembershipUpdateManyWithoutGymNestedInput
+  }
+
+  export type GymUncheckedUpdateWithoutGymPassHistoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ceoName?: StringFieldUpdateOperationsInput | string
+    companyName?: StringFieldUpdateOperationsInput | string
+    businessNumber?: StringFieldUpdateOperationsInput | string
+    postcode?: StringFieldUpdateOperationsInput | string
+    mainAddress?: StringFieldUpdateOperationsInput | string
+    subAddress?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    cellPhone?: StringFieldUpdateOperationsInput | string
+    fax?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    isCertified?: BoolFieldUpdateOperationsInput | boolean
+    userId?: IntFieldUpdateOperationsInput | number
+    GymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutGymNestedInput
+    FavoriteUsers?: FavoriteGymUncheckedUpdateManyWithoutGymNestedInput
+    GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutGymNestedInput
+    GymMembership?: GymMembershipUncheckedUpdateManyWithoutGymNestedInput
+  }
+
+  export type UserUpsertWithoutGymPassHistoryInput = {
+    update: XOR<UserUpdateWithoutGymPassHistoryInput, UserUncheckedUpdateWithoutGymPassHistoryInput>
+    create: XOR<UserCreateWithoutGymPassHistoryInput, UserUncheckedCreateWithoutGymPassHistoryInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutGymPassHistoryInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutGymPassHistoryInput, UserUncheckedUpdateWithoutGymPassHistoryInput>
+  }
+
+  export type UserUpdateWithoutGymPassHistoryInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    loginId?: StringFieldUpdateOperationsInput | string
+    loginPw?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
+    userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
+    nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
+    Board?: BoardUpdateManyWithoutUserNestedInput
+    BoardReply?: BoardReplyUpdateManyWithoutUserNestedInput
+    Notice?: NoticeUpdateManyWithoutUserNestedInput
+    Gym?: GymUpdateManyWithoutUserNestedInput
+    assignedGymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutAssignUserNestedInput
+    GymMembership?: GymMembershipUpdateManyWithoutUserNestedInput
+    assignedGymMemberships?: GymMembershipUpdateManyWithoutAssignUserNestedInput
+    FavoriteGyms?: FavoriteGymUpdateManyWithoutUserNestedInput
+    GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserNestedInput
+    GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutGymPassHistoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    loginId?: StringFieldUpdateOperationsInput | string
+    loginPw?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    loginType?: EnumLoginTypeFieldUpdateOperationsInput | $Enums.LoginType
+    userType?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
+    nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
+    Board?: BoardUncheckedUpdateManyWithoutUserNestedInput
+    BoardReply?: BoardReplyUncheckedUpdateManyWithoutUserNestedInput
+    Notice?: NoticeUncheckedUpdateManyWithoutUserNestedInput
+    Gym?: GymUncheckedUpdateManyWithoutUserNestedInput
+    assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutAssignUserNestedInput
+    GymMembership?: GymMembershipUncheckedUpdateManyWithoutUserNestedInput
+    assignedGymMemberships?: GymMembershipUncheckedUpdateManyWithoutAssignUserNestedInput
+    FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserNestedInput
+    GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserNestedInput
+    GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BoardCreateManyUserInput = {
@@ -27063,9 +28926,17 @@ export namespace Prisma {
 
   export type GymAccessHistoryCreateManyUserInput = {
     id?: number
+    createdAt?: Date | string
     gymId: number
     entryAt?: Date | string
     exitAt?: Date | string | null
+  }
+
+  export type GymPassHistoryCreateManyUserInput = {
+    id?: number
+    createdAt?: Date | string
+    gymId: number
+    hash: string
   }
 
   export type BoardUpdateWithoutUserInput = {
@@ -27181,6 +29052,7 @@ export namespace Prisma {
     FavoriteUsers?: FavoriteGymUpdateManyWithoutGymNestedInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutGymNestedInput
     GymMembership?: GymMembershipUpdateManyWithoutGymNestedInput
+    GymPassHistory?: GymPassHistoryUpdateManyWithoutGymNestedInput
   }
 
   export type GymUncheckedUpdateWithoutUserInput = {
@@ -27201,6 +29073,7 @@ export namespace Prisma {
     FavoriteUsers?: FavoriteGymUncheckedUpdateManyWithoutGymNestedInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutGymNestedInput
     GymMembership?: GymMembershipUncheckedUpdateManyWithoutGymNestedInput
+    GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutGymNestedInput
   }
 
   export type GymUncheckedUpdateManyWithoutUserInput = {
@@ -27335,6 +29208,7 @@ export namespace Prisma {
   }
 
   export type GymAccessHistoryUpdateWithoutUserInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     entryAt?: DateTimeFieldUpdateOperationsInput | Date | string
     exitAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Gym?: GymUpdateOneRequiredWithoutGymAccessHistoryNestedInput
@@ -27342,6 +29216,7 @@ export namespace Prisma {
 
   export type GymAccessHistoryUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gymId?: IntFieldUpdateOperationsInput | number
     entryAt?: DateTimeFieldUpdateOperationsInput | Date | string
     exitAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -27349,9 +29224,30 @@ export namespace Prisma {
 
   export type GymAccessHistoryUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gymId?: IntFieldUpdateOperationsInput | number
     entryAt?: DateTimeFieldUpdateOperationsInput | Date | string
     exitAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type GymPassHistoryUpdateWithoutUserInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    hash?: StringFieldUpdateOperationsInput | string
+    Gym?: GymUpdateOneRequiredWithoutGymPassHistoryNestedInput
+  }
+
+  export type GymPassHistoryUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gymId?: IntFieldUpdateOperationsInput | number
+    hash?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GymPassHistoryUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    gymId?: IntFieldUpdateOperationsInput | number
+    hash?: StringFieldUpdateOperationsInput | string
   }
 
   export type BoardImageCreateManyBoardInput = {
@@ -27605,6 +29501,7 @@ export namespace Prisma {
 
   export type GymAccessHistoryCreateManyGymInput = {
     id?: number
+    createdAt?: Date | string
     userId: number
     entryAt?: Date | string
     exitAt?: Date | string | null
@@ -27618,6 +29515,13 @@ export namespace Prisma {
     startDay?: Date | string
     endDay: Date | string
     gymMembershipCancellationId?: number | null
+  }
+
+  export type GymPassHistoryCreateManyGymInput = {
+    id?: number
+    createdAt?: Date | string
+    userId: number
+    hash: string
   }
 
   export type GymEuquipmentsOnGymsUpdateWithoutGymInput = {
@@ -27658,6 +29562,7 @@ export namespace Prisma {
   }
 
   export type GymAccessHistoryUpdateWithoutGymInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     entryAt?: DateTimeFieldUpdateOperationsInput | Date | string
     exitAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     User?: UserUpdateOneRequiredWithoutGymAccessHistoryNestedInput
@@ -27665,6 +29570,7 @@ export namespace Prisma {
 
   export type GymAccessHistoryUncheckedUpdateWithoutGymInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
     entryAt?: DateTimeFieldUpdateOperationsInput | Date | string
     exitAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -27672,6 +29578,7 @@ export namespace Prisma {
 
   export type GymAccessHistoryUncheckedUpdateManyWithoutGymInput = {
     id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
     entryAt?: DateTimeFieldUpdateOperationsInput | Date | string
     exitAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -27704,6 +29611,26 @@ export namespace Prisma {
     startDay?: DateTimeFieldUpdateOperationsInput | Date | string
     endDay?: DateTimeFieldUpdateOperationsInput | Date | string
     gymMembershipCancellationId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type GymPassHistoryUpdateWithoutGymInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    hash?: StringFieldUpdateOperationsInput | string
+    User?: UserUpdateOneRequiredWithoutGymPassHistoryNestedInput
+  }
+
+  export type GymPassHistoryUncheckedUpdateWithoutGymInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    hash?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GymPassHistoryUncheckedUpdateManyWithoutGymInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    hash?: StringFieldUpdateOperationsInput | string
   }
 
   export type GymEquipmentUserHistoryCreateManyGymEuquipmentsOnGymsInput = {
@@ -27873,6 +29800,10 @@ export namespace Prisma {
      * @deprecated Use GymAccessHistoryDefaultArgs instead
      */
     export type GymAccessHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = GymAccessHistoryDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use GymPassHistoryDefaultArgs instead
+     */
+    export type GymPassHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = GymPassHistoryDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

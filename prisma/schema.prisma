@@ -36,6 +36,7 @@ model User {
   loginType                 LoginType
   userType                  UserType
   nickname                  String
+  phone                     String    @default("")
   isDisable                 Boolean   @default(false)
 
   Board                     Board[]
@@ -48,6 +49,7 @@ model User {
   FavoriteGyms              FavoriteGym[]
   GymEquipmentUserHistory   GymEquipmentUserHistory[]
   GymAccessHistory          GymAccessHistory[]
+  GymPassHistory            GymPassHistory[]
 
   @@unique([loginType, loginId], name: "loginUnique")
 }
@@ -204,6 +206,8 @@ model Gym {
   GymAccessHistory        GymAccessHistory[]
 
   GymMembership           GymMembership[]
+
+  GymPassHistory          GymPassHistory[]
 }
 
 // 헬스장 내 기구 목록

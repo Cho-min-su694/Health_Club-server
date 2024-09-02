@@ -286,6 +286,7 @@ export class UsersService {
     let whereVal:
       | { loginId: string }
       | { nickname: string }
+      | { phone: string }
       | undefined = undefined;
     if (type === 'loginId') {
       whereVal = {
@@ -294,6 +295,10 @@ export class UsersService {
     } else if (type === 'nickname') {
       whereVal = {
         nickname: content,
+      };
+    } else if (type === 'phone') {
+      whereVal = {
+        phone: content,
       };
     } else {
       return false;
