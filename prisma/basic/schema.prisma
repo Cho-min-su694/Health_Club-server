@@ -137,6 +137,7 @@ model BodyPart {
 
   name            String
   code            String    @unique
+  category        String
 
   GymEquipments   BodyPartsOnGymEquipments[]
 }
