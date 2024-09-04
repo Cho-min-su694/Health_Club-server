@@ -64,6 +64,11 @@ export type BodyPartsOnGymEquipments = $Result.DefaultSelection<Prisma.$BodyPart
  */
 export type Gym = $Result.DefaultSelection<Prisma.$GymPayload>
 /**
+ * Model GymImage
+ * 
+ */
+export type GymImage = $Result.DefaultSelection<Prisma.$GymImagePayload>
+/**
  * Model GymEuquipmentsOnGyms
  * 
  */
@@ -364,6 +369,16 @@ export class PrismaClient<
     * ```
     */
   get gym(): Prisma.GymDelegate<ExtArgs>;
+
+  /**
+   * `prisma.gymImage`: Exposes CRUD operations for the **GymImage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GymImages
+    * const gymImages = await prisma.gymImage.findMany()
+    * ```
+    */
+  get gymImage(): Prisma.GymImageDelegate<ExtArgs>;
 
   /**
    * `prisma.gymEuquipmentsOnGyms`: Exposes CRUD operations for the **GymEuquipmentsOnGyms** model.
@@ -914,6 +929,7 @@ export namespace Prisma {
     GymEquipmentImage: 'GymEquipmentImage',
     BodyPartsOnGymEquipments: 'BodyPartsOnGymEquipments',
     Gym: 'Gym',
+    GymImage: 'GymImage',
     GymEuquipmentsOnGyms: 'GymEuquipmentsOnGyms',
     GymEquipmentUserHistory: 'GymEquipmentUserHistory',
     GymMembership: 'GymMembership',
@@ -937,7 +953,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'notice' | 'board' | 'boardImage' | 'boardReply' | 'bodyPart' | 'gymEquipment' | 'gymEquipmentImage' | 'bodyPartsOnGymEquipments' | 'gym' | 'gymEuquipmentsOnGyms' | 'gymEquipmentUserHistory' | 'gymMembership' | 'gymMembershipCancellation' | 'favoriteGym' | 'gymAccessHistory' | 'gymPassHistory'
+      modelProps: 'user' | 'notice' | 'board' | 'boardImage' | 'boardReply' | 'bodyPart' | 'gymEquipment' | 'gymEquipmentImage' | 'bodyPartsOnGymEquipments' | 'gym' | 'gymImage' | 'gymEuquipmentsOnGyms' | 'gymEquipmentUserHistory' | 'gymMembership' | 'gymMembershipCancellation' | 'favoriteGym' | 'gymAccessHistory' | 'gymPassHistory'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1598,6 +1614,72 @@ export namespace Prisma {
           count: {
             args: Prisma.GymCountArgs<ExtArgs>,
             result: $Utils.Optional<GymCountAggregateOutputType> | number
+          }
+        }
+      }
+      GymImage: {
+        payload: Prisma.$GymImagePayload<ExtArgs>
+        fields: Prisma.GymImageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GymImageFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GymImagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GymImageFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GymImagePayload>
+          }
+          findFirst: {
+            args: Prisma.GymImageFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GymImagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GymImageFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GymImagePayload>
+          }
+          findMany: {
+            args: Prisma.GymImageFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GymImagePayload>[]
+          }
+          create: {
+            args: Prisma.GymImageCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GymImagePayload>
+          }
+          createMany: {
+            args: Prisma.GymImageCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.GymImageDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GymImagePayload>
+          }
+          update: {
+            args: Prisma.GymImageUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GymImagePayload>
+          }
+          deleteMany: {
+            args: Prisma.GymImageDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GymImageUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.GymImageUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$GymImagePayload>
+          }
+          aggregate: {
+            args: Prisma.GymImageAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateGymImage>
+          }
+          groupBy: {
+            args: Prisma.GymImageGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<GymImageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GymImageCountArgs<ExtArgs>,
+            result: $Utils.Optional<GymImageCountAggregateOutputType> | number
           }
         }
       }
@@ -2512,6 +2594,7 @@ export namespace Prisma {
    */
 
   export type GymCountOutputType = {
+    GymImage: number
     GymEquipments: number
     FavoriteUsers: number
     GymAccessHistory: number
@@ -2520,6 +2603,7 @@ export namespace Prisma {
   }
 
   export type GymCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    GymImage?: boolean | GymCountOutputTypeCountGymImageArgs
     GymEquipments?: boolean | GymCountOutputTypeCountGymEquipmentsArgs
     FavoriteUsers?: boolean | GymCountOutputTypeCountFavoriteUsersArgs
     GymAccessHistory?: boolean | GymCountOutputTypeCountGymAccessHistoryArgs
@@ -2537,6 +2621,14 @@ export namespace Prisma {
      * Select specific fields to fetch from the GymCountOutputType
      */
     select?: GymCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * GymCountOutputType without action
+   */
+  export type GymCountOutputTypeCountGymImageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GymImageWhereInput
   }
 
 
@@ -8063,6 +8155,7 @@ export namespace Prisma {
     createdAt: Date | null
     name: string | null
     code: string | null
+    category: string | null
   }
 
   export type BodyPartMaxAggregateOutputType = {
@@ -8070,6 +8163,7 @@ export namespace Prisma {
     createdAt: Date | null
     name: string | null
     code: string | null
+    category: string | null
   }
 
   export type BodyPartCountAggregateOutputType = {
@@ -8077,6 +8171,7 @@ export namespace Prisma {
     createdAt: number
     name: number
     code: number
+    category: number
     _all: number
   }
 
@@ -8094,6 +8189,7 @@ export namespace Prisma {
     createdAt?: true
     name?: true
     code?: true
+    category?: true
   }
 
   export type BodyPartMaxAggregateInputType = {
@@ -8101,6 +8197,7 @@ export namespace Prisma {
     createdAt?: true
     name?: true
     code?: true
+    category?: true
   }
 
   export type BodyPartCountAggregateInputType = {
@@ -8108,6 +8205,7 @@ export namespace Prisma {
     createdAt?: true
     name?: true
     code?: true
+    category?: true
     _all?: true
   }
 
@@ -8202,6 +8300,7 @@ export namespace Prisma {
     createdAt: Date
     name: string
     code: string
+    category: string
     _count: BodyPartCountAggregateOutputType | null
     _avg: BodyPartAvgAggregateOutputType | null
     _sum: BodyPartSumAggregateOutputType | null
@@ -8228,6 +8327,7 @@ export namespace Prisma {
     createdAt?: boolean
     name?: boolean
     code?: boolean
+    category?: boolean
     GymEquipments?: boolean | BodyPart$GymEquipmentsArgs<ExtArgs>
     _count?: boolean | BodyPartCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["bodyPart"]>
@@ -8237,6 +8337,7 @@ export namespace Prisma {
     createdAt?: boolean
     name?: boolean
     code?: boolean
+    category?: boolean
   }
 
   export type BodyPartInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8255,6 +8356,7 @@ export namespace Prisma {
       createdAt: Date
       name: string
       code: string
+      category: string
     }, ExtArgs["result"]["bodyPart"]>
     composites: {}
   }
@@ -8654,6 +8756,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"BodyPart", 'DateTime'>
     readonly name: FieldRef<"BodyPart", 'String'>
     readonly code: FieldRef<"BodyPart", 'String'>
+    readonly category: FieldRef<"BodyPart", 'String'>
   }
     
 
@@ -9027,6 +9130,7 @@ export namespace Prisma {
     createdAt: Date | null
     name: string | null
     code: string | null
+    isDisable: boolean | null
   }
 
   export type GymEquipmentMaxAggregateOutputType = {
@@ -9034,6 +9138,7 @@ export namespace Prisma {
     createdAt: Date | null
     name: string | null
     code: string | null
+    isDisable: boolean | null
   }
 
   export type GymEquipmentCountAggregateOutputType = {
@@ -9041,6 +9146,7 @@ export namespace Prisma {
     createdAt: number
     name: number
     code: number
+    isDisable: number
     _all: number
   }
 
@@ -9058,6 +9164,7 @@ export namespace Prisma {
     createdAt?: true
     name?: true
     code?: true
+    isDisable?: true
   }
 
   export type GymEquipmentMaxAggregateInputType = {
@@ -9065,6 +9172,7 @@ export namespace Prisma {
     createdAt?: true
     name?: true
     code?: true
+    isDisable?: true
   }
 
   export type GymEquipmentCountAggregateInputType = {
@@ -9072,6 +9180,7 @@ export namespace Prisma {
     createdAt?: true
     name?: true
     code?: true
+    isDisable?: true
     _all?: true
   }
 
@@ -9166,6 +9275,7 @@ export namespace Prisma {
     createdAt: Date
     name: string
     code: string
+    isDisable: boolean
     _count: GymEquipmentCountAggregateOutputType | null
     _avg: GymEquipmentAvgAggregateOutputType | null
     _sum: GymEquipmentSumAggregateOutputType | null
@@ -9192,6 +9302,7 @@ export namespace Prisma {
     createdAt?: boolean
     name?: boolean
     code?: boolean
+    isDisable?: boolean
     BodyParts?: boolean | GymEquipment$BodyPartsArgs<ExtArgs>
     Gyms?: boolean | GymEquipment$GymsArgs<ExtArgs>
     GymEquipmentImage?: boolean | GymEquipment$GymEquipmentImageArgs<ExtArgs>
@@ -9203,6 +9314,7 @@ export namespace Prisma {
     createdAt?: boolean
     name?: boolean
     code?: boolean
+    isDisable?: boolean
   }
 
   export type GymEquipmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9225,6 +9337,7 @@ export namespace Prisma {
       createdAt: Date
       name: string
       code: string
+      isDisable: boolean
     }, ExtArgs["result"]["gymEquipment"]>
     composites: {}
   }
@@ -9628,6 +9741,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"GymEquipment", 'DateTime'>
     readonly name: FieldRef<"GymEquipment", 'String'>
     readonly code: FieldRef<"GymEquipment", 'String'>
+    readonly isDisable: FieldRef<"GymEquipment", 'Boolean'>
   }
     
 
@@ -11994,6 +12108,7 @@ export namespace Prisma {
     fax: string | null
     email: string | null
     isCertified: boolean | null
+    isDisable: boolean | null
     userId: number | null
   }
 
@@ -12011,6 +12126,7 @@ export namespace Prisma {
     fax: string | null
     email: string | null
     isCertified: boolean | null
+    isDisable: boolean | null
     userId: number | null
   }
 
@@ -12028,6 +12144,7 @@ export namespace Prisma {
     fax: number
     email: number
     isCertified: number
+    isDisable: number
     userId: number
     _all: number
   }
@@ -12057,6 +12174,7 @@ export namespace Prisma {
     fax?: true
     email?: true
     isCertified?: true
+    isDisable?: true
     userId?: true
   }
 
@@ -12074,6 +12192,7 @@ export namespace Prisma {
     fax?: true
     email?: true
     isCertified?: true
+    isDisable?: true
     userId?: true
   }
 
@@ -12091,6 +12210,7 @@ export namespace Prisma {
     fax?: true
     email?: true
     isCertified?: true
+    isDisable?: true
     userId?: true
     _all?: true
   }
@@ -12195,6 +12315,7 @@ export namespace Prisma {
     fax: string
     email: string
     isCertified: boolean
+    isDisable: boolean
     userId: number
     _count: GymCountAggregateOutputType | null
     _avg: GymAvgAggregateOutputType | null
@@ -12231,8 +12352,10 @@ export namespace Prisma {
     fax?: boolean
     email?: boolean
     isCertified?: boolean
+    isDisable?: boolean
     userId?: boolean
     User?: boolean | UserDefaultArgs<ExtArgs>
+    GymImage?: boolean | Gym$GymImageArgs<ExtArgs>
     GymEquipments?: boolean | Gym$GymEquipmentsArgs<ExtArgs>
     FavoriteUsers?: boolean | Gym$FavoriteUsersArgs<ExtArgs>
     GymAccessHistory?: boolean | Gym$GymAccessHistoryArgs<ExtArgs>
@@ -12255,11 +12378,13 @@ export namespace Prisma {
     fax?: boolean
     email?: boolean
     isCertified?: boolean
+    isDisable?: boolean
     userId?: boolean
   }
 
   export type GymInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     User?: boolean | UserDefaultArgs<ExtArgs>
+    GymImage?: boolean | Gym$GymImageArgs<ExtArgs>
     GymEquipments?: boolean | Gym$GymEquipmentsArgs<ExtArgs>
     FavoriteUsers?: boolean | Gym$FavoriteUsersArgs<ExtArgs>
     GymAccessHistory?: boolean | Gym$GymAccessHistoryArgs<ExtArgs>
@@ -12273,6 +12398,7 @@ export namespace Prisma {
     name: "Gym"
     objects: {
       User: Prisma.$UserPayload<ExtArgs>
+      GymImage: Prisma.$GymImagePayload<ExtArgs>[]
       GymEquipments: Prisma.$GymEuquipmentsOnGymsPayload<ExtArgs>[]
       FavoriteUsers: Prisma.$FavoriteGymPayload<ExtArgs>[]
       GymAccessHistory: Prisma.$GymAccessHistoryPayload<ExtArgs>[]
@@ -12293,6 +12419,7 @@ export namespace Prisma {
       fax: string
       email: string
       isCertified: boolean
+      isDisable: boolean
       userId: number
     }, ExtArgs["result"]["gym"]>
     composites: {}
@@ -12661,6 +12788,8 @@ export namespace Prisma {
 
     User<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
+    GymImage<T extends Gym$GymImageArgs<ExtArgs> = {}>(args?: Subset<T, Gym$GymImageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GymImagePayload<ExtArgs>, T, 'findMany'> | Null>;
+
     GymEquipments<T extends Gym$GymEquipmentsArgs<ExtArgs> = {}>(args?: Subset<T, Gym$GymEquipmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GymEuquipmentsOnGymsPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     FavoriteUsers<T extends Gym$FavoriteUsersArgs<ExtArgs> = {}>(args?: Subset<T, Gym$FavoriteUsersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoriteGymPayload<ExtArgs>, T, 'findMany'> | Null>;
@@ -12712,6 +12841,7 @@ export namespace Prisma {
     readonly fax: FieldRef<"Gym", 'String'>
     readonly email: FieldRef<"Gym", 'String'>
     readonly isCertified: FieldRef<"Gym", 'Boolean'>
+    readonly isDisable: FieldRef<"Gym", 'Boolean'>
     readonly userId: FieldRef<"Gym", 'Int'>
   }
     
@@ -13025,6 +13155,27 @@ export namespace Prisma {
 
 
   /**
+   * Gym.GymImage
+   */
+  export type Gym$GymImageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymImage
+     */
+    select?: GymImageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymImageInclude<ExtArgs> | null
+    where?: GymImageWhereInput
+    orderBy?: GymImageOrderByWithRelationInput | GymImageOrderByWithRelationInput[]
+    cursor?: GymImageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GymImageScalarFieldEnum | GymImageScalarFieldEnum[]
+  }
+
+
+  /**
    * Gym.GymEquipments
    */
   export type Gym$GymEquipmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -13141,6 +13292,1007 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well.
      */
     include?: GymInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model GymImage
+   */
+
+  export type AggregateGymImage = {
+    _count: GymImageCountAggregateOutputType | null
+    _avg: GymImageAvgAggregateOutputType | null
+    _sum: GymImageSumAggregateOutputType | null
+    _min: GymImageMinAggregateOutputType | null
+    _max: GymImageMaxAggregateOutputType | null
+  }
+
+  export type GymImageAvgAggregateOutputType = {
+    id: number | null
+    width: number | null
+    height: number | null
+    size: number | null
+    gymId: number | null
+  }
+
+  export type GymImageSumAggregateOutputType = {
+    id: number | null
+    width: number | null
+    height: number | null
+    size: number | null
+    gymId: number | null
+  }
+
+  export type GymImageMinAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    url: string | null
+    width: number | null
+    height: number | null
+    size: number | null
+    isThumb: boolean | null
+    gymId: number | null
+  }
+
+  export type GymImageMaxAggregateOutputType = {
+    id: number | null
+    createdAt: Date | null
+    url: string | null
+    width: number | null
+    height: number | null
+    size: number | null
+    isThumb: boolean | null
+    gymId: number | null
+  }
+
+  export type GymImageCountAggregateOutputType = {
+    id: number
+    createdAt: number
+    url: number
+    width: number
+    height: number
+    size: number
+    isThumb: number
+    gymId: number
+    _all: number
+  }
+
+
+  export type GymImageAvgAggregateInputType = {
+    id?: true
+    width?: true
+    height?: true
+    size?: true
+    gymId?: true
+  }
+
+  export type GymImageSumAggregateInputType = {
+    id?: true
+    width?: true
+    height?: true
+    size?: true
+    gymId?: true
+  }
+
+  export type GymImageMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    url?: true
+    width?: true
+    height?: true
+    size?: true
+    isThumb?: true
+    gymId?: true
+  }
+
+  export type GymImageMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    url?: true
+    width?: true
+    height?: true
+    size?: true
+    isThumb?: true
+    gymId?: true
+  }
+
+  export type GymImageCountAggregateInputType = {
+    id?: true
+    createdAt?: true
+    url?: true
+    width?: true
+    height?: true
+    size?: true
+    isThumb?: true
+    gymId?: true
+    _all?: true
+  }
+
+  export type GymImageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GymImage to aggregate.
+     */
+    where?: GymImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GymImages to fetch.
+     */
+    orderBy?: GymImageOrderByWithRelationInput | GymImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GymImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GymImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GymImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned GymImages
+    **/
+    _count?: true | GymImageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GymImageAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GymImageSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GymImageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GymImageMaxAggregateInputType
+  }
+
+  export type GetGymImageAggregateType<T extends GymImageAggregateArgs> = {
+        [P in keyof T & keyof AggregateGymImage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGymImage[P]>
+      : GetScalarType<T[P], AggregateGymImage[P]>
+  }
+
+
+
+
+  export type GymImageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GymImageWhereInput
+    orderBy?: GymImageOrderByWithAggregationInput | GymImageOrderByWithAggregationInput[]
+    by: GymImageScalarFieldEnum[] | GymImageScalarFieldEnum
+    having?: GymImageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GymImageCountAggregateInputType | true
+    _avg?: GymImageAvgAggregateInputType
+    _sum?: GymImageSumAggregateInputType
+    _min?: GymImageMinAggregateInputType
+    _max?: GymImageMaxAggregateInputType
+  }
+
+  export type GymImageGroupByOutputType = {
+    id: number
+    createdAt: Date
+    url: string
+    width: number
+    height: number
+    size: number
+    isThumb: boolean
+    gymId: number
+    _count: GymImageCountAggregateOutputType | null
+    _avg: GymImageAvgAggregateOutputType | null
+    _sum: GymImageSumAggregateOutputType | null
+    _min: GymImageMinAggregateOutputType | null
+    _max: GymImageMaxAggregateOutputType | null
+  }
+
+  type GetGymImageGroupByPayload<T extends GymImageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GymImageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GymImageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GymImageGroupByOutputType[P]>
+            : GetScalarType<T[P], GymImageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GymImageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    createdAt?: boolean
+    url?: boolean
+    width?: boolean
+    height?: boolean
+    size?: boolean
+    isThumb?: boolean
+    gymId?: boolean
+    Gym?: boolean | GymDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["gymImage"]>
+
+  export type GymImageSelectScalar = {
+    id?: boolean
+    createdAt?: boolean
+    url?: boolean
+    width?: boolean
+    height?: boolean
+    size?: boolean
+    isThumb?: boolean
+    gymId?: boolean
+  }
+
+  export type GymImageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Gym?: boolean | GymDefaultArgs<ExtArgs>
+  }
+
+
+  export type $GymImagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "GymImage"
+    objects: {
+      Gym: Prisma.$GymPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      createdAt: Date
+      url: string
+      width: number
+      height: number
+      size: number
+      isThumb: boolean
+      gymId: number
+    }, ExtArgs["result"]["gymImage"]>
+    composites: {}
+  }
+
+
+  type GymImageGetPayload<S extends boolean | null | undefined | GymImageDefaultArgs> = $Result.GetResult<Prisma.$GymImagePayload, S>
+
+  type GymImageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<GymImageFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: GymImageCountAggregateInputType | true
+    }
+
+  export interface GymImageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GymImage'], meta: { name: 'GymImage' } }
+    /**
+     * Find zero or one GymImage that matches the filter.
+     * @param {GymImageFindUniqueArgs} args - Arguments to find a GymImage
+     * @example
+     * // Get one GymImage
+     * const gymImage = await prisma.gymImage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends GymImageFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, GymImageFindUniqueArgs<ExtArgs>>
+    ): Prisma__GymImageClient<$Result.GetResult<Prisma.$GymImagePayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one GymImage that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {GymImageFindUniqueOrThrowArgs} args - Arguments to find a GymImage
+     * @example
+     * // Get one GymImage
+     * const gymImage = await prisma.gymImage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends GymImageFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, GymImageFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__GymImageClient<$Result.GetResult<Prisma.$GymImagePayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first GymImage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GymImageFindFirstArgs} args - Arguments to find a GymImage
+     * @example
+     * // Get one GymImage
+     * const gymImage = await prisma.gymImage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends GymImageFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, GymImageFindFirstArgs<ExtArgs>>
+    ): Prisma__GymImageClient<$Result.GetResult<Prisma.$GymImagePayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first GymImage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GymImageFindFirstOrThrowArgs} args - Arguments to find a GymImage
+     * @example
+     * // Get one GymImage
+     * const gymImage = await prisma.gymImage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends GymImageFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, GymImageFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__GymImageClient<$Result.GetResult<Prisma.$GymImagePayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more GymImages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GymImageFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all GymImages
+     * const gymImages = await prisma.gymImage.findMany()
+     * 
+     * // Get first 10 GymImages
+     * const gymImages = await prisma.gymImage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const gymImageWithIdOnly = await prisma.gymImage.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends GymImageFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GymImageFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GymImagePayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a GymImage.
+     * @param {GymImageCreateArgs} args - Arguments to create a GymImage.
+     * @example
+     * // Create one GymImage
+     * const GymImage = await prisma.gymImage.create({
+     *   data: {
+     *     // ... data to create a GymImage
+     *   }
+     * })
+     * 
+    **/
+    create<T extends GymImageCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, GymImageCreateArgs<ExtArgs>>
+    ): Prisma__GymImageClient<$Result.GetResult<Prisma.$GymImagePayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many GymImages.
+     *     @param {GymImageCreateManyArgs} args - Arguments to create many GymImages.
+     *     @example
+     *     // Create many GymImages
+     *     const gymImage = await prisma.gymImage.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends GymImageCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GymImageCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a GymImage.
+     * @param {GymImageDeleteArgs} args - Arguments to delete one GymImage.
+     * @example
+     * // Delete one GymImage
+     * const GymImage = await prisma.gymImage.delete({
+     *   where: {
+     *     // ... filter to delete one GymImage
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends GymImageDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, GymImageDeleteArgs<ExtArgs>>
+    ): Prisma__GymImageClient<$Result.GetResult<Prisma.$GymImagePayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one GymImage.
+     * @param {GymImageUpdateArgs} args - Arguments to update one GymImage.
+     * @example
+     * // Update one GymImage
+     * const gymImage = await prisma.gymImage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends GymImageUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, GymImageUpdateArgs<ExtArgs>>
+    ): Prisma__GymImageClient<$Result.GetResult<Prisma.$GymImagePayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more GymImages.
+     * @param {GymImageDeleteManyArgs} args - Arguments to filter GymImages to delete.
+     * @example
+     * // Delete a few GymImages
+     * const { count } = await prisma.gymImage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends GymImageDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, GymImageDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GymImages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GymImageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many GymImages
+     * const gymImage = await prisma.gymImage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends GymImageUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, GymImageUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one GymImage.
+     * @param {GymImageUpsertArgs} args - Arguments to update or create a GymImage.
+     * @example
+     * // Update or create a GymImage
+     * const gymImage = await prisma.gymImage.upsert({
+     *   create: {
+     *     // ... data to create a GymImage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the GymImage we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends GymImageUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, GymImageUpsertArgs<ExtArgs>>
+    ): Prisma__GymImageClient<$Result.GetResult<Prisma.$GymImagePayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of GymImages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GymImageCountArgs} args - Arguments to filter GymImages to count.
+     * @example
+     * // Count the number of GymImages
+     * const count = await prisma.gymImage.count({
+     *   where: {
+     *     // ... the filter for the GymImages we want to count
+     *   }
+     * })
+    **/
+    count<T extends GymImageCountArgs>(
+      args?: Subset<T, GymImageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GymImageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a GymImage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GymImageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GymImageAggregateArgs>(args: Subset<T, GymImageAggregateArgs>): Prisma.PrismaPromise<GetGymImageAggregateType<T>>
+
+    /**
+     * Group by GymImage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GymImageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GymImageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GymImageGroupByArgs['orderBy'] }
+        : { orderBy?: GymImageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GymImageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGymImageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the GymImage model
+   */
+  readonly fields: GymImageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for GymImage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GymImageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    Gym<T extends GymDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GymDefaultArgs<ExtArgs>>): Prisma__GymClient<$Result.GetResult<Prisma.$GymPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the GymImage model
+   */ 
+  interface GymImageFieldRefs {
+    readonly id: FieldRef<"GymImage", 'Int'>
+    readonly createdAt: FieldRef<"GymImage", 'DateTime'>
+    readonly url: FieldRef<"GymImage", 'String'>
+    readonly width: FieldRef<"GymImage", 'Int'>
+    readonly height: FieldRef<"GymImage", 'Int'>
+    readonly size: FieldRef<"GymImage", 'Int'>
+    readonly isThumb: FieldRef<"GymImage", 'Boolean'>
+    readonly gymId: FieldRef<"GymImage", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * GymImage findUnique
+   */
+  export type GymImageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymImage
+     */
+    select?: GymImageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymImageInclude<ExtArgs> | null
+    /**
+     * Filter, which GymImage to fetch.
+     */
+    where: GymImageWhereUniqueInput
+  }
+
+
+  /**
+   * GymImage findUniqueOrThrow
+   */
+  export type GymImageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymImage
+     */
+    select?: GymImageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymImageInclude<ExtArgs> | null
+    /**
+     * Filter, which GymImage to fetch.
+     */
+    where: GymImageWhereUniqueInput
+  }
+
+
+  /**
+   * GymImage findFirst
+   */
+  export type GymImageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymImage
+     */
+    select?: GymImageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymImageInclude<ExtArgs> | null
+    /**
+     * Filter, which GymImage to fetch.
+     */
+    where?: GymImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GymImages to fetch.
+     */
+    orderBy?: GymImageOrderByWithRelationInput | GymImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GymImages.
+     */
+    cursor?: GymImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GymImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GymImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GymImages.
+     */
+    distinct?: GymImageScalarFieldEnum | GymImageScalarFieldEnum[]
+  }
+
+
+  /**
+   * GymImage findFirstOrThrow
+   */
+  export type GymImageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymImage
+     */
+    select?: GymImageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymImageInclude<ExtArgs> | null
+    /**
+     * Filter, which GymImage to fetch.
+     */
+    where?: GymImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GymImages to fetch.
+     */
+    orderBy?: GymImageOrderByWithRelationInput | GymImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GymImages.
+     */
+    cursor?: GymImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GymImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GymImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GymImages.
+     */
+    distinct?: GymImageScalarFieldEnum | GymImageScalarFieldEnum[]
+  }
+
+
+  /**
+   * GymImage findMany
+   */
+  export type GymImageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymImage
+     */
+    select?: GymImageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymImageInclude<ExtArgs> | null
+    /**
+     * Filter, which GymImages to fetch.
+     */
+    where?: GymImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GymImages to fetch.
+     */
+    orderBy?: GymImageOrderByWithRelationInput | GymImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing GymImages.
+     */
+    cursor?: GymImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GymImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GymImages.
+     */
+    skip?: number
+    distinct?: GymImageScalarFieldEnum | GymImageScalarFieldEnum[]
+  }
+
+
+  /**
+   * GymImage create
+   */
+  export type GymImageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymImage
+     */
+    select?: GymImageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymImageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a GymImage.
+     */
+    data: XOR<GymImageCreateInput, GymImageUncheckedCreateInput>
+  }
+
+
+  /**
+   * GymImage createMany
+   */
+  export type GymImageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many GymImages.
+     */
+    data: GymImageCreateManyInput | GymImageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * GymImage update
+   */
+  export type GymImageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymImage
+     */
+    select?: GymImageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymImageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a GymImage.
+     */
+    data: XOR<GymImageUpdateInput, GymImageUncheckedUpdateInput>
+    /**
+     * Choose, which GymImage to update.
+     */
+    where: GymImageWhereUniqueInput
+  }
+
+
+  /**
+   * GymImage updateMany
+   */
+  export type GymImageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update GymImages.
+     */
+    data: XOR<GymImageUpdateManyMutationInput, GymImageUncheckedUpdateManyInput>
+    /**
+     * Filter which GymImages to update
+     */
+    where?: GymImageWhereInput
+  }
+
+
+  /**
+   * GymImage upsert
+   */
+  export type GymImageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymImage
+     */
+    select?: GymImageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymImageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the GymImage to update in case it exists.
+     */
+    where: GymImageWhereUniqueInput
+    /**
+     * In case the GymImage found by the `where` argument doesn't exist, create a new GymImage with this data.
+     */
+    create: XOR<GymImageCreateInput, GymImageUncheckedCreateInput>
+    /**
+     * In case the GymImage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GymImageUpdateInput, GymImageUncheckedUpdateInput>
+  }
+
+
+  /**
+   * GymImage delete
+   */
+  export type GymImageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymImage
+     */
+    select?: GymImageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymImageInclude<ExtArgs> | null
+    /**
+     * Filter which GymImage to delete.
+     */
+    where: GymImageWhereUniqueInput
+  }
+
+
+  /**
+   * GymImage deleteMany
+   */
+  export type GymImageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GymImages to delete
+     */
+    where?: GymImageWhereInput
+  }
+
+
+  /**
+   * GymImage without action
+   */
+  export type GymImageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymImage
+     */
+    select?: GymImageSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: GymImageInclude<ExtArgs> | null
   }
 
 
@@ -20068,7 +21220,8 @@ export namespace Prisma {
     id: 'id',
     createdAt: 'createdAt',
     name: 'name',
-    code: 'code'
+    code: 'code',
+    category: 'category'
   };
 
   export type BodyPartScalarFieldEnum = (typeof BodyPartScalarFieldEnum)[keyof typeof BodyPartScalarFieldEnum]
@@ -20078,7 +21231,8 @@ export namespace Prisma {
     id: 'id',
     createdAt: 'createdAt',
     name: 'name',
-    code: 'code'
+    code: 'code',
+    isDisable: 'isDisable'
   };
 
   export type GymEquipmentScalarFieldEnum = (typeof GymEquipmentScalarFieldEnum)[keyof typeof GymEquipmentScalarFieldEnum]
@@ -20121,10 +21275,25 @@ export namespace Prisma {
     fax: 'fax',
     email: 'email',
     isCertified: 'isCertified',
+    isDisable: 'isDisable',
     userId: 'userId'
   };
 
   export type GymScalarFieldEnum = (typeof GymScalarFieldEnum)[keyof typeof GymScalarFieldEnum]
+
+
+  export const GymImageScalarFieldEnum: {
+    id: 'id',
+    createdAt: 'createdAt',
+    url: 'url',
+    width: 'width',
+    height: 'height',
+    size: 'size',
+    isThumb: 'isThumb',
+    gymId: 'gymId'
+  };
+
+  export type GymImageScalarFieldEnum = (typeof GymImageScalarFieldEnum)[keyof typeof GymImageScalarFieldEnum]
 
 
   export const GymEuquipmentsOnGymsScalarFieldEnum: {
@@ -20576,6 +21745,7 @@ export namespace Prisma {
 
   export type BoardImageWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    boardId?: number
     AND?: BoardImageWhereInput | BoardImageWhereInput[]
     OR?: BoardImageWhereInput[]
     NOT?: BoardImageWhereInput | BoardImageWhereInput[]
@@ -20585,9 +21755,8 @@ export namespace Prisma {
     height?: IntFilter<"BoardImage"> | number
     size?: IntFilter<"BoardImage"> | number
     isThumb?: BoolFilter<"BoardImage"> | boolean
-    boardId?: IntFilter<"BoardImage"> | number
     Board?: XOR<BoardRelationFilter, BoardWhereInput>
-  }, "id">
+  }, "id" | "boardId">
 
   export type BoardImageOrderByWithAggregationInput = {
     id?: SortOrder
@@ -20713,6 +21882,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"BodyPart"> | Date | string
     name?: StringFilter<"BodyPart"> | string
     code?: StringFilter<"BodyPart"> | string
+    category?: StringFilter<"BodyPart"> | string
     GymEquipments?: BodyPartsOnGymEquipmentsListRelationFilter
   }
 
@@ -20721,6 +21891,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     name?: SortOrder
     code?: SortOrder
+    category?: SortOrder
     GymEquipments?: BodyPartsOnGymEquipmentsOrderByRelationAggregateInput
   }
 
@@ -20732,6 +21903,7 @@ export namespace Prisma {
     NOT?: BodyPartWhereInput | BodyPartWhereInput[]
     createdAt?: DateTimeFilter<"BodyPart"> | Date | string
     name?: StringFilter<"BodyPart"> | string
+    category?: StringFilter<"BodyPart"> | string
     GymEquipments?: BodyPartsOnGymEquipmentsListRelationFilter
   }, "id" | "code">
 
@@ -20740,6 +21912,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     name?: SortOrder
     code?: SortOrder
+    category?: SortOrder
     _count?: BodyPartCountOrderByAggregateInput
     _avg?: BodyPartAvgOrderByAggregateInput
     _max?: BodyPartMaxOrderByAggregateInput
@@ -20755,6 +21928,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"BodyPart"> | Date | string
     name?: StringWithAggregatesFilter<"BodyPart"> | string
     code?: StringWithAggregatesFilter<"BodyPart"> | string
+    category?: StringWithAggregatesFilter<"BodyPart"> | string
   }
 
   export type GymEquipmentWhereInput = {
@@ -20765,6 +21939,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"GymEquipment"> | Date | string
     name?: StringFilter<"GymEquipment"> | string
     code?: StringFilter<"GymEquipment"> | string
+    isDisable?: BoolFilter<"GymEquipment"> | boolean
     BodyParts?: BodyPartsOnGymEquipmentsListRelationFilter
     Gyms?: GymEuquipmentsOnGymsListRelationFilter
     GymEquipmentImage?: GymEquipmentImageListRelationFilter
@@ -20775,6 +21950,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     name?: SortOrder
     code?: SortOrder
+    isDisable?: SortOrder
     BodyParts?: BodyPartsOnGymEquipmentsOrderByRelationAggregateInput
     Gyms?: GymEuquipmentsOnGymsOrderByRelationAggregateInput
     GymEquipmentImage?: GymEquipmentImageOrderByRelationAggregateInput
@@ -20788,6 +21964,7 @@ export namespace Prisma {
     NOT?: GymEquipmentWhereInput | GymEquipmentWhereInput[]
     createdAt?: DateTimeFilter<"GymEquipment"> | Date | string
     name?: StringFilter<"GymEquipment"> | string
+    isDisable?: BoolFilter<"GymEquipment"> | boolean
     BodyParts?: BodyPartsOnGymEquipmentsListRelationFilter
     Gyms?: GymEuquipmentsOnGymsListRelationFilter
     GymEquipmentImage?: GymEquipmentImageListRelationFilter
@@ -20798,6 +21975,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     name?: SortOrder
     code?: SortOrder
+    isDisable?: SortOrder
     _count?: GymEquipmentCountOrderByAggregateInput
     _avg?: GymEquipmentAvgOrderByAggregateInput
     _max?: GymEquipmentMaxOrderByAggregateInput
@@ -20813,6 +21991,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"GymEquipment"> | Date | string
     name?: StringWithAggregatesFilter<"GymEquipment"> | string
     code?: StringWithAggregatesFilter<"GymEquipment"> | string
+    isDisable?: BoolWithAggregatesFilter<"GymEquipment"> | boolean
   }
 
   export type GymEquipmentImageWhereInput = {
@@ -20955,8 +22134,10 @@ export namespace Prisma {
     fax?: StringFilter<"Gym"> | string
     email?: StringFilter<"Gym"> | string
     isCertified?: BoolFilter<"Gym"> | boolean
+    isDisable?: BoolFilter<"Gym"> | boolean
     userId?: IntFilter<"Gym"> | number
     User?: XOR<UserRelationFilter, UserWhereInput>
+    GymImage?: GymImageListRelationFilter
     GymEquipments?: GymEuquipmentsOnGymsListRelationFilter
     FavoriteUsers?: FavoriteGymListRelationFilter
     GymAccessHistory?: GymAccessHistoryListRelationFilter
@@ -20978,8 +22159,10 @@ export namespace Prisma {
     fax?: SortOrder
     email?: SortOrder
     isCertified?: SortOrder
+    isDisable?: SortOrder
     userId?: SortOrder
     User?: UserOrderByWithRelationInput
+    GymImage?: GymImageOrderByRelationAggregateInput
     GymEquipments?: GymEuquipmentsOnGymsOrderByRelationAggregateInput
     FavoriteUsers?: FavoriteGymOrderByRelationAggregateInput
     GymAccessHistory?: GymAccessHistoryOrderByRelationAggregateInput
@@ -21004,8 +22187,10 @@ export namespace Prisma {
     fax?: StringFilter<"Gym"> | string
     email?: StringFilter<"Gym"> | string
     isCertified?: BoolFilter<"Gym"> | boolean
+    isDisable?: BoolFilter<"Gym"> | boolean
     userId?: IntFilter<"Gym"> | number
     User?: XOR<UserRelationFilter, UserWhereInput>
+    GymImage?: GymImageListRelationFilter
     GymEquipments?: GymEuquipmentsOnGymsListRelationFilter
     FavoriteUsers?: FavoriteGymListRelationFilter
     GymAccessHistory?: GymAccessHistoryListRelationFilter
@@ -21027,6 +22212,7 @@ export namespace Prisma {
     fax?: SortOrder
     email?: SortOrder
     isCertified?: SortOrder
+    isDisable?: SortOrder
     userId?: SortOrder
     _count?: GymCountOrderByAggregateInput
     _avg?: GymAvgOrderByAggregateInput
@@ -21052,7 +22238,80 @@ export namespace Prisma {
     fax?: StringWithAggregatesFilter<"Gym"> | string
     email?: StringWithAggregatesFilter<"Gym"> | string
     isCertified?: BoolWithAggregatesFilter<"Gym"> | boolean
+    isDisable?: BoolWithAggregatesFilter<"Gym"> | boolean
     userId?: IntWithAggregatesFilter<"Gym"> | number
+  }
+
+  export type GymImageWhereInput = {
+    AND?: GymImageWhereInput | GymImageWhereInput[]
+    OR?: GymImageWhereInput[]
+    NOT?: GymImageWhereInput | GymImageWhereInput[]
+    id?: IntFilter<"GymImage"> | number
+    createdAt?: DateTimeFilter<"GymImage"> | Date | string
+    url?: StringFilter<"GymImage"> | string
+    width?: IntFilter<"GymImage"> | number
+    height?: IntFilter<"GymImage"> | number
+    size?: IntFilter<"GymImage"> | number
+    isThumb?: BoolFilter<"GymImage"> | boolean
+    gymId?: IntFilter<"GymImage"> | number
+    Gym?: XOR<GymRelationFilter, GymWhereInput>
+  }
+
+  export type GymImageOrderByWithRelationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    url?: SortOrder
+    width?: SortOrder
+    height?: SortOrder
+    size?: SortOrder
+    isThumb?: SortOrder
+    gymId?: SortOrder
+    Gym?: GymOrderByWithRelationInput
+  }
+
+  export type GymImageWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    gymId?: number
+    AND?: GymImageWhereInput | GymImageWhereInput[]
+    OR?: GymImageWhereInput[]
+    NOT?: GymImageWhereInput | GymImageWhereInput[]
+    createdAt?: DateTimeFilter<"GymImage"> | Date | string
+    url?: StringFilter<"GymImage"> | string
+    width?: IntFilter<"GymImage"> | number
+    height?: IntFilter<"GymImage"> | number
+    size?: IntFilter<"GymImage"> | number
+    isThumb?: BoolFilter<"GymImage"> | boolean
+    Gym?: XOR<GymRelationFilter, GymWhereInput>
+  }, "id" | "gymId">
+
+  export type GymImageOrderByWithAggregationInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    url?: SortOrder
+    width?: SortOrder
+    height?: SortOrder
+    size?: SortOrder
+    isThumb?: SortOrder
+    gymId?: SortOrder
+    _count?: GymImageCountOrderByAggregateInput
+    _avg?: GymImageAvgOrderByAggregateInput
+    _max?: GymImageMaxOrderByAggregateInput
+    _min?: GymImageMinOrderByAggregateInput
+    _sum?: GymImageSumOrderByAggregateInput
+  }
+
+  export type GymImageScalarWhereWithAggregatesInput = {
+    AND?: GymImageScalarWhereWithAggregatesInput | GymImageScalarWhereWithAggregatesInput[]
+    OR?: GymImageScalarWhereWithAggregatesInput[]
+    NOT?: GymImageScalarWhereWithAggregatesInput | GymImageScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"GymImage"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"GymImage"> | Date | string
+    url?: StringWithAggregatesFilter<"GymImage"> | string
+    width?: IntWithAggregatesFilter<"GymImage"> | number
+    height?: IntWithAggregatesFilter<"GymImage"> | number
+    size?: IntWithAggregatesFilter<"GymImage"> | number
+    isThumb?: BoolWithAggregatesFilter<"GymImage"> | boolean
+    gymId?: IntWithAggregatesFilter<"GymImage"> | number
   }
 
   export type GymEuquipmentsOnGymsWhereInput = {
@@ -21930,6 +23189,7 @@ export namespace Prisma {
     createdAt?: Date | string
     name: string
     code: string
+    category: string
     GymEquipments?: BodyPartsOnGymEquipmentsCreateNestedManyWithoutBodyPartInput
   }
 
@@ -21938,6 +23198,7 @@ export namespace Prisma {
     createdAt?: Date | string
     name: string
     code: string
+    category: string
     GymEquipments?: BodyPartsOnGymEquipmentsUncheckedCreateNestedManyWithoutBodyPartInput
   }
 
@@ -21945,6 +23206,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
     GymEquipments?: BodyPartsOnGymEquipmentsUpdateManyWithoutBodyPartNestedInput
   }
 
@@ -21953,6 +23215,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
     GymEquipments?: BodyPartsOnGymEquipmentsUncheckedUpdateManyWithoutBodyPartNestedInput
   }
 
@@ -21961,12 +23224,14 @@ export namespace Prisma {
     createdAt?: Date | string
     name: string
     code: string
+    category: string
   }
 
   export type BodyPartUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
   }
 
   export type BodyPartUncheckedUpdateManyInput = {
@@ -21974,12 +23239,14 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
   }
 
   export type GymEquipmentCreateInput = {
     createdAt?: Date | string
     name: string
     code: string
+    isDisable?: boolean
     BodyParts?: BodyPartsOnGymEquipmentsCreateNestedManyWithoutGymEquipmentInput
     Gyms?: GymEuquipmentsOnGymsCreateNestedManyWithoutGymEquipmentInput
     GymEquipmentImage?: GymEquipmentImageCreateNestedManyWithoutGymEquipmentInput
@@ -21990,6 +23257,7 @@ export namespace Prisma {
     createdAt?: Date | string
     name: string
     code: string
+    isDisable?: boolean
     BodyParts?: BodyPartsOnGymEquipmentsUncheckedCreateNestedManyWithoutGymEquipmentInput
     Gyms?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutGymEquipmentInput
     GymEquipmentImage?: GymEquipmentImageUncheckedCreateNestedManyWithoutGymEquipmentInput
@@ -21999,6 +23267,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     BodyParts?: BodyPartsOnGymEquipmentsUpdateManyWithoutGymEquipmentNestedInput
     Gyms?: GymEuquipmentsOnGymsUpdateManyWithoutGymEquipmentNestedInput
     GymEquipmentImage?: GymEquipmentImageUpdateManyWithoutGymEquipmentNestedInput
@@ -22009,6 +23278,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     BodyParts?: BodyPartsOnGymEquipmentsUncheckedUpdateManyWithoutGymEquipmentNestedInput
     Gyms?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutGymEquipmentNestedInput
     GymEquipmentImage?: GymEquipmentImageUncheckedUpdateManyWithoutGymEquipmentNestedInput
@@ -22019,12 +23289,14 @@ export namespace Prisma {
     createdAt?: Date | string
     name: string
     code: string
+    isDisable?: boolean
   }
 
   export type GymEquipmentUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type GymEquipmentUncheckedUpdateManyInput = {
@@ -22032,6 +23304,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type GymEquipmentImageCreateInput = {
@@ -22160,7 +23433,9 @@ export namespace Prisma {
     fax: string
     email: string
     isCertified?: boolean
+    isDisable?: boolean
     User: UserCreateNestedOneWithoutGymInput
+    GymImage?: GymImageCreateNestedManyWithoutGymInput
     GymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutGymInput
     FavoriteUsers?: FavoriteGymCreateNestedManyWithoutGymInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutGymInput
@@ -22182,7 +23457,9 @@ export namespace Prisma {
     fax: string
     email: string
     isCertified?: boolean
+    isDisable?: boolean
     userId: number
+    GymImage?: GymImageUncheckedCreateNestedManyWithoutGymInput
     GymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutGymInput
     FavoriteUsers?: FavoriteGymUncheckedCreateNestedManyWithoutGymInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutGymInput
@@ -22203,7 +23480,9 @@ export namespace Prisma {
     fax?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     isCertified?: BoolFieldUpdateOperationsInput | boolean
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     User?: UserUpdateOneRequiredWithoutGymNestedInput
+    GymImage?: GymImageUpdateManyWithoutGymNestedInput
     GymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutGymNestedInput
     FavoriteUsers?: FavoriteGymUpdateManyWithoutGymNestedInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutGymNestedInput
@@ -22225,7 +23504,9 @@ export namespace Prisma {
     fax?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     isCertified?: BoolFieldUpdateOperationsInput | boolean
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     userId?: IntFieldUpdateOperationsInput | number
+    GymImage?: GymImageUncheckedUpdateManyWithoutGymNestedInput
     GymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutGymNestedInput
     FavoriteUsers?: FavoriteGymUncheckedUpdateManyWithoutGymNestedInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutGymNestedInput
@@ -22247,6 +23528,7 @@ export namespace Prisma {
     fax: string
     email: string
     isCertified?: boolean
+    isDisable?: boolean
     userId: number
   }
 
@@ -22263,6 +23545,7 @@ export namespace Prisma {
     fax?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     isCertified?: BoolFieldUpdateOperationsInput | boolean
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type GymUncheckedUpdateManyInput = {
@@ -22279,7 +23562,81 @@ export namespace Prisma {
     fax?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     isCertified?: BoolFieldUpdateOperationsInput | boolean
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type GymImageCreateInput = {
+    createdAt?: Date | string
+    url: string
+    width: number
+    height: number
+    size: number
+    isThumb?: boolean
+    Gym: GymCreateNestedOneWithoutGymImageInput
+  }
+
+  export type GymImageUncheckedCreateInput = {
+    id?: number
+    createdAt?: Date | string
+    url: string
+    width: number
+    height: number
+    size: number
+    isThumb?: boolean
+    gymId: number
+  }
+
+  export type GymImageUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    url?: StringFieldUpdateOperationsInput | string
+    width?: IntFieldUpdateOperationsInput | number
+    height?: IntFieldUpdateOperationsInput | number
+    size?: IntFieldUpdateOperationsInput | number
+    isThumb?: BoolFieldUpdateOperationsInput | boolean
+    Gym?: GymUpdateOneRequiredWithoutGymImageNestedInput
+  }
+
+  export type GymImageUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    url?: StringFieldUpdateOperationsInput | string
+    width?: IntFieldUpdateOperationsInput | number
+    height?: IntFieldUpdateOperationsInput | number
+    size?: IntFieldUpdateOperationsInput | number
+    isThumb?: BoolFieldUpdateOperationsInput | boolean
+    gymId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type GymImageCreateManyInput = {
+    id?: number
+    createdAt?: Date | string
+    url: string
+    width: number
+    height: number
+    size: number
+    isThumb?: boolean
+    gymId: number
+  }
+
+  export type GymImageUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    url?: StringFieldUpdateOperationsInput | string
+    width?: IntFieldUpdateOperationsInput | number
+    height?: IntFieldUpdateOperationsInput | number
+    size?: IntFieldUpdateOperationsInput | number
+    isThumb?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type GymImageUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    url?: StringFieldUpdateOperationsInput | string
+    width?: IntFieldUpdateOperationsInput | number
+    height?: IntFieldUpdateOperationsInput | number
+    size?: IntFieldUpdateOperationsInput | number
+    isThumb?: BoolFieldUpdateOperationsInput | boolean
+    gymId?: IntFieldUpdateOperationsInput | number
   }
 
   export type GymEuquipmentsOnGymsCreateInput = {
@@ -23261,6 +24618,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     name?: SortOrder
     code?: SortOrder
+    category?: SortOrder
   }
 
   export type BodyPartAvgOrderByAggregateInput = {
@@ -23272,6 +24630,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     name?: SortOrder
     code?: SortOrder
+    category?: SortOrder
   }
 
   export type BodyPartMinOrderByAggregateInput = {
@@ -23279,6 +24638,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     name?: SortOrder
     code?: SortOrder
+    category?: SortOrder
   }
 
   export type BodyPartSumOrderByAggregateInput = {
@@ -23300,6 +24660,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     name?: SortOrder
     code?: SortOrder
+    isDisable?: SortOrder
   }
 
   export type GymEquipmentAvgOrderByAggregateInput = {
@@ -23311,6 +24672,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     name?: SortOrder
     code?: SortOrder
+    isDisable?: SortOrder
   }
 
   export type GymEquipmentMinOrderByAggregateInput = {
@@ -23318,6 +24680,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     name?: SortOrder
     code?: SortOrder
+    isDisable?: SortOrder
   }
 
   export type GymEquipmentSumOrderByAggregateInput = {
@@ -23416,6 +24779,16 @@ export namespace Prisma {
     bodyPartId?: SortOrder
   }
 
+  export type GymImageListRelationFilter = {
+    every?: GymImageWhereInput
+    some?: GymImageWhereInput
+    none?: GymImageWhereInput
+  }
+
+  export type GymImageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type GymCountOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
@@ -23430,6 +24803,7 @@ export namespace Prisma {
     fax?: SortOrder
     email?: SortOrder
     isCertified?: SortOrder
+    isDisable?: SortOrder
     userId?: SortOrder
   }
 
@@ -23452,6 +24826,7 @@ export namespace Prisma {
     fax?: SortOrder
     email?: SortOrder
     isCertified?: SortOrder
+    isDisable?: SortOrder
     userId?: SortOrder
   }
 
@@ -23469,6 +24844,7 @@ export namespace Prisma {
     fax?: SortOrder
     email?: SortOrder
     isCertified?: SortOrder
+    isDisable?: SortOrder
     userId?: SortOrder
   }
 
@@ -23480,6 +24856,55 @@ export namespace Prisma {
   export type GymRelationFilter = {
     is?: GymWhereInput
     isNot?: GymWhereInput
+  }
+
+  export type GymImageCountOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    url?: SortOrder
+    width?: SortOrder
+    height?: SortOrder
+    size?: SortOrder
+    isThumb?: SortOrder
+    gymId?: SortOrder
+  }
+
+  export type GymImageAvgOrderByAggregateInput = {
+    id?: SortOrder
+    width?: SortOrder
+    height?: SortOrder
+    size?: SortOrder
+    gymId?: SortOrder
+  }
+
+  export type GymImageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    url?: SortOrder
+    width?: SortOrder
+    height?: SortOrder
+    size?: SortOrder
+    isThumb?: SortOrder
+    gymId?: SortOrder
+  }
+
+  export type GymImageMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    url?: SortOrder
+    width?: SortOrder
+    height?: SortOrder
+    size?: SortOrder
+    isThumb?: SortOrder
+    gymId?: SortOrder
+  }
+
+  export type GymImageSumOrderByAggregateInput = {
+    id?: SortOrder
+    width?: SortOrder
+    height?: SortOrder
+    size?: SortOrder
+    gymId?: SortOrder
   }
 
   export type GymEuquipmentsOnGymsCountOrderByAggregateInput = {
@@ -24687,6 +26112,13 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type GymImageCreateNestedManyWithoutGymInput = {
+    create?: XOR<GymImageCreateWithoutGymInput, GymImageUncheckedCreateWithoutGymInput> | GymImageCreateWithoutGymInput[] | GymImageUncheckedCreateWithoutGymInput[]
+    connectOrCreate?: GymImageCreateOrConnectWithoutGymInput | GymImageCreateOrConnectWithoutGymInput[]
+    createMany?: GymImageCreateManyGymInputEnvelope
+    connect?: GymImageWhereUniqueInput | GymImageWhereUniqueInput[]
+  }
+
   export type GymEuquipmentsOnGymsCreateNestedManyWithoutGymInput = {
     create?: XOR<GymEuquipmentsOnGymsCreateWithoutGymInput, GymEuquipmentsOnGymsUncheckedCreateWithoutGymInput> | GymEuquipmentsOnGymsCreateWithoutGymInput[] | GymEuquipmentsOnGymsUncheckedCreateWithoutGymInput[]
     connectOrCreate?: GymEuquipmentsOnGymsCreateOrConnectWithoutGymInput | GymEuquipmentsOnGymsCreateOrConnectWithoutGymInput[]
@@ -24720,6 +26152,13 @@ export namespace Prisma {
     connectOrCreate?: GymPassHistoryCreateOrConnectWithoutGymInput | GymPassHistoryCreateOrConnectWithoutGymInput[]
     createMany?: GymPassHistoryCreateManyGymInputEnvelope
     connect?: GymPassHistoryWhereUniqueInput | GymPassHistoryWhereUniqueInput[]
+  }
+
+  export type GymImageUncheckedCreateNestedManyWithoutGymInput = {
+    create?: XOR<GymImageCreateWithoutGymInput, GymImageUncheckedCreateWithoutGymInput> | GymImageCreateWithoutGymInput[] | GymImageUncheckedCreateWithoutGymInput[]
+    connectOrCreate?: GymImageCreateOrConnectWithoutGymInput | GymImageCreateOrConnectWithoutGymInput[]
+    createMany?: GymImageCreateManyGymInputEnvelope
+    connect?: GymImageWhereUniqueInput | GymImageWhereUniqueInput[]
   }
 
   export type GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutGymInput = {
@@ -24763,6 +26202,20 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutGymInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutGymInput, UserUpdateWithoutGymInput>, UserUncheckedUpdateWithoutGymInput>
+  }
+
+  export type GymImageUpdateManyWithoutGymNestedInput = {
+    create?: XOR<GymImageCreateWithoutGymInput, GymImageUncheckedCreateWithoutGymInput> | GymImageCreateWithoutGymInput[] | GymImageUncheckedCreateWithoutGymInput[]
+    connectOrCreate?: GymImageCreateOrConnectWithoutGymInput | GymImageCreateOrConnectWithoutGymInput[]
+    upsert?: GymImageUpsertWithWhereUniqueWithoutGymInput | GymImageUpsertWithWhereUniqueWithoutGymInput[]
+    createMany?: GymImageCreateManyGymInputEnvelope
+    set?: GymImageWhereUniqueInput | GymImageWhereUniqueInput[]
+    disconnect?: GymImageWhereUniqueInput | GymImageWhereUniqueInput[]
+    delete?: GymImageWhereUniqueInput | GymImageWhereUniqueInput[]
+    connect?: GymImageWhereUniqueInput | GymImageWhereUniqueInput[]
+    update?: GymImageUpdateWithWhereUniqueWithoutGymInput | GymImageUpdateWithWhereUniqueWithoutGymInput[]
+    updateMany?: GymImageUpdateManyWithWhereWithoutGymInput | GymImageUpdateManyWithWhereWithoutGymInput[]
+    deleteMany?: GymImageScalarWhereInput | GymImageScalarWhereInput[]
   }
 
   export type GymEuquipmentsOnGymsUpdateManyWithoutGymNestedInput = {
@@ -24835,6 +26288,20 @@ export namespace Prisma {
     deleteMany?: GymPassHistoryScalarWhereInput | GymPassHistoryScalarWhereInput[]
   }
 
+  export type GymImageUncheckedUpdateManyWithoutGymNestedInput = {
+    create?: XOR<GymImageCreateWithoutGymInput, GymImageUncheckedCreateWithoutGymInput> | GymImageCreateWithoutGymInput[] | GymImageUncheckedCreateWithoutGymInput[]
+    connectOrCreate?: GymImageCreateOrConnectWithoutGymInput | GymImageCreateOrConnectWithoutGymInput[]
+    upsert?: GymImageUpsertWithWhereUniqueWithoutGymInput | GymImageUpsertWithWhereUniqueWithoutGymInput[]
+    createMany?: GymImageCreateManyGymInputEnvelope
+    set?: GymImageWhereUniqueInput | GymImageWhereUniqueInput[]
+    disconnect?: GymImageWhereUniqueInput | GymImageWhereUniqueInput[]
+    delete?: GymImageWhereUniqueInput | GymImageWhereUniqueInput[]
+    connect?: GymImageWhereUniqueInput | GymImageWhereUniqueInput[]
+    update?: GymImageUpdateWithWhereUniqueWithoutGymInput | GymImageUpdateWithWhereUniqueWithoutGymInput[]
+    updateMany?: GymImageUpdateManyWithWhereWithoutGymInput | GymImageUpdateManyWithWhereWithoutGymInput[]
+    deleteMany?: GymImageScalarWhereInput | GymImageScalarWhereInput[]
+  }
+
   export type GymEuquipmentsOnGymsUncheckedUpdateManyWithoutGymNestedInput = {
     create?: XOR<GymEuquipmentsOnGymsCreateWithoutGymInput, GymEuquipmentsOnGymsUncheckedCreateWithoutGymInput> | GymEuquipmentsOnGymsCreateWithoutGymInput[] | GymEuquipmentsOnGymsUncheckedCreateWithoutGymInput[]
     connectOrCreate?: GymEuquipmentsOnGymsCreateOrConnectWithoutGymInput | GymEuquipmentsOnGymsCreateOrConnectWithoutGymInput[]
@@ -24903,6 +26370,20 @@ export namespace Prisma {
     update?: GymPassHistoryUpdateWithWhereUniqueWithoutGymInput | GymPassHistoryUpdateWithWhereUniqueWithoutGymInput[]
     updateMany?: GymPassHistoryUpdateManyWithWhereWithoutGymInput | GymPassHistoryUpdateManyWithWhereWithoutGymInput[]
     deleteMany?: GymPassHistoryScalarWhereInput | GymPassHistoryScalarWhereInput[]
+  }
+
+  export type GymCreateNestedOneWithoutGymImageInput = {
+    create?: XOR<GymCreateWithoutGymImageInput, GymUncheckedCreateWithoutGymImageInput>
+    connectOrCreate?: GymCreateOrConnectWithoutGymImageInput
+    connect?: GymWhereUniqueInput
+  }
+
+  export type GymUpdateOneRequiredWithoutGymImageNestedInput = {
+    create?: XOR<GymCreateWithoutGymImageInput, GymUncheckedCreateWithoutGymImageInput>
+    connectOrCreate?: GymCreateOrConnectWithoutGymImageInput
+    upsert?: GymUpsertWithoutGymImageInput
+    connect?: GymWhereUniqueInput
+    update?: XOR<XOR<GymUpdateToOneWithWhereWithoutGymImageInput, GymUpdateWithoutGymImageInput>, GymUncheckedUpdateWithoutGymImageInput>
   }
 
   export type GymCreateNestedOneWithoutGymEquipmentsInput = {
@@ -25561,6 +27042,8 @@ export namespace Prisma {
     fax: string
     email: string
     isCertified?: boolean
+    isDisable?: boolean
+    GymImage?: GymImageCreateNestedManyWithoutGymInput
     GymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutGymInput
     FavoriteUsers?: FavoriteGymCreateNestedManyWithoutGymInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutGymInput
@@ -25582,6 +27065,8 @@ export namespace Prisma {
     fax: string
     email: string
     isCertified?: boolean
+    isDisable?: boolean
+    GymImage?: GymImageUncheckedCreateNestedManyWithoutGymInput
     GymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutGymInput
     FavoriteUsers?: FavoriteGymUncheckedCreateNestedManyWithoutGymInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutGymInput
@@ -25897,6 +27382,7 @@ export namespace Prisma {
     fax?: StringFilter<"Gym"> | string
     email?: StringFilter<"Gym"> | string
     isCertified?: BoolFilter<"Gym"> | boolean
+    isDisable?: BoolFilter<"Gym"> | boolean
     userId?: IntFilter<"Gym"> | number
   }
 
@@ -26942,6 +28428,7 @@ export namespace Prisma {
     createdAt?: Date | string
     name: string
     code: string
+    isDisable?: boolean
     BodyParts?: BodyPartsOnGymEquipmentsCreateNestedManyWithoutGymEquipmentInput
     Gyms?: GymEuquipmentsOnGymsCreateNestedManyWithoutGymEquipmentInput
   }
@@ -26951,6 +28438,7 @@ export namespace Prisma {
     createdAt?: Date | string
     name: string
     code: string
+    isDisable?: boolean
     BodyParts?: BodyPartsOnGymEquipmentsUncheckedCreateNestedManyWithoutGymEquipmentInput
     Gyms?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutGymEquipmentInput
   }
@@ -26975,6 +28463,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     BodyParts?: BodyPartsOnGymEquipmentsUpdateManyWithoutGymEquipmentNestedInput
     Gyms?: GymEuquipmentsOnGymsUpdateManyWithoutGymEquipmentNestedInput
   }
@@ -26984,6 +28473,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     BodyParts?: BodyPartsOnGymEquipmentsUncheckedUpdateManyWithoutGymEquipmentNestedInput
     Gyms?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutGymEquipmentNestedInput
   }
@@ -26992,6 +28482,7 @@ export namespace Prisma {
     createdAt?: Date | string
     name: string
     code: string
+    isDisable?: boolean
     Gyms?: GymEuquipmentsOnGymsCreateNestedManyWithoutGymEquipmentInput
     GymEquipmentImage?: GymEquipmentImageCreateNestedManyWithoutGymEquipmentInput
   }
@@ -27001,6 +28492,7 @@ export namespace Prisma {
     createdAt?: Date | string
     name: string
     code: string
+    isDisable?: boolean
     Gyms?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutGymEquipmentInput
     GymEquipmentImage?: GymEquipmentImageUncheckedCreateNestedManyWithoutGymEquipmentInput
   }
@@ -27014,6 +28506,7 @@ export namespace Prisma {
     createdAt?: Date | string
     name: string
     code: string
+    category: string
   }
 
   export type BodyPartUncheckedCreateWithoutGymEquipmentsInput = {
@@ -27021,6 +28514,7 @@ export namespace Prisma {
     createdAt?: Date | string
     name: string
     code: string
+    category: string
   }
 
   export type BodyPartCreateOrConnectWithoutGymEquipmentsInput = {
@@ -27043,6 +28537,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     Gyms?: GymEuquipmentsOnGymsUpdateManyWithoutGymEquipmentNestedInput
     GymEquipmentImage?: GymEquipmentImageUpdateManyWithoutGymEquipmentNestedInput
   }
@@ -27052,6 +28547,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     Gyms?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutGymEquipmentNestedInput
     GymEquipmentImage?: GymEquipmentImageUncheckedUpdateManyWithoutGymEquipmentNestedInput
   }
@@ -27071,6 +28567,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
   }
 
   export type BodyPartUncheckedUpdateWithoutGymEquipmentsInput = {
@@ -27078,6 +28575,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserCreateWithoutGymInput = {
@@ -27128,6 +28626,35 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutGymInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutGymInput, UserUncheckedCreateWithoutGymInput>
+  }
+
+  export type GymImageCreateWithoutGymInput = {
+    createdAt?: Date | string
+    url: string
+    width: number
+    height: number
+    size: number
+    isThumb?: boolean
+  }
+
+  export type GymImageUncheckedCreateWithoutGymInput = {
+    id?: number
+    createdAt?: Date | string
+    url: string
+    width: number
+    height: number
+    size: number
+    isThumb?: boolean
+  }
+
+  export type GymImageCreateOrConnectWithoutGymInput = {
+    where: GymImageWhereUniqueInput
+    create: XOR<GymImageCreateWithoutGymInput, GymImageUncheckedCreateWithoutGymInput>
+  }
+
+  export type GymImageCreateManyGymInputEnvelope = {
+    data: GymImageCreateManyGymInput | GymImageCreateManyGymInput[]
+    skipDuplicates?: boolean
   }
 
   export type GymEuquipmentsOnGymsCreateWithoutGymInput = {
@@ -27308,6 +28835,36 @@ export namespace Prisma {
     GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
+  export type GymImageUpsertWithWhereUniqueWithoutGymInput = {
+    where: GymImageWhereUniqueInput
+    update: XOR<GymImageUpdateWithoutGymInput, GymImageUncheckedUpdateWithoutGymInput>
+    create: XOR<GymImageCreateWithoutGymInput, GymImageUncheckedCreateWithoutGymInput>
+  }
+
+  export type GymImageUpdateWithWhereUniqueWithoutGymInput = {
+    where: GymImageWhereUniqueInput
+    data: XOR<GymImageUpdateWithoutGymInput, GymImageUncheckedUpdateWithoutGymInput>
+  }
+
+  export type GymImageUpdateManyWithWhereWithoutGymInput = {
+    where: GymImageScalarWhereInput
+    data: XOR<GymImageUpdateManyMutationInput, GymImageUncheckedUpdateManyWithoutGymInput>
+  }
+
+  export type GymImageScalarWhereInput = {
+    AND?: GymImageScalarWhereInput | GymImageScalarWhereInput[]
+    OR?: GymImageScalarWhereInput[]
+    NOT?: GymImageScalarWhereInput | GymImageScalarWhereInput[]
+    id?: IntFilter<"GymImage"> | number
+    createdAt?: DateTimeFilter<"GymImage"> | Date | string
+    url?: StringFilter<"GymImage"> | string
+    width?: IntFilter<"GymImage"> | number
+    height?: IntFilter<"GymImage"> | number
+    size?: IntFilter<"GymImage"> | number
+    isThumb?: BoolFilter<"GymImage"> | boolean
+    gymId?: IntFilter<"GymImage"> | number
+  }
+
   export type GymEuquipmentsOnGymsUpsertWithWhereUniqueWithoutGymInput = {
     where: GymEuquipmentsOnGymsWhereUniqueInput
     update: XOR<GymEuquipmentsOnGymsUpdateWithoutGymInput, GymEuquipmentsOnGymsUncheckedUpdateWithoutGymInput>
@@ -27388,6 +28945,112 @@ export namespace Prisma {
     data: XOR<GymPassHistoryUpdateManyMutationInput, GymPassHistoryUncheckedUpdateManyWithoutGymInput>
   }
 
+  export type GymCreateWithoutGymImageInput = {
+    createdAt?: Date | string
+    ceoName: string
+    companyName: string
+    businessNumber: string
+    postcode: string
+    mainAddress: string
+    subAddress: string
+    phone: string
+    cellPhone: string
+    fax: string
+    email: string
+    isCertified?: boolean
+    isDisable?: boolean
+    User: UserCreateNestedOneWithoutGymInput
+    GymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutGymInput
+    FavoriteUsers?: FavoriteGymCreateNestedManyWithoutGymInput
+    GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutGymInput
+    GymMembership?: GymMembershipCreateNestedManyWithoutGymInput
+    GymPassHistory?: GymPassHistoryCreateNestedManyWithoutGymInput
+  }
+
+  export type GymUncheckedCreateWithoutGymImageInput = {
+    id?: number
+    createdAt?: Date | string
+    ceoName: string
+    companyName: string
+    businessNumber: string
+    postcode: string
+    mainAddress: string
+    subAddress: string
+    phone: string
+    cellPhone: string
+    fax: string
+    email: string
+    isCertified?: boolean
+    isDisable?: boolean
+    userId: number
+    GymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutGymInput
+    FavoriteUsers?: FavoriteGymUncheckedCreateNestedManyWithoutGymInput
+    GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutGymInput
+    GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutGymInput
+    GymPassHistory?: GymPassHistoryUncheckedCreateNestedManyWithoutGymInput
+  }
+
+  export type GymCreateOrConnectWithoutGymImageInput = {
+    where: GymWhereUniqueInput
+    create: XOR<GymCreateWithoutGymImageInput, GymUncheckedCreateWithoutGymImageInput>
+  }
+
+  export type GymUpsertWithoutGymImageInput = {
+    update: XOR<GymUpdateWithoutGymImageInput, GymUncheckedUpdateWithoutGymImageInput>
+    create: XOR<GymCreateWithoutGymImageInput, GymUncheckedCreateWithoutGymImageInput>
+    where?: GymWhereInput
+  }
+
+  export type GymUpdateToOneWithWhereWithoutGymImageInput = {
+    where?: GymWhereInput
+    data: XOR<GymUpdateWithoutGymImageInput, GymUncheckedUpdateWithoutGymImageInput>
+  }
+
+  export type GymUpdateWithoutGymImageInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ceoName?: StringFieldUpdateOperationsInput | string
+    companyName?: StringFieldUpdateOperationsInput | string
+    businessNumber?: StringFieldUpdateOperationsInput | string
+    postcode?: StringFieldUpdateOperationsInput | string
+    mainAddress?: StringFieldUpdateOperationsInput | string
+    subAddress?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    cellPhone?: StringFieldUpdateOperationsInput | string
+    fax?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    isCertified?: BoolFieldUpdateOperationsInput | boolean
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
+    User?: UserUpdateOneRequiredWithoutGymNestedInput
+    GymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutGymNestedInput
+    FavoriteUsers?: FavoriteGymUpdateManyWithoutGymNestedInput
+    GymAccessHistory?: GymAccessHistoryUpdateManyWithoutGymNestedInput
+    GymMembership?: GymMembershipUpdateManyWithoutGymNestedInput
+    GymPassHistory?: GymPassHistoryUpdateManyWithoutGymNestedInput
+  }
+
+  export type GymUncheckedUpdateWithoutGymImageInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ceoName?: StringFieldUpdateOperationsInput | string
+    companyName?: StringFieldUpdateOperationsInput | string
+    businessNumber?: StringFieldUpdateOperationsInput | string
+    postcode?: StringFieldUpdateOperationsInput | string
+    mainAddress?: StringFieldUpdateOperationsInput | string
+    subAddress?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    cellPhone?: StringFieldUpdateOperationsInput | string
+    fax?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    isCertified?: BoolFieldUpdateOperationsInput | boolean
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
+    userId?: IntFieldUpdateOperationsInput | number
+    GymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutGymNestedInput
+    FavoriteUsers?: FavoriteGymUncheckedUpdateManyWithoutGymNestedInput
+    GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutGymNestedInput
+    GymMembership?: GymMembershipUncheckedUpdateManyWithoutGymNestedInput
+    GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutGymNestedInput
+  }
+
   export type GymCreateWithoutGymEquipmentsInput = {
     createdAt?: Date | string
     ceoName: string
@@ -27401,7 +29064,9 @@ export namespace Prisma {
     fax: string
     email: string
     isCertified?: boolean
+    isDisable?: boolean
     User: UserCreateNestedOneWithoutGymInput
+    GymImage?: GymImageCreateNestedManyWithoutGymInput
     FavoriteUsers?: FavoriteGymCreateNestedManyWithoutGymInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutGymInput
     GymMembership?: GymMembershipCreateNestedManyWithoutGymInput
@@ -27422,7 +29087,9 @@ export namespace Prisma {
     fax: string
     email: string
     isCertified?: boolean
+    isDisable?: boolean
     userId: number
+    GymImage?: GymImageUncheckedCreateNestedManyWithoutGymInput
     FavoriteUsers?: FavoriteGymUncheckedCreateNestedManyWithoutGymInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutGymInput
     GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutGymInput
@@ -27438,6 +29105,7 @@ export namespace Prisma {
     createdAt?: Date | string
     name: string
     code: string
+    isDisable?: boolean
     BodyParts?: BodyPartsOnGymEquipmentsCreateNestedManyWithoutGymEquipmentInput
     GymEquipmentImage?: GymEquipmentImageCreateNestedManyWithoutGymEquipmentInput
   }
@@ -27447,6 +29115,7 @@ export namespace Prisma {
     createdAt?: Date | string
     name: string
     code: string
+    isDisable?: boolean
     BodyParts?: BodyPartsOnGymEquipmentsUncheckedCreateNestedManyWithoutGymEquipmentInput
     GymEquipmentImage?: GymEquipmentImageUncheckedCreateNestedManyWithoutGymEquipmentInput
   }
@@ -27553,7 +29222,9 @@ export namespace Prisma {
     fax?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     isCertified?: BoolFieldUpdateOperationsInput | boolean
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     User?: UserUpdateOneRequiredWithoutGymNestedInput
+    GymImage?: GymImageUpdateManyWithoutGymNestedInput
     FavoriteUsers?: FavoriteGymUpdateManyWithoutGymNestedInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutGymNestedInput
     GymMembership?: GymMembershipUpdateManyWithoutGymNestedInput
@@ -27574,7 +29245,9 @@ export namespace Prisma {
     fax?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     isCertified?: BoolFieldUpdateOperationsInput | boolean
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     userId?: IntFieldUpdateOperationsInput | number
+    GymImage?: GymImageUncheckedUpdateManyWithoutGymNestedInput
     FavoriteUsers?: FavoriteGymUncheckedUpdateManyWithoutGymNestedInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutGymNestedInput
     GymMembership?: GymMembershipUncheckedUpdateManyWithoutGymNestedInput
@@ -27596,6 +29269,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     BodyParts?: BodyPartsOnGymEquipmentsUpdateManyWithoutGymEquipmentNestedInput
     GymEquipmentImage?: GymEquipmentImageUpdateManyWithoutGymEquipmentNestedInput
   }
@@ -27605,6 +29279,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     BodyParts?: BodyPartsOnGymEquipmentsUncheckedUpdateManyWithoutGymEquipmentNestedInput
     GymEquipmentImage?: GymEquipmentImageUncheckedUpdateManyWithoutGymEquipmentNestedInput
   }
@@ -27896,7 +29571,9 @@ export namespace Prisma {
     fax: string
     email: string
     isCertified?: boolean
+    isDisable?: boolean
     User: UserCreateNestedOneWithoutGymInput
+    GymImage?: GymImageCreateNestedManyWithoutGymInput
     GymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutGymInput
     FavoriteUsers?: FavoriteGymCreateNestedManyWithoutGymInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutGymInput
@@ -27917,7 +29594,9 @@ export namespace Prisma {
     fax: string
     email: string
     isCertified?: boolean
+    isDisable?: boolean
     userId: number
+    GymImage?: GymImageUncheckedCreateNestedManyWithoutGymInput
     GymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutGymInput
     FavoriteUsers?: FavoriteGymUncheckedCreateNestedManyWithoutGymInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutGymInput
@@ -28075,7 +29754,9 @@ export namespace Prisma {
     fax?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     isCertified?: BoolFieldUpdateOperationsInput | boolean
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     User?: UserUpdateOneRequiredWithoutGymNestedInput
+    GymImage?: GymImageUpdateManyWithoutGymNestedInput
     GymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutGymNestedInput
     FavoriteUsers?: FavoriteGymUpdateManyWithoutGymNestedInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutGymNestedInput
@@ -28096,7 +29777,9 @@ export namespace Prisma {
     fax?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     isCertified?: BoolFieldUpdateOperationsInput | boolean
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     userId?: IntFieldUpdateOperationsInput | number
+    GymImage?: GymImageUncheckedUpdateManyWithoutGymNestedInput
     GymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutGymNestedInput
     FavoriteUsers?: FavoriteGymUncheckedUpdateManyWithoutGymNestedInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutGymNestedInput
@@ -28239,7 +29922,9 @@ export namespace Prisma {
     fax: string
     email: string
     isCertified?: boolean
+    isDisable?: boolean
     User: UserCreateNestedOneWithoutGymInput
+    GymImage?: GymImageCreateNestedManyWithoutGymInput
     GymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutGymInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutGymInput
     GymMembership?: GymMembershipCreateNestedManyWithoutGymInput
@@ -28260,7 +29945,9 @@ export namespace Prisma {
     fax: string
     email: string
     isCertified?: boolean
+    isDisable?: boolean
     userId: number
+    GymImage?: GymImageUncheckedCreateNestedManyWithoutGymInput
     GymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutGymInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutGymInput
     GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutGymInput
@@ -28346,7 +30033,9 @@ export namespace Prisma {
     fax?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     isCertified?: BoolFieldUpdateOperationsInput | boolean
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     User?: UserUpdateOneRequiredWithoutGymNestedInput
+    GymImage?: GymImageUpdateManyWithoutGymNestedInput
     GymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutGymNestedInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutGymNestedInput
     GymMembership?: GymMembershipUpdateManyWithoutGymNestedInput
@@ -28367,7 +30056,9 @@ export namespace Prisma {
     fax?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     isCertified?: BoolFieldUpdateOperationsInput | boolean
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     userId?: IntFieldUpdateOperationsInput | number
+    GymImage?: GymImageUncheckedUpdateManyWithoutGymNestedInput
     GymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutGymNestedInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutGymNestedInput
     GymMembership?: GymMembershipUncheckedUpdateManyWithoutGymNestedInput
@@ -28443,7 +30134,9 @@ export namespace Prisma {
     fax: string
     email: string
     isCertified?: boolean
+    isDisable?: boolean
     User: UserCreateNestedOneWithoutGymInput
+    GymImage?: GymImageCreateNestedManyWithoutGymInput
     GymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutGymInput
     FavoriteUsers?: FavoriteGymCreateNestedManyWithoutGymInput
     GymMembership?: GymMembershipCreateNestedManyWithoutGymInput
@@ -28464,7 +30157,9 @@ export namespace Prisma {
     fax: string
     email: string
     isCertified?: boolean
+    isDisable?: boolean
     userId: number
+    GymImage?: GymImageUncheckedCreateNestedManyWithoutGymInput
     GymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutGymInput
     FavoriteUsers?: FavoriteGymUncheckedCreateNestedManyWithoutGymInput
     GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutGymInput
@@ -28550,7 +30245,9 @@ export namespace Prisma {
     fax?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     isCertified?: BoolFieldUpdateOperationsInput | boolean
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     User?: UserUpdateOneRequiredWithoutGymNestedInput
+    GymImage?: GymImageUpdateManyWithoutGymNestedInput
     GymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutGymNestedInput
     FavoriteUsers?: FavoriteGymUpdateManyWithoutGymNestedInput
     GymMembership?: GymMembershipUpdateManyWithoutGymNestedInput
@@ -28571,7 +30268,9 @@ export namespace Prisma {
     fax?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     isCertified?: BoolFieldUpdateOperationsInput | boolean
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     userId?: IntFieldUpdateOperationsInput | number
+    GymImage?: GymImageUncheckedUpdateManyWithoutGymNestedInput
     GymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutGymNestedInput
     FavoriteUsers?: FavoriteGymUncheckedUpdateManyWithoutGymNestedInput
     GymMembership?: GymMembershipUncheckedUpdateManyWithoutGymNestedInput
@@ -28647,7 +30346,9 @@ export namespace Prisma {
     fax: string
     email: string
     isCertified?: boolean
+    isDisable?: boolean
     User: UserCreateNestedOneWithoutGymInput
+    GymImage?: GymImageCreateNestedManyWithoutGymInput
     GymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutGymInput
     FavoriteUsers?: FavoriteGymCreateNestedManyWithoutGymInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutGymInput
@@ -28668,7 +30369,9 @@ export namespace Prisma {
     fax: string
     email: string
     isCertified?: boolean
+    isDisable?: boolean
     userId: number
+    GymImage?: GymImageUncheckedCreateNestedManyWithoutGymInput
     GymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutGymInput
     FavoriteUsers?: FavoriteGymUncheckedCreateNestedManyWithoutGymInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutGymInput
@@ -28754,7 +30457,9 @@ export namespace Prisma {
     fax?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     isCertified?: BoolFieldUpdateOperationsInput | boolean
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     User?: UserUpdateOneRequiredWithoutGymNestedInput
+    GymImage?: GymImageUpdateManyWithoutGymNestedInput
     GymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutGymNestedInput
     FavoriteUsers?: FavoriteGymUpdateManyWithoutGymNestedInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutGymNestedInput
@@ -28775,7 +30480,9 @@ export namespace Prisma {
     fax?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     isCertified?: BoolFieldUpdateOperationsInput | boolean
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     userId?: IntFieldUpdateOperationsInput | number
+    GymImage?: GymImageUncheckedUpdateManyWithoutGymNestedInput
     GymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutGymNestedInput
     FavoriteUsers?: FavoriteGymUncheckedUpdateManyWithoutGymNestedInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutGymNestedInput
@@ -28883,6 +30590,7 @@ export namespace Prisma {
     fax: string
     email: string
     isCertified?: boolean
+    isDisable?: boolean
   }
 
   export type GymEuquipmentsOnGymsCreateManyAssignUserInput = {
@@ -29048,6 +30756,8 @@ export namespace Prisma {
     fax?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     isCertified?: BoolFieldUpdateOperationsInput | boolean
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
+    GymImage?: GymImageUpdateManyWithoutGymNestedInput
     GymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutGymNestedInput
     FavoriteUsers?: FavoriteGymUpdateManyWithoutGymNestedInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutGymNestedInput
@@ -29069,6 +30779,8 @@ export namespace Prisma {
     fax?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     isCertified?: BoolFieldUpdateOperationsInput | boolean
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
+    GymImage?: GymImageUncheckedUpdateManyWithoutGymNestedInput
     GymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutGymNestedInput
     FavoriteUsers?: FavoriteGymUncheckedUpdateManyWithoutGymNestedInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutGymNestedInput
@@ -29090,6 +30802,7 @@ export namespace Prisma {
     fax?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     isCertified?: BoolFieldUpdateOperationsInput | boolean
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type GymEuquipmentsOnGymsUpdateWithoutAssignUserInput = {
@@ -29487,6 +31200,16 @@ export namespace Prisma {
     isThumb?: BoolFieldUpdateOperationsInput | boolean
   }
 
+  export type GymImageCreateManyGymInput = {
+    id?: number
+    createdAt?: Date | string
+    url: string
+    width: number
+    height: number
+    size: number
+    isThumb?: boolean
+  }
+
   export type GymEuquipmentsOnGymsCreateManyGymInput = {
     id?: number
     createdAt?: Date | string
@@ -29522,6 +31245,35 @@ export namespace Prisma {
     createdAt?: Date | string
     userId: number
     hash: string
+  }
+
+  export type GymImageUpdateWithoutGymInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    url?: StringFieldUpdateOperationsInput | string
+    width?: IntFieldUpdateOperationsInput | number
+    height?: IntFieldUpdateOperationsInput | number
+    size?: IntFieldUpdateOperationsInput | number
+    isThumb?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type GymImageUncheckedUpdateWithoutGymInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    url?: StringFieldUpdateOperationsInput | string
+    width?: IntFieldUpdateOperationsInput | number
+    height?: IntFieldUpdateOperationsInput | number
+    size?: IntFieldUpdateOperationsInput | number
+    isThumb?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type GymImageUncheckedUpdateManyWithoutGymInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    url?: StringFieldUpdateOperationsInput | string
+    width?: IntFieldUpdateOperationsInput | number
+    height?: IntFieldUpdateOperationsInput | number
+    size?: IntFieldUpdateOperationsInput | number
+    isThumb?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type GymEuquipmentsOnGymsUpdateWithoutGymInput = {
@@ -29776,6 +31528,10 @@ export namespace Prisma {
      * @deprecated Use GymDefaultArgs instead
      */
     export type GymArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = GymDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use GymImageDefaultArgs instead
+     */
+    export type GymImageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = GymImageDefaultArgs<ExtArgs>
     /**
      * @deprecated Use GymEuquipmentsOnGymsDefaultArgs instead
      */

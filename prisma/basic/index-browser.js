@@ -169,14 +169,16 @@ exports.Prisma.BodyPartScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
   name: 'name',
-  code: 'code'
+  code: 'code',
+  category: 'category'
 };
 
 exports.Prisma.GymEquipmentScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
   name: 'name',
-  code: 'code'
+  code: 'code',
+  isDisable: 'isDisable'
 };
 
 exports.Prisma.GymEquipmentImageScalarFieldEnum = {
@@ -210,7 +212,19 @@ exports.Prisma.GymScalarFieldEnum = {
   fax: 'fax',
   email: 'email',
   isCertified: 'isCertified',
+  isDisable: 'isDisable',
   userId: 'userId'
+};
+
+exports.Prisma.GymImageScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  url: 'url',
+  width: 'width',
+  height: 'height',
+  size: 'size',
+  isThumb: 'isThumb',
+  gymId: 'gymId'
 };
 
 exports.Prisma.GymEuquipmentsOnGymsScalarFieldEnum = {
@@ -307,6 +321,7 @@ exports.Prisma.ModelName = {
   GymEquipmentImage: 'GymEquipmentImage',
   BodyPartsOnGymEquipments: 'BodyPartsOnGymEquipments',
   Gym: 'Gym',
+  GymImage: 'GymImage',
   GymEuquipmentsOnGyms: 'GymEuquipmentsOnGyms',
   GymEquipmentUserHistory: 'GymEquipmentUserHistory',
   GymMembership: 'GymMembership',

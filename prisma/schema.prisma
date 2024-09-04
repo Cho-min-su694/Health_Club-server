@@ -96,18 +96,18 @@ model Board {
 
 // 게시물 이미지
 model BoardImage {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
 
-  url    String @db.Text
+  url    String       @db.Text
   width  Int
   height Int
   size   Int
 
-  isThumb Boolean @default(false) // 썸네일이미지 여부 true 썸네일 false 상세
+  isThumb Boolean     @default(false) // 썸네일이미지 여부 true 썸네일 false 상세
 
-  boardId Int
-  Board   Board @relation(fields: [boardId], references: [id])
+  boardId Int         @unique
+  Board   Board       @relation(fields: [boardId], references: [id])
 }
 
 // 게시물 댓글
@@ -137,6 +137,7 @@ model BodyPart {
 
   name            String
   code            String    @unique
+  category        String
 
   GymEquipments   BodyPartsOnGymEquipments[]
 }
@@ -148,6 +149,8 @@ model GymEquipment {
 
   name      String
   code      String    @unique
+
+  isDisable       Boolean @default(false)
 
   BodyParts BodyPartsOnGymEquipments[]
   Gyms      GymEuquipmentsOnGyms[]
@@ -198,8 +201,12 @@ model Gym {
   email           String
   isCertified     Boolean @default(false)
 
+  isDisable       Boolean @default(false)
+
   userId          Int
   User            User    @relation(fields: [userId], references: [id])
+
+  GymImage                GymImage[]
 
   GymEquipments           GymEuquipmentsOnGyms[]
   FavoriteUsers           FavoriteGym[]
@@ -208,6 +215,22 @@ model Gym {
   GymMembership           GymMembership[]
 
   GymPassHistory          GymPassHistory[]
+}
+
+// 헬스장 이미지
+model GymImage {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  url    String @db.Text
+  width  Int
+  height Int
+  size   Int
+
+  isThumb Boolean @default(false) // 썸네일이미지 여부 true 썸네일 false 상세
+
+  gymId   Int     @unique
+  Gym     Gym     @relation(fields: [gymId], references: [id])
 }
 
 // 헬스장 내 기구 목록
