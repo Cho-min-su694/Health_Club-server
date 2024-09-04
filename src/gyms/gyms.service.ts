@@ -84,12 +84,30 @@ export class GymsService {
     return result;
   }
 
+  findAdminAll() {
+    return this.prisma.gym.findMany({
+      include: {
+        GymImage: true,
+        User: true,
+      },
+    });
+  }
+
   findAll() {
-    return `This action returns all companyInfos`;
+    return this.prisma.gym.findMany({
+      where: {
+        isCertified: true,
+        isDisable: false
+      },
+      include: {
+        GymImage: true,
+        User: true,
+      },
+    });
   }
 
   findOne(id: number) {
-    return this.prisma.gym.findMany({
+    return this.prisma.gym.findFirst({
       where: {
         id: id,
       },

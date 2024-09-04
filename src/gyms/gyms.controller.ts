@@ -47,6 +47,11 @@ export class GymsController {
   }
 
   @Get()
+  findAdminAll() {
+    return this.gymsService.findAdminAll();
+  }
+
+  @Get()
   findAll() {
     return this.gymsService.findAll();
   }

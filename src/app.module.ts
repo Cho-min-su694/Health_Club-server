@@ -13,6 +13,7 @@ import { UsersModule } from './users/users.module';
 import { GlobalModule } from './global/global.module';
 import { AuthModule } from './auth/auth.module';
 import { GymsModule } from './gyms/gyms.module';
+import { BodyPartsModule } from './body-parts/body-parts.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { GymsModule } from './gyms/gyms.module';
     UsersModule,
     AuthModule,
     GymsModule,
+    BodyPartsModule,
   ],
   controllers: [AppController],
   providers: [
