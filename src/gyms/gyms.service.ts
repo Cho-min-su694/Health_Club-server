@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable } from '@nestjs/common';
 import { CreateGymDto } from './dto/create-gym.dto';
 import { UpdateGymDto } from './dto/update-gym.dto';
 import { PrismaService } from 'src/global/prisma.service';
@@ -135,5 +135,75 @@ export class GymsService {
 
   remove(id: number) {
     return `This action removes a #${id} companyInfo`;
+  }
+
+  async removeGymByAdmin(adminId: number, id: number) {
+    const user = await this.prisma.user.findUnique({
+      where:{
+        id:adminId
+      }
+    });
+
+    if (!user) {
+      throw new ForbiddenException('불가능한 접근입니다.');
+    } else if (user.userType !== 'ADMIN') {
+      throw new ForbiddenException('어드민만 이용가능합니다.');
+    }
+
+    await this.prisma.gymImage.delete({
+      where:{
+        gymId: id
+      }
+    })
+
+    return this.prisma.gym.delete({
+      where: {
+        id,
+      },
+    });
+  }
+
+  async findAdminAllGyms(
+    skip: number,
+    take: number,
+    searchType: string,
+    searchText: string,
+  ) {
+    const where: any = {};
+
+    if (searchType === '닉네임') {
+      where.User = {nickname: { contains: searchText }}
+    } else if (searchType === '헬스장명') {
+      where.companyName = { contains: searchText };
+    } else if (searchType === '관장명') {
+      where.ceoName = { contains: searchText };
+    } else if (searchType === '아이디') {
+      where.User = {loginId: { contains: searchText }}
+    }
+
+    const count = await this.prisma.gym.count({
+      where: {
+        ...where,
+        
+      },
+    });
+    const result =
+      count > 0
+        ? await this.prisma.gym.findMany({
+            where: {
+              ...where,
+            },
+            skip: (skip - 1) * take,
+            take: take,
+            orderBy: {
+              id: 'desc',
+            },
+            include:{
+              User:true
+            }
+          })
+        : [];
+
+    return { count: count, data: result };
   }
 }

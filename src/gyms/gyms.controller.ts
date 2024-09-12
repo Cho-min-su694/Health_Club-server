@@ -7,7 +7,7 @@ import { Public } from 'src/util/decorators';
 
 @Controller('gyms')
 export class GymsController {
-  constructor(private readonly gymsService: GymsService) {}
+  constructor(private readonly gymsService: GymsService) { }
 
   // NOTE 중복확인
   @Public()
@@ -56,6 +56,22 @@ export class GymsController {
     return this.gymsService.findAll();
   }
 
+  //유저 페이징
+  @Get('admin')
+  findAdminAllUsesrs(
+    @Query('page') page: string,
+    @Query('take') take: string,
+    @Query('searchType') searchType: string,
+    @Query('searchText') searchText: string,
+  ) {
+    return this.gymsService.findAdminAllGyms(
+      +page,
+      +take,
+      searchType,
+      searchText,
+    );
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.gymsService.findOne(+id);
@@ -73,5 +89,13 @@ export class GymsController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.gymsService.remove(+id);
+  }
+
+  @Delete('admin')
+  removeUserByAdmin(
+    @Query('adminId') adminId: string,
+    @Query('id') id: string,
+  ) {
+    return this.gymsService.removeGymByAdmin(+adminId, +id);
   }
 }
