@@ -14,6 +14,7 @@ import { GlobalModule } from './global/global.module';
 import { AuthModule } from './auth/auth.module';
 import { GymsModule } from './gyms/gyms.module';
 import { BodyPartsModule } from './body-parts/body-parts.module';
+import { EquipmentsModule } from './equipments/equipments.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { BodyPartsModule } from './body-parts/body-parts.module';
     AuthModule,
     GymsModule,
     BodyPartsModule,
+    EquipmentsModule,
   ],
   controllers: [AppController],
   providers: [

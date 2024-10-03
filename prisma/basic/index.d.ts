@@ -110,6 +110,7 @@ export type GymEquipment = {
   id: number
   createdAt: Date
   name: string
+  brandName: string
   code: string
   isDisable: boolean
 }
@@ -7336,6 +7337,7 @@ export namespace Prisma {
     id: number | null
     createdAt: Date | null
     name: string | null
+    brandName: string | null
     code: string | null
     isDisable: boolean | null
   }
@@ -7344,6 +7346,7 @@ export namespace Prisma {
     id: number | null
     createdAt: Date | null
     name: string | null
+    brandName: string | null
     code: string | null
     isDisable: boolean | null
   }
@@ -7352,6 +7355,7 @@ export namespace Prisma {
     id: number
     createdAt: number
     name: number
+    brandName: number
     code: number
     isDisable: number
     _all: number
@@ -7370,6 +7374,7 @@ export namespace Prisma {
     id?: true
     createdAt?: true
     name?: true
+    brandName?: true
     code?: true
     isDisable?: true
   }
@@ -7378,6 +7383,7 @@ export namespace Prisma {
     id?: true
     createdAt?: true
     name?: true
+    brandName?: true
     code?: true
     isDisable?: true
   }
@@ -7386,6 +7392,7 @@ export namespace Prisma {
     id?: true
     createdAt?: true
     name?: true
+    brandName?: true
     code?: true
     isDisable?: true
     _all?: true
@@ -7487,6 +7494,7 @@ export namespace Prisma {
     id: number
     createdAt: Date
     name: string
+    brandName: string
     code: string
     isDisable: boolean
     _count: GymEquipmentCountAggregateOutputType | null
@@ -7514,6 +7522,7 @@ export namespace Prisma {
     id?: boolean
     createdAt?: boolean
     name?: boolean
+    brandName?: boolean
     code?: boolean
     isDisable?: boolean
     BodyParts?: boolean | BodyPartsOnGymEquipmentsFindManyArgs
@@ -18520,6 +18529,7 @@ export namespace Prisma {
     id: 'id',
     createdAt: 'createdAt',
     name: 'name',
+    brandName: 'brandName',
     code: 'code',
     isDisable: 'isDisable'
   };
@@ -19081,6 +19091,7 @@ export namespace Prisma {
     id?: IntFilter | number
     createdAt?: DateTimeFilter | Date | string
     name?: StringFilter | string
+    brandName?: StringFilter | string
     code?: StringFilter | string
     isDisable?: BoolFilter | boolean
     BodyParts?: BodyPartsOnGymEquipmentsListRelationFilter
@@ -19092,6 +19103,7 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     name?: SortOrder
+    brandName?: SortOrder
     code?: SortOrder
     isDisable?: SortOrder
     BodyParts?: BodyPartsOnGymEquipmentsOrderByRelationAggregateInput
@@ -19108,6 +19120,7 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     name?: SortOrder
+    brandName?: SortOrder
     code?: SortOrder
     isDisable?: SortOrder
     _count?: GymEquipmentCountOrderByAggregateInput
@@ -19124,6 +19137,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter | number
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     name?: StringWithAggregatesFilter | string
+    brandName?: StringWithAggregatesFilter | string
     code?: StringWithAggregatesFilter | string
     isDisable?: BoolWithAggregatesFilter | boolean
   }
@@ -19157,6 +19171,7 @@ export namespace Prisma {
 
   export type GymEquipmentImageWhereUniqueInput = {
     id?: number
+    gymEquipmentId?: number
   }
 
   export type GymEquipmentImageOrderByWithAggregationInput = {
@@ -20259,6 +20274,7 @@ export namespace Prisma {
   export type GymEquipmentCreateInput = {
     createdAt?: Date | string
     name: string
+    brandName: string
     code: string
     isDisable?: boolean
     BodyParts?: BodyPartsOnGymEquipmentsCreateNestedManyWithoutGymEquipmentInput
@@ -20270,6 +20286,7 @@ export namespace Prisma {
     id?: number
     createdAt?: Date | string
     name: string
+    brandName: string
     code: string
     isDisable?: boolean
     BodyParts?: BodyPartsOnGymEquipmentsUncheckedCreateNestedManyWithoutGymEquipmentInput
@@ -20280,6 +20297,7 @@ export namespace Prisma {
   export type GymEquipmentUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    brandName?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     BodyParts?: BodyPartsOnGymEquipmentsUpdateManyWithoutGymEquipmentInput
@@ -20291,6 +20309,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    brandName?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     BodyParts?: BodyPartsOnGymEquipmentsUncheckedUpdateManyWithoutGymEquipmentInput
@@ -20302,6 +20321,7 @@ export namespace Prisma {
     id?: number
     createdAt?: Date | string
     name: string
+    brandName: string
     code: string
     isDisable?: boolean
   }
@@ -20309,6 +20329,7 @@ export namespace Prisma {
   export type GymEquipmentUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    brandName?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -20317,6 +20338,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    brandName?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -21668,6 +21690,7 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     name?: SortOrder
+    brandName?: SortOrder
     code?: SortOrder
     isDisable?: SortOrder
   }
@@ -21680,6 +21703,7 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     name?: SortOrder
+    brandName?: SortOrder
     code?: SortOrder
     isDisable?: SortOrder
   }
@@ -21688,6 +21712,7 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     name?: SortOrder
+    brandName?: SortOrder
     code?: SortOrder
     isDisable?: SortOrder
   }
@@ -25400,6 +25425,7 @@ export namespace Prisma {
   export type GymEquipmentCreateWithoutGymEquipmentImageInput = {
     createdAt?: Date | string
     name: string
+    brandName: string
     code: string
     isDisable?: boolean
     BodyParts?: BodyPartsOnGymEquipmentsCreateNestedManyWithoutGymEquipmentInput
@@ -25410,6 +25436,7 @@ export namespace Prisma {
     id?: number
     createdAt?: Date | string
     name: string
+    brandName: string
     code: string
     isDisable?: boolean
     BodyParts?: BodyPartsOnGymEquipmentsUncheckedCreateNestedManyWithoutGymEquipmentInput
@@ -25429,6 +25456,7 @@ export namespace Prisma {
   export type GymEquipmentUpdateWithoutGymEquipmentImageInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    brandName?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     BodyParts?: BodyPartsOnGymEquipmentsUpdateManyWithoutGymEquipmentInput
@@ -25439,6 +25467,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    brandName?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     BodyParts?: BodyPartsOnGymEquipmentsUncheckedUpdateManyWithoutGymEquipmentInput
@@ -25448,6 +25477,7 @@ export namespace Prisma {
   export type GymEquipmentCreateWithoutBodyPartsInput = {
     createdAt?: Date | string
     name: string
+    brandName: string
     code: string
     isDisable?: boolean
     Gyms?: GymEuquipmentsOnGymsCreateNestedManyWithoutGymEquipmentInput
@@ -25458,6 +25488,7 @@ export namespace Prisma {
     id?: number
     createdAt?: Date | string
     name: string
+    brandName: string
     code: string
     isDisable?: boolean
     Gyms?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutGymEquipmentInput
@@ -25497,6 +25528,7 @@ export namespace Prisma {
   export type GymEquipmentUpdateWithoutBodyPartsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    brandName?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     Gyms?: GymEuquipmentsOnGymsUpdateManyWithoutGymEquipmentInput
@@ -25507,6 +25539,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    brandName?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     Gyms?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutGymEquipmentInput
@@ -26047,6 +26080,7 @@ export namespace Prisma {
   export type GymEquipmentCreateWithoutGymsInput = {
     createdAt?: Date | string
     name: string
+    brandName: string
     code: string
     isDisable?: boolean
     BodyParts?: BodyPartsOnGymEquipmentsCreateNestedManyWithoutGymEquipmentInput
@@ -26057,6 +26091,7 @@ export namespace Prisma {
     id?: number
     createdAt?: Date | string
     name: string
+    brandName: string
     code: string
     isDisable?: boolean
     BodyParts?: BodyPartsOnGymEquipmentsUncheckedCreateNestedManyWithoutGymEquipmentInput
@@ -26199,6 +26234,7 @@ export namespace Prisma {
   export type GymEquipmentUpdateWithoutGymsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    brandName?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     BodyParts?: BodyPartsOnGymEquipmentsUpdateManyWithoutGymEquipmentInput
@@ -26209,6 +26245,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
+    brandName?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     isDisable?: BoolFieldUpdateOperationsInput | boolean
     BodyParts?: BodyPartsOnGymEquipmentsUncheckedUpdateManyWithoutGymEquipmentInput

@@ -148,6 +148,7 @@ model GymEquipment {
   createdAt DateTime  @default(now())
 
   name      String
+  brandName String
   code      String    @unique
 
   isDisable       Boolean @default(false)
@@ -169,8 +170,8 @@ model GymEquipmentImage {
 
   isThumb Boolean @default(false) // 썸네일이미지 여부 true 썸네일 false 상세
 
-  gymEquipmentId  Int
-  GymEquipment    GymEquipment @relation(fields: [gymEquipmentId], references: [id])
+  gymEquipmentId  Int           @unique
+  GymEquipment    GymEquipment  @relation(fields: [gymEquipmentId], references: [id])
 }
 
 // 기기 운동부위 관계

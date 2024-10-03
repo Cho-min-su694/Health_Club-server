@@ -146,6 +146,7 @@ exports.Prisma.GymEquipmentScalarFieldEnum = makeEnum({
   id: 'id',
   createdAt: 'createdAt',
   name: 'name',
+  brandName: 'brandName',
   code: 'code',
   isDisable: 'isDisable'
 });
