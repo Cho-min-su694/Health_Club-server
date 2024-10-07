@@ -19,6 +19,18 @@ export class EquipmentsController {
     return this.equipmentsService.findDuplicateEquipmentData(type, content);
   }
 
+  @Post('create/gymequipment/:gymId')
+  registerEquipmentsOnGyms(
+    @Param('gymId') gymId: string,
+    @Body() registerEquipmentsOnGymsDto: {equipmentIds:number[],assingBy:number},
+  ) {
+    return this.equipmentsService.registerEquipmentsOnGyms(
+      +gymId,
+      registerEquipmentsOnGymsDto.equipmentIds,
+      registerEquipmentsOnGymsDto.assingBy
+    );
+  }
+
   @Post('create/:userId')
   createGymEquipment(
     @Param('userId') userId: string,
@@ -57,24 +69,43 @@ export class EquipmentsController {
   }
 
   //유저 페이징
-  @Get('admin')
-  findAdminAllEquipment(
+  @Get('paging')
+  findPagingAllEquipment(
     @Query('page') page: string,
     @Query('take') take: string,
     @Query('searchType') searchType: string,
     @Query('searchText') searchText: string,
+    @Query('isDisable') isDisable: string,
   ) {
-    return this.equipmentsService.findAdminAllGymEquipments(
+    return this.equipmentsService.findPagingAllEquipment(
       +page,
       +take,
       searchType,
       searchText,
+      isDisable.length != 0? +isDisable: undefined,
     );
+  }
+
+  @Get('gymequipment/:gymId')
+  findEquipmentsOnGyms(
+    @Param('gymId') gymId: string,
+    @Query('isDisable') isDisable: string,
+  ) {
+    return this.equipmentsService.findEquipmentsOnGyms(+gymId, isDisable == ""? null : {isDisable: Boolean(isDisable == 'true')});
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.equipmentsService.findOne(+id);
+  }
+
+  //기구 정보 변경
+  @Patch('gymequipment/disable/:id')
+  setDisableGymEquipmentsOnGyms(
+    @Param('id') id: string,
+    @Query('isDisable') disable?: string,
+  ) {
+    return this.equipmentsService.setDisableGymEquipmentsOnGyms(+id, Boolean(disable));
   }
 
   //기구 정보 변경

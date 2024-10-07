@@ -56,6 +56,11 @@ export class GymsController {
     return this.gymsService.findAll();
   }
 
+  @Get('user/:userId')
+  findOneByUserId(@Param('userId') userId: string) {
+    return this.gymsService.findOneByUserId(+userId);
+  }
+
   //유저 페이징
   @Get('admin')
   findAdminAllUsesrs(

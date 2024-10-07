@@ -202,7 +202,8 @@ exports.Prisma.GymEuquipmentsOnGymsScalarFieldEnum = makeEnum({
   createdAt: 'createdAt',
   gymId: 'gymId',
   gymEquipmentId: 'gymEquipmentId',
-  assignBy: 'assignBy'
+  assignBy: 'assignBy',
+  isDisable: 'isDisable'
 });
 
 exports.Prisma.GymEquipmentUserHistoryScalarFieldEnum = makeEnum({

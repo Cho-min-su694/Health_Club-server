@@ -118,6 +118,18 @@ export class GymsService {
     });
   }
 
+  findOneByUserId(userId: number) {
+    return this.prisma.gym.findFirst({
+      where: {
+        userId
+      },
+      include: {
+        GymImage: true,
+        User: true,
+      },
+    });
+  }
+
   //회사정보 변경위해 수정함
   update(id: number, updateGymDto: UpdateGymDto) {
     // return `This action updates a #${id} companyInfo`;

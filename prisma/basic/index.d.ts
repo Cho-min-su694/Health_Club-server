@@ -187,6 +187,7 @@ export type GymEuquipmentsOnGyms = {
   gymId: number
   gymEquipmentId: number
   assignBy: number
+  isDisable: boolean
 }
 
 /**
@@ -12057,6 +12058,7 @@ export namespace Prisma {
     gymId: number | null
     gymEquipmentId: number | null
     assignBy: number | null
+    isDisable: boolean | null
   }
 
   export type GymEuquipmentsOnGymsMaxAggregateOutputType = {
@@ -12065,6 +12067,7 @@ export namespace Prisma {
     gymId: number | null
     gymEquipmentId: number | null
     assignBy: number | null
+    isDisable: boolean | null
   }
 
   export type GymEuquipmentsOnGymsCountAggregateOutputType = {
@@ -12073,6 +12076,7 @@ export namespace Prisma {
     gymId: number
     gymEquipmentId: number
     assignBy: number
+    isDisable: number
     _all: number
   }
 
@@ -12097,6 +12101,7 @@ export namespace Prisma {
     gymId?: true
     gymEquipmentId?: true
     assignBy?: true
+    isDisable?: true
   }
 
   export type GymEuquipmentsOnGymsMaxAggregateInputType = {
@@ -12105,6 +12110,7 @@ export namespace Prisma {
     gymId?: true
     gymEquipmentId?: true
     assignBy?: true
+    isDisable?: true
   }
 
   export type GymEuquipmentsOnGymsCountAggregateInputType = {
@@ -12113,6 +12119,7 @@ export namespace Prisma {
     gymId?: true
     gymEquipmentId?: true
     assignBy?: true
+    isDisable?: true
     _all?: true
   }
 
@@ -12214,6 +12221,7 @@ export namespace Prisma {
     gymId: number
     gymEquipmentId: number
     assignBy: number
+    isDisable: boolean
     _count: GymEuquipmentsOnGymsCountAggregateOutputType | null
     _avg: GymEuquipmentsOnGymsAvgAggregateOutputType | null
     _sum: GymEuquipmentsOnGymsSumAggregateOutputType | null
@@ -12244,6 +12252,7 @@ export namespace Prisma {
     gymEquipmentId?: boolean
     assignBy?: boolean
     assignUser?: boolean | UserArgs
+    isDisable?: boolean
     GymEquipmentUserHistory?: boolean | GymEquipmentUserHistoryFindManyArgs
     _count?: boolean | GymEuquipmentsOnGymsCountOutputTypeArgs
   }
@@ -18600,7 +18609,8 @@ export namespace Prisma {
     createdAt: 'createdAt',
     gymId: 'gymId',
     gymEquipmentId: 'gymEquipmentId',
-    assignBy: 'assignBy'
+    assignBy: 'assignBy',
+    isDisable: 'isDisable'
   };
 
   export type GymEuquipmentsOnGymsScalarFieldEnum = (typeof GymEuquipmentsOnGymsScalarFieldEnum)[keyof typeof GymEuquipmentsOnGymsScalarFieldEnum]
@@ -19422,6 +19432,7 @@ export namespace Prisma {
     gymEquipmentId?: IntFilter | number
     assignBy?: IntFilter | number
     assignUser?: XOR<UserRelationFilter, UserWhereInput>
+    isDisable?: BoolFilter | boolean
     GymEquipmentUserHistory?: GymEquipmentUserHistoryListRelationFilter
   }
 
@@ -19434,6 +19445,7 @@ export namespace Prisma {
     gymEquipmentId?: SortOrder
     assignBy?: SortOrder
     assignUser?: UserOrderByWithRelationInput
+    isDisable?: SortOrder
     GymEquipmentUserHistory?: GymEquipmentUserHistoryOrderByRelationAggregateInput
   }
 
@@ -19447,6 +19459,7 @@ export namespace Prisma {
     gymId?: SortOrder
     gymEquipmentId?: SortOrder
     assignBy?: SortOrder
+    isDisable?: SortOrder
     _count?: GymEuquipmentsOnGymsCountOrderByAggregateInput
     _avg?: GymEuquipmentsOnGymsAvgOrderByAggregateInput
     _max?: GymEuquipmentsOnGymsMaxOrderByAggregateInput
@@ -19463,6 +19476,7 @@ export namespace Prisma {
     gymId?: IntWithAggregatesFilter | number
     gymEquipmentId?: IntWithAggregatesFilter | number
     assignBy?: IntWithAggregatesFilter | number
+    isDisable?: BoolWithAggregatesFilter | boolean
   }
 
   export type GymEquipmentUserHistoryWhereInput = {
@@ -20680,6 +20694,7 @@ export namespace Prisma {
     Gym: GymCreateNestedOneWithoutGymEquipmentsInput
     GymEquipment: GymEquipmentCreateNestedOneWithoutGymsInput
     assignUser: UserCreateNestedOneWithoutAssignedGymEquipmentsInput
+    isDisable?: boolean
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutGymEuquipmentsOnGymsInput
   }
 
@@ -20689,6 +20704,7 @@ export namespace Prisma {
     gymId: number
     gymEquipmentId: number
     assignBy: number
+    isDisable?: boolean
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutGymEuquipmentsOnGymsInput
   }
 
@@ -20697,6 +20713,7 @@ export namespace Prisma {
     Gym?: GymUpdateOneRequiredWithoutGymEquipmentsInput
     GymEquipment?: GymEquipmentUpdateOneRequiredWithoutGymsInput
     assignUser?: UserUpdateOneRequiredWithoutAssignedGymEquipmentsInput
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutGymEuquipmentsOnGymsInput
   }
 
@@ -20706,6 +20723,7 @@ export namespace Prisma {
     gymId?: IntFieldUpdateOperationsInput | number
     gymEquipmentId?: IntFieldUpdateOperationsInput | number
     assignBy?: IntFieldUpdateOperationsInput | number
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutGymEuquipmentsOnGymsInput
   }
 
@@ -20715,10 +20733,12 @@ export namespace Prisma {
     gymId: number
     gymEquipmentId: number
     assignBy: number
+    isDisable?: boolean
   }
 
   export type GymEuquipmentsOnGymsUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type GymEuquipmentsOnGymsUncheckedUpdateManyInput = {
@@ -20727,6 +20747,7 @@ export namespace Prisma {
     gymId?: IntFieldUpdateOperationsInput | number
     gymEquipmentId?: IntFieldUpdateOperationsInput | number
     assignBy?: IntFieldUpdateOperationsInput | number
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type GymEquipmentUserHistoryCreateInput = {
@@ -21947,6 +21968,7 @@ export namespace Prisma {
     gymId?: SortOrder
     gymEquipmentId?: SortOrder
     assignBy?: SortOrder
+    isDisable?: SortOrder
   }
 
   export type GymEuquipmentsOnGymsAvgOrderByAggregateInput = {
@@ -21962,6 +21984,7 @@ export namespace Prisma {
     gymId?: SortOrder
     gymEquipmentId?: SortOrder
     assignBy?: SortOrder
+    isDisable?: SortOrder
   }
 
   export type GymEuquipmentsOnGymsMinOrderByAggregateInput = {
@@ -21970,6 +21993,7 @@ export namespace Prisma {
     gymId?: SortOrder
     gymEquipmentId?: SortOrder
     assignBy?: SortOrder
+    isDisable?: SortOrder
   }
 
   export type GymEuquipmentsOnGymsSumOrderByAggregateInput = {
@@ -24122,6 +24146,7 @@ export namespace Prisma {
     createdAt?: Date | string
     Gym: GymCreateNestedOneWithoutGymEquipmentsInput
     GymEquipment: GymEquipmentCreateNestedOneWithoutGymsInput
+    isDisable?: boolean
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutGymEuquipmentsOnGymsInput
   }
 
@@ -24130,6 +24155,7 @@ export namespace Prisma {
     createdAt?: Date | string
     gymId: number
     gymEquipmentId: number
+    isDisable?: boolean
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutGymEuquipmentsOnGymsInput
   }
 
@@ -24445,6 +24471,7 @@ export namespace Prisma {
     gymId?: IntFilter | number
     gymEquipmentId?: IntFilter | number
     assignBy?: IntFilter | number
+    isDisable?: BoolFilter | boolean
   }
 
   export type GymMembershipUpsertWithWhereUniqueWithoutUserInput = {
@@ -25310,6 +25337,7 @@ export namespace Prisma {
     createdAt?: Date | string
     Gym: GymCreateNestedOneWithoutGymEquipmentsInput
     assignUser: UserCreateNestedOneWithoutAssignedGymEquipmentsInput
+    isDisable?: boolean
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutGymEuquipmentsOnGymsInput
   }
 
@@ -25318,6 +25346,7 @@ export namespace Prisma {
     createdAt?: Date | string
     gymId: number
     assignBy: number
+    isDisable?: boolean
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutGymEuquipmentsOnGymsInput
   }
 
@@ -25649,6 +25678,7 @@ export namespace Prisma {
     createdAt?: Date | string
     GymEquipment: GymEquipmentCreateNestedOneWithoutGymsInput
     assignUser: UserCreateNestedOneWithoutAssignedGymEquipmentsInput
+    isDisable?: boolean
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutGymEuquipmentsOnGymsInput
   }
 
@@ -25657,6 +25687,7 @@ export namespace Prisma {
     createdAt?: Date | string
     gymEquipmentId: number
     assignBy: number
+    isDisable?: boolean
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutGymEuquipmentsOnGymsInput
   }
 
@@ -26323,6 +26354,7 @@ export namespace Prisma {
     Gym: GymCreateNestedOneWithoutGymEquipmentsInput
     GymEquipment: GymEquipmentCreateNestedOneWithoutGymsInput
     assignUser: UserCreateNestedOneWithoutAssignedGymEquipmentsInput
+    isDisable?: boolean
   }
 
   export type GymEuquipmentsOnGymsUncheckedCreateWithoutGymEquipmentUserHistoryInput = {
@@ -26331,6 +26363,7 @@ export namespace Prisma {
     gymId: number
     gymEquipmentId: number
     assignBy: number
+    isDisable?: boolean
   }
 
   export type GymEuquipmentsOnGymsCreateOrConnectWithoutGymEquipmentUserHistoryInput = {
@@ -26398,6 +26431,7 @@ export namespace Prisma {
     Gym?: GymUpdateOneRequiredWithoutGymEquipmentsInput
     GymEquipment?: GymEquipmentUpdateOneRequiredWithoutGymsInput
     assignUser?: UserUpdateOneRequiredWithoutAssignedGymEquipmentsInput
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type GymEuquipmentsOnGymsUncheckedUpdateWithoutGymEquipmentUserHistoryInput = {
@@ -26406,6 +26440,7 @@ export namespace Prisma {
     gymId?: IntFieldUpdateOperationsInput | number
     gymEquipmentId?: IntFieldUpdateOperationsInput | number
     assignBy?: IntFieldUpdateOperationsInput | number
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UserUpsertWithoutGymEquipmentUserHistoryInput = {
@@ -27488,6 +27523,7 @@ export namespace Prisma {
     createdAt?: Date | string
     gymId: number
     gymEquipmentId: number
+    isDisable?: boolean
   }
 
   export type GymMembershipCreateManyUserInput = {
@@ -27688,6 +27724,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Gym?: GymUpdateOneRequiredWithoutGymEquipmentsInput
     GymEquipment?: GymEquipmentUpdateOneRequiredWithoutGymsInput
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutGymEuquipmentsOnGymsInput
   }
 
@@ -27696,6 +27733,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gymId?: IntFieldUpdateOperationsInput | number
     gymEquipmentId?: IntFieldUpdateOperationsInput | number
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutGymEuquipmentsOnGymsInput
   }
 
@@ -27704,6 +27742,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gymId?: IntFieldUpdateOperationsInput | number
     gymEquipmentId?: IntFieldUpdateOperationsInput | number
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type GymMembershipUpdateWithoutUserInput = {
@@ -27990,6 +28029,7 @@ export namespace Prisma {
     createdAt?: Date | string
     gymId: number
     assignBy: number
+    isDisable?: boolean
   }
 
   export type GymEquipmentImageCreateManyGymEquipmentInput = {
@@ -28021,6 +28061,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Gym?: GymUpdateOneRequiredWithoutGymEquipmentsInput
     assignUser?: UserUpdateOneRequiredWithoutAssignedGymEquipmentsInput
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutGymEuquipmentsOnGymsInput
   }
 
@@ -28029,6 +28070,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gymId?: IntFieldUpdateOperationsInput | number
     assignBy?: IntFieldUpdateOperationsInput | number
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutGymEuquipmentsOnGymsInput
   }
 
@@ -28037,6 +28079,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gymId?: IntFieldUpdateOperationsInput | number
     assignBy?: IntFieldUpdateOperationsInput | number
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type GymEquipmentImageUpdateWithoutGymEquipmentInput = {
@@ -28083,6 +28126,7 @@ export namespace Prisma {
     createdAt?: Date | string
     gymEquipmentId: number
     assignBy: number
+    isDisable?: boolean
   }
 
   export type FavoriteGymCreateManyGymInput = {
@@ -28148,6 +28192,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     GymEquipment?: GymEquipmentUpdateOneRequiredWithoutGymsInput
     assignUser?: UserUpdateOneRequiredWithoutAssignedGymEquipmentsInput
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutGymEuquipmentsOnGymsInput
   }
 
@@ -28156,6 +28201,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gymEquipmentId?: IntFieldUpdateOperationsInput | number
     assignBy?: IntFieldUpdateOperationsInput | number
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutGymEuquipmentsOnGymsInput
   }
 
@@ -28164,6 +28210,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gymEquipmentId?: IntFieldUpdateOperationsInput | number
     assignBy?: IntFieldUpdateOperationsInput | number
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type FavoriteGymUpdateWithoutGymInput = {

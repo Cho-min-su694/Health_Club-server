@@ -1,16 +1,20 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { CreateEquipmentDto } from './dto/create-equipment.dto';
-import { UpdateEquipmentDto } from './dto/update-equipment.dto';
+import { UpdateEquipmentDto, UpdateEquipmentsonGymsDto } from './dto/update-equipment.dto';
 import { PrismaService } from 'src/global/prisma.service';
 import { CreateGymDto } from 'src/gyms/dto/create-gym.dto';
 import sizeOf from 'image-size';
-import { BodyPart, BodyPartsOnGymEquipments, GymEquipment } from 'prisma/basic';
+import { BodyPart, BodyPartsOnGymEquipments, GymEquipment, GymEuquipmentsOnGyms } from 'prisma/basic';
 
 export type EquipmentWithBodyPart = GymEquipment & { bodyParts: BodyPart[] }
 export interface EquipmentWithBodyPartInput extends GymEquipment {
   BodyParts: (BodyPartsOnGymEquipments & {
     BodyPart: BodyPart;
   })[];
+}
+
+export interface EquipmentsOnGymsWithBodyPartInput extends GymEuquipmentsOnGyms {
+  GymEquipment: EquipmentWithBodyPartInput;
 }
 
 @Injectable()
@@ -234,11 +238,12 @@ export class EquipmentsService {
     })
   }
 
-  async findAdminAllGymEquipments(
+  async findPagingAllEquipment(
     skip: number,
     take: number,
     searchType: string,
     searchText: string,
+    isDisable?: number
   ) {
     const where: any = {};
 
@@ -248,6 +253,10 @@ export class EquipmentsService {
       where.code = { contains: searchText };
     } else if (searchType === '브랜드') {
       where.brandName = { contains: searchText };
+    }
+
+    if(isDisable != undefined) {
+      where.isDisable = isDisable == 1
     }
 
     const count = await this.prisma.gymEquipment.count({
@@ -293,5 +302,91 @@ export class EquipmentsService {
     return input.map(value => {
       return this.convertBodyPartOutput(value);
     })
+  }
+
+  async registerEquipmentsOnGyms(gymId:number, equipmentIds:number[], assignBy:number) {
+    const reuslt = await this.prisma.gymEuquipmentsOnGyms.createMany({
+      data:equipmentIds.map(id=>({
+        gymEquipmentId: id,
+        gymId: gymId,
+        assignBy,
+      }))
+    });
+
+    return this.findEquipmentsOnGyms(gymId, {OR:equipmentIds.map(id=>({gymEquipmentId:id}))});
+  }
+
+  async findEquipmentsOnGyms(gymId:number,where = {}) {
+    let find = await this.prisma.gymEuquipmentsOnGyms.findMany({
+      where:{
+        gymId,
+        ...where,
+      },
+      include:{
+        GymEquipment:{
+          include:{
+            BodyParts:{
+              include:{
+                BodyPart:true
+              }
+            }
+          }
+        }
+      }
+    })
+
+    let count = await this.prisma.gymEuquipmentsOnGyms.count({where:{gymId, ...where}})
+
+    const result = find.map(equipmentsOnGym=>({
+      ...equipmentsOnGym,
+      GymEquipment:  this.convertBodyPartOutput(equipmentsOnGym.GymEquipment)
+    }))
+
+    console.log(count);
+    console.log(find);
+
+    return result;
+  }
+  
+  async setDisableGymEquipmentsOnGyms(id: number, isDisable:boolean = true) {
+    const result = await this.prisma.gymEuquipmentsOnGyms.update({
+      data:{
+        isDisable
+      },
+      where:{
+        id
+      },
+      include:{
+        GymEquipment:{
+          include:{
+            BodyParts:{
+              include:{
+                BodyPart:true
+              }
+            }
+          }
+        }
+      }
+    })
+
+    return this.convertGymEquipmentOnGymsOutput(result);
+  }
+
+  async updateGymEquipmentsOnGyms(id: number, updateDto: UpdateEquipmentsonGymsDto) {
+    const result = await this.prisma.gymEuquipmentsOnGyms.update({
+      data:{
+        ...updateDto
+      },
+      where:{
+        id
+      }
+    })
+  }
+
+  convertGymEquipmentOnGymsOutput<T extends EquipmentsOnGymsWithBodyPartInput>(input: T) {
+    return {
+      ...input,
+      GymEquipment:  this.convertBodyPartOutput(input.GymEquipment)
+    }
   }
 }

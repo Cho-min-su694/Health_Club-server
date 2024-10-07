@@ -246,6 +246,8 @@ model GymEuquipmentsOnGyms {
   assignBy            Int
   assignUser          User          @relation("GymEquipmentAssginUser", fields: [assignBy], references: [id])
 
+  isDisable           Boolean       @default(false)
+
   GymEquipmentUserHistory           GymEquipmentUserHistory[]
 }
 
