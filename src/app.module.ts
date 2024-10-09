@@ -15,6 +15,7 @@ import { AuthModule } from './auth/auth.module';
 import { GymsModule } from './gyms/gyms.module';
 import { BodyPartsModule } from './body-parts/body-parts.module';
 import { EquipmentsModule } from './equipments/equipments.module';
+import { GymmembershipsModule } from './gymmemberships/gymmemberships.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { EquipmentsModule } from './equipments/equipments.module';
     GymsModule,
     BodyPartsModule,
     EquipmentsModule,
+    GymmembershipsModule,
   ],
   controllers: [AppController],
   providers: [

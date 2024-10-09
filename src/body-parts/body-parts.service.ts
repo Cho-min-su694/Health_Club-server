@@ -76,4 +76,10 @@ export class BodyPartsService {
       },
     });
   }
+
+  findBodyPartCategories() {
+    return this.prisma.bodyPart.groupBy({
+      by:['category']
+    })
+  }
 }

@@ -46,6 +46,7 @@ model User {
   assignedGymEquipments     GymEuquipmentsOnGyms[]      @relation("GymEquipmentAssginUser")
   GymMembership             GymMembership[]
   assignedGymMemberships    GymMembership[]             @relation("GymMembershipAssignUser")
+  assignedGymMembershipCancellations    GymMembershipCancellation[]             @relation("GymMembershipCancelAssignUser")
   FavoriteGyms              FavoriteGym[]
   GymEquipmentUserHistory   GymEquipmentUserHistory[]
   GymAccessHistory          GymAccessHistory[]
@@ -292,6 +293,9 @@ model GymMembershipCancellation {
   createdAt     DateTime        @default(now())
 
   reason        String?         @db.Text
+
+  assignBy      Int
+  assignUser    User            @relation("GymMembershipCancelAssignUser", fields: [assignBy], references: [id])
 
   GymMembership GymMembership[]
 }

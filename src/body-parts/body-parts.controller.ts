@@ -17,6 +17,11 @@ export class BodyPartsController {
     return this.bodyPartsService.findAll();
   }
 
+  @Get('category')
+  findBodyPartCategories() {
+    return this.bodyPartsService.findBodyPartCategories();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.bodyPartsService.findOne(+id);

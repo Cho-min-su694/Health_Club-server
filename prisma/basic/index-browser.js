@@ -228,7 +228,8 @@ exports.Prisma.GymMembershipScalarFieldEnum = makeEnum({
 exports.Prisma.GymMembershipCancellationScalarFieldEnum = makeEnum({
   id: 'id',
   createdAt: 'createdAt',
-  reason: 'reason'
+  reason: 'reason',
+  assignBy: 'assignBy'
 });
 
 exports.Prisma.FavoriteGymScalarFieldEnum = makeEnum({

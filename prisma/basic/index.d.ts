@@ -225,6 +225,7 @@ export type GymMembershipCancellation = {
   id: number
   createdAt: Date
   reason: string | null
+  assignBy: number
 }
 
 /**
@@ -1220,6 +1221,7 @@ export namespace Prisma {
     assignedGymEquipments: number
     GymMembership: number
     assignedGymMemberships: number
+    assignedGymMembershipCancellations: number
     FavoriteGyms: number
     GymEquipmentUserHistory: number
     GymAccessHistory: number
@@ -1234,6 +1236,7 @@ export namespace Prisma {
     assignedGymEquipments?: boolean
     GymMembership?: boolean
     assignedGymMemberships?: boolean
+    assignedGymMembershipCancellations?: boolean
     FavoriteGyms?: boolean
     GymEquipmentUserHistory?: boolean
     GymAccessHistory?: boolean
@@ -1891,6 +1894,7 @@ export namespace Prisma {
     assignedGymEquipments?: boolean | GymEuquipmentsOnGymsFindManyArgs
     GymMembership?: boolean | GymMembershipFindManyArgs
     assignedGymMemberships?: boolean | GymMembershipFindManyArgs
+    assignedGymMembershipCancellations?: boolean | GymMembershipCancellationFindManyArgs
     FavoriteGyms?: boolean | FavoriteGymFindManyArgs
     GymEquipmentUserHistory?: boolean | GymEquipmentUserHistoryFindManyArgs
     GymAccessHistory?: boolean | GymAccessHistoryFindManyArgs
@@ -1906,6 +1910,7 @@ export namespace Prisma {
     assignedGymEquipments?: boolean | GymEuquipmentsOnGymsFindManyArgs
     GymMembership?: boolean | GymMembershipFindManyArgs
     assignedGymMemberships?: boolean | GymMembershipFindManyArgs
+    assignedGymMembershipCancellations?: boolean | GymMembershipCancellationFindManyArgs
     FavoriteGyms?: boolean | FavoriteGymFindManyArgs
     GymEquipmentUserHistory?: boolean | GymEquipmentUserHistoryFindManyArgs
     GymAccessHistory?: boolean | GymAccessHistoryFindManyArgs
@@ -1931,6 +1936,7 @@ export namespace Prisma {
         P extends 'assignedGymEquipments' ? Array < GymEuquipmentsOnGymsGetPayload<S['include'][P]>>  :
         P extends 'GymMembership' ? Array < GymMembershipGetPayload<S['include'][P]>>  :
         P extends 'assignedGymMemberships' ? Array < GymMembershipGetPayload<S['include'][P]>>  :
+        P extends 'assignedGymMembershipCancellations' ? Array < GymMembershipCancellationGetPayload<S['include'][P]>>  :
         P extends 'FavoriteGyms' ? Array < FavoriteGymGetPayload<S['include'][P]>>  :
         P extends 'GymEquipmentUserHistory' ? Array < GymEquipmentUserHistoryGetPayload<S['include'][P]>>  :
         P extends 'GymAccessHistory' ? Array < GymAccessHistoryGetPayload<S['include'][P]>>  :
@@ -1947,6 +1953,7 @@ export namespace Prisma {
         P extends 'assignedGymEquipments' ? Array < GymEuquipmentsOnGymsGetPayload<S['select'][P]>>  :
         P extends 'GymMembership' ? Array < GymMembershipGetPayload<S['select'][P]>>  :
         P extends 'assignedGymMemberships' ? Array < GymMembershipGetPayload<S['select'][P]>>  :
+        P extends 'assignedGymMembershipCancellations' ? Array < GymMembershipCancellationGetPayload<S['select'][P]>>  :
         P extends 'FavoriteGyms' ? Array < FavoriteGymGetPayload<S['select'][P]>>  :
         P extends 'GymEquipmentUserHistory' ? Array < GymEquipmentUserHistoryGetPayload<S['select'][P]>>  :
         P extends 'GymAccessHistory' ? Array < GymAccessHistoryGetPayload<S['select'][P]>>  :
@@ -2304,6 +2311,8 @@ export namespace Prisma {
     GymMembership<T extends GymMembershipFindManyArgs = {}>(args?: Subset<T, GymMembershipFindManyArgs>): CheckSelect<T, PrismaPromise<Array<GymMembership>>, PrismaPromise<Array<GymMembershipGetPayload<T>>>>;
 
     assignedGymMemberships<T extends GymMembershipFindManyArgs = {}>(args?: Subset<T, GymMembershipFindManyArgs>): CheckSelect<T, PrismaPromise<Array<GymMembership>>, PrismaPromise<Array<GymMembershipGetPayload<T>>>>;
+
+    assignedGymMembershipCancellations<T extends GymMembershipCancellationFindManyArgs = {}>(args?: Subset<T, GymMembershipCancellationFindManyArgs>): CheckSelect<T, PrismaPromise<Array<GymMembershipCancellation>>, PrismaPromise<Array<GymMembershipCancellationGetPayload<T>>>>;
 
     FavoriteGyms<T extends FavoriteGymFindManyArgs = {}>(args?: Subset<T, FavoriteGymFindManyArgs>): CheckSelect<T, PrismaPromise<Array<FavoriteGym>>, PrismaPromise<Array<FavoriteGymGetPayload<T>>>>;
 
@@ -14848,56 +14857,66 @@ export namespace Prisma {
 
   export type GymMembershipCancellationAvgAggregateOutputType = {
     id: number | null
+    assignBy: number | null
   }
 
   export type GymMembershipCancellationSumAggregateOutputType = {
     id: number | null
+    assignBy: number | null
   }
 
   export type GymMembershipCancellationMinAggregateOutputType = {
     id: number | null
     createdAt: Date | null
     reason: string | null
+    assignBy: number | null
   }
 
   export type GymMembershipCancellationMaxAggregateOutputType = {
     id: number | null
     createdAt: Date | null
     reason: string | null
+    assignBy: number | null
   }
 
   export type GymMembershipCancellationCountAggregateOutputType = {
     id: number
     createdAt: number
     reason: number
+    assignBy: number
     _all: number
   }
 
 
   export type GymMembershipCancellationAvgAggregateInputType = {
     id?: true
+    assignBy?: true
   }
 
   export type GymMembershipCancellationSumAggregateInputType = {
     id?: true
+    assignBy?: true
   }
 
   export type GymMembershipCancellationMinAggregateInputType = {
     id?: true
     createdAt?: true
     reason?: true
+    assignBy?: true
   }
 
   export type GymMembershipCancellationMaxAggregateInputType = {
     id?: true
     createdAt?: true
     reason?: true
+    assignBy?: true
   }
 
   export type GymMembershipCancellationCountAggregateInputType = {
     id?: true
     createdAt?: true
     reason?: true
+    assignBy?: true
     _all?: true
   }
 
@@ -14997,6 +15016,7 @@ export namespace Prisma {
     id: number
     createdAt: Date
     reason: string | null
+    assignBy: number
     _count: GymMembershipCancellationCountAggregateOutputType | null
     _avg: GymMembershipCancellationAvgAggregateOutputType | null
     _sum: GymMembershipCancellationSumAggregateOutputType | null
@@ -15022,11 +15042,14 @@ export namespace Prisma {
     id?: boolean
     createdAt?: boolean
     reason?: boolean
+    assignBy?: boolean
+    assignUser?: boolean | UserArgs
     GymMembership?: boolean | GymMembershipFindManyArgs
     _count?: boolean | GymMembershipCancellationCountOutputTypeArgs
   }
 
   export type GymMembershipCancellationInclude = {
+    assignUser?: boolean | UserArgs
     GymMembership?: boolean | GymMembershipFindManyArgs
     _count?: boolean | GymMembershipCancellationCountOutputTypeArgs
   }
@@ -15042,12 +15065,14 @@ export namespace Prisma {
     ?'include' extends U
     ? GymMembershipCancellation  & {
     [P in TrueKeys<S['include']>]:
+        P extends 'assignUser' ? UserGetPayload<S['include'][P]> :
         P extends 'GymMembership' ? Array < GymMembershipGetPayload<S['include'][P]>>  :
         P extends '_count' ? GymMembershipCancellationCountOutputTypeGetPayload<S['include'][P]> :  never
   } 
     : 'select' extends U
     ? {
     [P in TrueKeys<S['select']>]:
+        P extends 'assignUser' ? UserGetPayload<S['select'][P]> :
         P extends 'GymMembership' ? Array < GymMembershipGetPayload<S['select'][P]>>  :
         P extends '_count' ? GymMembershipCancellationCountOutputTypeGetPayload<S['select'][P]> :  P extends keyof GymMembershipCancellation ? GymMembershipCancellation[P] : never
   } 
@@ -15388,6 +15413,8 @@ export namespace Prisma {
     private _requestPromise?;
     constructor(_dmmf: runtime.DMMFClass, _fetcher: PrismaClientFetcher, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
     readonly [Symbol.toStringTag]: 'PrismaClientPromise';
+
+    assignUser<T extends UserArgs = {}>(args?: Subset<T, UserArgs>): CheckSelect<T, Prisma__UserClient<User | null >, Prisma__UserClient<UserGetPayload<T> | null >>;
 
     GymMembership<T extends GymMembershipFindManyArgs = {}>(args?: Subset<T, GymMembershipFindManyArgs>): CheckSelect<T, PrismaPromise<Array<GymMembership>>, PrismaPromise<Array<GymMembershipGetPayload<T>>>>;
 
@@ -18644,7 +18671,8 @@ export namespace Prisma {
   export const GymMembershipCancellationScalarFieldEnum: {
     id: 'id',
     createdAt: 'createdAt',
-    reason: 'reason'
+    reason: 'reason',
+    assignBy: 'assignBy'
   };
 
   export type GymMembershipCancellationScalarFieldEnum = (typeof GymMembershipCancellationScalarFieldEnum)[keyof typeof GymMembershipCancellationScalarFieldEnum]
@@ -18716,6 +18744,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsListRelationFilter
     GymMembership?: GymMembershipListRelationFilter
     assignedGymMemberships?: GymMembershipListRelationFilter
+    assignedGymMembershipCancellations?: GymMembershipCancellationListRelationFilter
     FavoriteGyms?: FavoriteGymListRelationFilter
     GymEquipmentUserHistory?: GymEquipmentUserHistoryListRelationFilter
     GymAccessHistory?: GymAccessHistoryListRelationFilter
@@ -18740,6 +18769,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsOrderByRelationAggregateInput
     GymMembership?: GymMembershipOrderByRelationAggregateInput
     assignedGymMemberships?: GymMembershipOrderByRelationAggregateInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationOrderByRelationAggregateInput
     FavoriteGyms?: FavoriteGymOrderByRelationAggregateInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryOrderByRelationAggregateInput
     GymAccessHistory?: GymAccessHistoryOrderByRelationAggregateInput
@@ -19604,6 +19634,8 @@ export namespace Prisma {
     id?: IntFilter | number
     createdAt?: DateTimeFilter | Date | string
     reason?: StringNullableFilter | string | null
+    assignBy?: IntFilter | number
+    assignUser?: XOR<UserRelationFilter, UserWhereInput>
     GymMembership?: GymMembershipListRelationFilter
   }
 
@@ -19611,6 +19643,8 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     reason?: SortOrder
+    assignBy?: SortOrder
+    assignUser?: UserOrderByWithRelationInput
     GymMembership?: GymMembershipOrderByRelationAggregateInput
   }
 
@@ -19622,6 +19656,7 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     reason?: SortOrder
+    assignBy?: SortOrder
     _count?: GymMembershipCancellationCountOrderByAggregateInput
     _avg?: GymMembershipCancellationAvgOrderByAggregateInput
     _max?: GymMembershipCancellationMaxOrderByAggregateInput
@@ -19636,6 +19671,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter | number
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     reason?: StringNullableWithAggregatesFilter | string | null
+    assignBy?: IntWithAggregatesFilter | number
   }
 
   export type FavoriteGymWhereInput = {
@@ -19804,6 +19840,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutAssignUserInput
     GymMembership?: GymMembershipCreateNestedManyWithoutUserInput
     assignedGymMemberships?: GymMembershipCreateNestedManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
@@ -19828,6 +19865,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutAssignUserInput
     GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUncheckedCreateNestedManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
@@ -19851,6 +19889,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutAssignUserInput
     GymMembership?: GymMembershipUpdateManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUpdateManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUpdateManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUpdateManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserInput
@@ -19875,6 +19914,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutAssignUserInput
     GymMembership?: GymMembershipUncheckedUpdateManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUncheckedUpdateManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedUpdateManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserInput
@@ -20874,6 +20914,7 @@ export namespace Prisma {
   export type GymMembershipCancellationCreateInput = {
     createdAt?: Date | string
     reason?: string | null
+    assignUser: UserCreateNestedOneWithoutAssignedGymMembershipCancellationsInput
     GymMembership?: GymMembershipCreateNestedManyWithoutGymMembershipCancellationInput
   }
 
@@ -20881,12 +20922,14 @@ export namespace Prisma {
     id?: number
     createdAt?: Date | string
     reason?: string | null
+    assignBy: number
     GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutGymMembershipCancellationInput
   }
 
   export type GymMembershipCancellationUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    assignUser?: UserUpdateOneRequiredWithoutAssignedGymMembershipCancellationsInput
     GymMembership?: GymMembershipUpdateManyWithoutGymMembershipCancellationInput
   }
 
@@ -20894,6 +20937,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    assignBy?: IntFieldUpdateOperationsInput | number
     GymMembership?: GymMembershipUncheckedUpdateManyWithoutGymMembershipCancellationInput
   }
 
@@ -20901,6 +20945,7 @@ export namespace Prisma {
     id?: number
     createdAt?: Date | string
     reason?: string | null
+    assignBy: number
   }
 
   export type GymMembershipCancellationUpdateManyMutationInput = {
@@ -20912,6 +20957,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    assignBy?: IntFieldUpdateOperationsInput | number
   }
 
   export type FavoriteGymCreateInput = {
@@ -21168,6 +21214,12 @@ export namespace Prisma {
     none?: GymMembershipWhereInput
   }
 
+  export type GymMembershipCancellationListRelationFilter = {
+    every?: GymMembershipCancellationWhereInput
+    some?: GymMembershipCancellationWhereInput
+    none?: GymMembershipCancellationWhereInput
+  }
+
   export type FavoriteGymListRelationFilter = {
     every?: FavoriteGymWhereInput
     some?: FavoriteGymWhereInput
@@ -21213,6 +21265,10 @@ export namespace Prisma {
   }
 
   export type GymMembershipOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type GymMembershipCancellationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -22102,26 +22158,31 @@ export namespace Prisma {
     id?: SortOrder
     createdAt?: SortOrder
     reason?: SortOrder
+    assignBy?: SortOrder
   }
 
   export type GymMembershipCancellationAvgOrderByAggregateInput = {
     id?: SortOrder
+    assignBy?: SortOrder
   }
 
   export type GymMembershipCancellationMaxOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
     reason?: SortOrder
+    assignBy?: SortOrder
   }
 
   export type GymMembershipCancellationMinOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
     reason?: SortOrder
+    assignBy?: SortOrder
   }
 
   export type GymMembershipCancellationSumOrderByAggregateInput = {
     id?: SortOrder
+    assignBy?: SortOrder
   }
 
   export type FavoriteGymGymIdUserIdCompoundUniqueInput = {
@@ -22281,6 +22342,13 @@ export namespace Prisma {
     connect?: Enumerable<GymMembershipWhereUniqueInput>
   }
 
+  export type GymMembershipCancellationCreateNestedManyWithoutAssignUserInput = {
+    create?: XOR<Enumerable<GymMembershipCancellationCreateWithoutAssignUserInput>, Enumerable<GymMembershipCancellationUncheckedCreateWithoutAssignUserInput>>
+    connectOrCreate?: Enumerable<GymMembershipCancellationCreateOrConnectWithoutAssignUserInput>
+    createMany?: GymMembershipCancellationCreateManyAssignUserInputEnvelope
+    connect?: Enumerable<GymMembershipCancellationWhereUniqueInput>
+  }
+
   export type FavoriteGymCreateNestedManyWithoutUserInput = {
     create?: XOR<Enumerable<FavoriteGymCreateWithoutUserInput>, Enumerable<FavoriteGymUncheckedCreateWithoutUserInput>>
     connectOrCreate?: Enumerable<FavoriteGymCreateOrConnectWithoutUserInput>
@@ -22356,6 +22424,13 @@ export namespace Prisma {
     connectOrCreate?: Enumerable<GymMembershipCreateOrConnectWithoutAssignUserInput>
     createMany?: GymMembershipCreateManyAssignUserInputEnvelope
     connect?: Enumerable<GymMembershipWhereUniqueInput>
+  }
+
+  export type GymMembershipCancellationUncheckedCreateNestedManyWithoutAssignUserInput = {
+    create?: XOR<Enumerable<GymMembershipCancellationCreateWithoutAssignUserInput>, Enumerable<GymMembershipCancellationUncheckedCreateWithoutAssignUserInput>>
+    connectOrCreate?: Enumerable<GymMembershipCancellationCreateOrConnectWithoutAssignUserInput>
+    createMany?: GymMembershipCancellationCreateManyAssignUserInputEnvelope
+    connect?: Enumerable<GymMembershipCancellationWhereUniqueInput>
   }
 
   export type FavoriteGymUncheckedCreateNestedManyWithoutUserInput = {
@@ -22506,6 +22581,20 @@ export namespace Prisma {
     update?: Enumerable<GymMembershipUpdateWithWhereUniqueWithoutAssignUserInput>
     updateMany?: Enumerable<GymMembershipUpdateManyWithWhereWithoutAssignUserInput>
     deleteMany?: Enumerable<GymMembershipScalarWhereInput>
+  }
+
+  export type GymMembershipCancellationUpdateManyWithoutAssignUserInput = {
+    create?: XOR<Enumerable<GymMembershipCancellationCreateWithoutAssignUserInput>, Enumerable<GymMembershipCancellationUncheckedCreateWithoutAssignUserInput>>
+    connectOrCreate?: Enumerable<GymMembershipCancellationCreateOrConnectWithoutAssignUserInput>
+    upsert?: Enumerable<GymMembershipCancellationUpsertWithWhereUniqueWithoutAssignUserInput>
+    createMany?: GymMembershipCancellationCreateManyAssignUserInputEnvelope
+    set?: Enumerable<GymMembershipCancellationWhereUniqueInput>
+    disconnect?: Enumerable<GymMembershipCancellationWhereUniqueInput>
+    delete?: Enumerable<GymMembershipCancellationWhereUniqueInput>
+    connect?: Enumerable<GymMembershipCancellationWhereUniqueInput>
+    update?: Enumerable<GymMembershipCancellationUpdateWithWhereUniqueWithoutAssignUserInput>
+    updateMany?: Enumerable<GymMembershipCancellationUpdateManyWithWhereWithoutAssignUserInput>
+    deleteMany?: Enumerable<GymMembershipCancellationScalarWhereInput>
   }
 
   export type FavoriteGymUpdateManyWithoutUserInput = {
@@ -22668,6 +22757,20 @@ export namespace Prisma {
     update?: Enumerable<GymMembershipUpdateWithWhereUniqueWithoutAssignUserInput>
     updateMany?: Enumerable<GymMembershipUpdateManyWithWhereWithoutAssignUserInput>
     deleteMany?: Enumerable<GymMembershipScalarWhereInput>
+  }
+
+  export type GymMembershipCancellationUncheckedUpdateManyWithoutAssignUserInput = {
+    create?: XOR<Enumerable<GymMembershipCancellationCreateWithoutAssignUserInput>, Enumerable<GymMembershipCancellationUncheckedCreateWithoutAssignUserInput>>
+    connectOrCreate?: Enumerable<GymMembershipCancellationCreateOrConnectWithoutAssignUserInput>
+    upsert?: Enumerable<GymMembershipCancellationUpsertWithWhereUniqueWithoutAssignUserInput>
+    createMany?: GymMembershipCancellationCreateManyAssignUserInputEnvelope
+    set?: Enumerable<GymMembershipCancellationWhereUniqueInput>
+    disconnect?: Enumerable<GymMembershipCancellationWhereUniqueInput>
+    delete?: Enumerable<GymMembershipCancellationWhereUniqueInput>
+    connect?: Enumerable<GymMembershipCancellationWhereUniqueInput>
+    update?: Enumerable<GymMembershipCancellationUpdateWithWhereUniqueWithoutAssignUserInput>
+    updateMany?: Enumerable<GymMembershipCancellationUpdateManyWithWhereWithoutAssignUserInput>
+    deleteMany?: Enumerable<GymMembershipCancellationScalarWhereInput>
   }
 
   export type FavoriteGymUncheckedUpdateManyWithoutUserInput = {
@@ -23614,6 +23717,12 @@ export namespace Prisma {
     update?: XOR<GymMembershipCancellationUpdateWithoutGymMembershipInput, GymMembershipCancellationUncheckedUpdateWithoutGymMembershipInput>
   }
 
+  export type UserCreateNestedOneWithoutAssignedGymMembershipCancellationsInput = {
+    create?: XOR<UserCreateWithoutAssignedGymMembershipCancellationsInput, UserUncheckedCreateWithoutAssignedGymMembershipCancellationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAssignedGymMembershipCancellationsInput
+    connect?: UserWhereUniqueInput
+  }
+
   export type GymMembershipCreateNestedManyWithoutGymMembershipCancellationInput = {
     create?: XOR<Enumerable<GymMembershipCreateWithoutGymMembershipCancellationInput>, Enumerable<GymMembershipUncheckedCreateWithoutGymMembershipCancellationInput>>
     connectOrCreate?: Enumerable<GymMembershipCreateOrConnectWithoutGymMembershipCancellationInput>
@@ -23626,6 +23735,14 @@ export namespace Prisma {
     connectOrCreate?: Enumerable<GymMembershipCreateOrConnectWithoutGymMembershipCancellationInput>
     createMany?: GymMembershipCreateManyGymMembershipCancellationInputEnvelope
     connect?: Enumerable<GymMembershipWhereUniqueInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutAssignedGymMembershipCancellationsInput = {
+    create?: XOR<UserCreateWithoutAssignedGymMembershipCancellationsInput, UserUncheckedCreateWithoutAssignedGymMembershipCancellationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAssignedGymMembershipCancellationsInput
+    upsert?: UserUpsertWithoutAssignedGymMembershipCancellationsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<UserUpdateWithoutAssignedGymMembershipCancellationsInput, UserUncheckedUpdateWithoutAssignedGymMembershipCancellationsInput>
   }
 
   export type GymMembershipUpdateManyWithoutGymMembershipCancellationInput = {
@@ -24227,6 +24344,29 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type GymMembershipCancellationCreateWithoutAssignUserInput = {
+    createdAt?: Date | string
+    reason?: string | null
+    GymMembership?: GymMembershipCreateNestedManyWithoutGymMembershipCancellationInput
+  }
+
+  export type GymMembershipCancellationUncheckedCreateWithoutAssignUserInput = {
+    id?: number
+    createdAt?: Date | string
+    reason?: string | null
+    GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutGymMembershipCancellationInput
+  }
+
+  export type GymMembershipCancellationCreateOrConnectWithoutAssignUserInput = {
+    where: GymMembershipCancellationWhereUniqueInput
+    create: XOR<GymMembershipCancellationCreateWithoutAssignUserInput, GymMembershipCancellationUncheckedCreateWithoutAssignUserInput>
+  }
+
+  export type GymMembershipCancellationCreateManyAssignUserInputEnvelope = {
+    data: Enumerable<GymMembershipCancellationCreateManyAssignUserInput>
+    skipDuplicates?: boolean
+  }
+
   export type FavoriteGymCreateWithoutUserInput = {
     Gym: GymCreateNestedOneWithoutFavoriteUsersInput
     assignedAt?: Date | string
@@ -24520,6 +24660,32 @@ export namespace Prisma {
     data: XOR<GymMembershipUpdateManyMutationInput, GymMembershipUncheckedUpdateManyWithoutAssignedGymMembershipsInput>
   }
 
+  export type GymMembershipCancellationUpsertWithWhereUniqueWithoutAssignUserInput = {
+    where: GymMembershipCancellationWhereUniqueInput
+    update: XOR<GymMembershipCancellationUpdateWithoutAssignUserInput, GymMembershipCancellationUncheckedUpdateWithoutAssignUserInput>
+    create: XOR<GymMembershipCancellationCreateWithoutAssignUserInput, GymMembershipCancellationUncheckedCreateWithoutAssignUserInput>
+  }
+
+  export type GymMembershipCancellationUpdateWithWhereUniqueWithoutAssignUserInput = {
+    where: GymMembershipCancellationWhereUniqueInput
+    data: XOR<GymMembershipCancellationUpdateWithoutAssignUserInput, GymMembershipCancellationUncheckedUpdateWithoutAssignUserInput>
+  }
+
+  export type GymMembershipCancellationUpdateManyWithWhereWithoutAssignUserInput = {
+    where: GymMembershipCancellationScalarWhereInput
+    data: XOR<GymMembershipCancellationUpdateManyMutationInput, GymMembershipCancellationUncheckedUpdateManyWithoutAssignedGymMembershipCancellationsInput>
+  }
+
+  export type GymMembershipCancellationScalarWhereInput = {
+    AND?: Enumerable<GymMembershipCancellationScalarWhereInput>
+    OR?: Enumerable<GymMembershipCancellationScalarWhereInput>
+    NOT?: Enumerable<GymMembershipCancellationScalarWhereInput>
+    id?: IntFilter | number
+    createdAt?: DateTimeFilter | Date | string
+    reason?: StringNullableFilter | string | null
+    assignBy?: IntFilter | number
+  }
+
   export type FavoriteGymUpsertWithWhereUniqueWithoutUserInput = {
     where: FavoriteGymWhereUniqueInput
     update: XOR<FavoriteGymUpdateWithoutUserInput, FavoriteGymUncheckedUpdateWithoutUserInput>
@@ -24643,6 +24809,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutAssignUserInput
     GymMembership?: GymMembershipCreateNestedManyWithoutUserInput
     assignedGymMemberships?: GymMembershipCreateNestedManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
@@ -24666,6 +24833,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutAssignUserInput
     GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUncheckedCreateNestedManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
@@ -24698,6 +24866,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutAssignUserInput
     GymMembership?: GymMembershipUpdateManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUpdateManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUpdateManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUpdateManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserInput
@@ -24721,6 +24890,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutAssignUserInput
     GymMembership?: GymMembershipUncheckedUpdateManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUncheckedUpdateManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedUpdateManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserInput
@@ -24805,6 +24975,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutAssignUserInput
     GymMembership?: GymMembershipCreateNestedManyWithoutUserInput
     assignedGymMemberships?: GymMembershipCreateNestedManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
@@ -24828,6 +24999,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutAssignUserInput
     GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUncheckedCreateNestedManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
@@ -24906,6 +25078,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutAssignUserInput
     GymMembership?: GymMembershipUpdateManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUpdateManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUpdateManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUpdateManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserInput
@@ -24929,6 +25102,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutAssignUserInput
     GymMembership?: GymMembershipUncheckedUpdateManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUncheckedUpdateManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedUpdateManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserInput
@@ -25015,6 +25189,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutAssignUserInput
     GymMembership?: GymMembershipCreateNestedManyWithoutUserInput
     assignedGymMemberships?: GymMembershipCreateNestedManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
@@ -25038,6 +25213,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutAssignUserInput
     GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUncheckedCreateNestedManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
@@ -25163,6 +25339,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutAssignUserInput
     GymMembership?: GymMembershipUpdateManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUpdateManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUpdateManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUpdateManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserInput
@@ -25186,6 +25363,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutAssignUserInput
     GymMembership?: GymMembershipUncheckedUpdateManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUncheckedUpdateManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedUpdateManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserInput
@@ -25611,6 +25789,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutAssignUserInput
     GymMembership?: GymMembershipCreateNestedManyWithoutUserInput
     assignedGymMemberships?: GymMembershipCreateNestedManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
@@ -25634,6 +25813,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutAssignUserInput
     GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUncheckedCreateNestedManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
@@ -25819,6 +25999,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutAssignUserInput
     GymMembership?: GymMembershipUpdateManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUpdateManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUpdateManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUpdateManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserInput
@@ -25842,6 +26023,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutAssignUserInput
     GymMembership?: GymMembershipUncheckedUpdateManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUncheckedUpdateManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedUpdateManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserInput
@@ -26150,6 +26332,7 @@ export namespace Prisma {
     Gym?: GymCreateNestedManyWithoutUserInput
     GymMembership?: GymMembershipCreateNestedManyWithoutUserInput
     assignedGymMemberships?: GymMembershipCreateNestedManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
@@ -26173,6 +26356,7 @@ export namespace Prisma {
     Gym?: GymUncheckedCreateNestedManyWithoutUserInput
     GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUncheckedCreateNestedManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
@@ -26304,6 +26488,7 @@ export namespace Prisma {
     Gym?: GymUpdateManyWithoutUserInput
     GymMembership?: GymMembershipUpdateManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUpdateManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUpdateManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUpdateManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserInput
@@ -26327,6 +26512,7 @@ export namespace Prisma {
     Gym?: GymUncheckedUpdateManyWithoutUserInput
     GymMembership?: GymMembershipUncheckedUpdateManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUncheckedUpdateManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedUpdateManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserInput
@@ -26388,6 +26574,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutAssignUserInput
     GymMembership?: GymMembershipCreateNestedManyWithoutUserInput
     assignedGymMemberships?: GymMembershipCreateNestedManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
     GymPassHistory?: GymPassHistoryCreateNestedManyWithoutUserInput
@@ -26411,6 +26598,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutAssignUserInput
     GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUncheckedCreateNestedManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
     GymPassHistory?: GymPassHistoryUncheckedCreateNestedManyWithoutUserInput
@@ -26465,6 +26653,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutAssignUserInput
     GymMembership?: GymMembershipUpdateManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUpdateManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUpdateManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUpdateManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserInput
     GymPassHistory?: GymPassHistoryUpdateManyWithoutUserInput
@@ -26488,6 +26677,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutAssignUserInput
     GymMembership?: GymMembershipUncheckedUpdateManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUncheckedUpdateManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedUpdateManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserInput
     GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutUserInput
@@ -26509,6 +26699,7 @@ export namespace Prisma {
     Gym?: GymCreateNestedManyWithoutUserInput
     assignedGymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutAssignUserInput
     assignedGymMemberships?: GymMembershipCreateNestedManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
@@ -26532,6 +26723,7 @@ export namespace Prisma {
     Gym?: GymUncheckedCreateNestedManyWithoutUserInput
     assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutAssignUserInput
     assignedGymMemberships?: GymMembershipUncheckedCreateNestedManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
@@ -26609,6 +26801,7 @@ export namespace Prisma {
     Gym?: GymCreateNestedManyWithoutUserInput
     assignedGymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutAssignUserInput
     GymMembership?: GymMembershipCreateNestedManyWithoutUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
@@ -26632,6 +26825,7 @@ export namespace Prisma {
     Gym?: GymUncheckedCreateNestedManyWithoutUserInput
     assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutAssignUserInput
     GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
@@ -26646,12 +26840,14 @@ export namespace Prisma {
   export type GymMembershipCancellationCreateWithoutGymMembershipInput = {
     createdAt?: Date | string
     reason?: string | null
+    assignUser: UserCreateNestedOneWithoutAssignedGymMembershipCancellationsInput
   }
 
   export type GymMembershipCancellationUncheckedCreateWithoutGymMembershipInput = {
     id?: number
     createdAt?: Date | string
     reason?: string | null
+    assignBy: number
   }
 
   export type GymMembershipCancellationCreateOrConnectWithoutGymMembershipInput = {
@@ -26680,6 +26876,7 @@ export namespace Prisma {
     Gym?: GymUpdateManyWithoutUserInput
     assignedGymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutAssignUserInput
     assignedGymMemberships?: GymMembershipUpdateManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUpdateManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUpdateManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserInput
@@ -26703,6 +26900,7 @@ export namespace Prisma {
     Gym?: GymUncheckedUpdateManyWithoutUserInput
     assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutAssignUserInput
     assignedGymMemberships?: GymMembershipUncheckedUpdateManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedUpdateManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserInput
@@ -26780,6 +26978,7 @@ export namespace Prisma {
     Gym?: GymUpdateManyWithoutUserInput
     assignedGymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutAssignUserInput
     GymMembership?: GymMembershipUpdateManyWithoutUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUpdateManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUpdateManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserInput
@@ -26803,6 +27002,7 @@ export namespace Prisma {
     Gym?: GymUncheckedUpdateManyWithoutUserInput
     assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutAssignUserInput
     GymMembership?: GymMembershipUncheckedUpdateManyWithoutUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedUpdateManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserInput
@@ -26817,12 +27017,66 @@ export namespace Prisma {
   export type GymMembershipCancellationUpdateWithoutGymMembershipInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    assignUser?: UserUpdateOneRequiredWithoutAssignedGymMembershipCancellationsInput
   }
 
   export type GymMembershipCancellationUncheckedUpdateWithoutGymMembershipInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+    assignBy?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type UserCreateWithoutAssignedGymMembershipCancellationsInput = {
+    createdAt?: Date | string
+    loginId: string
+    loginPw?: string | null
+    username: string
+    loginType: LoginType
+    userType: UserType
+    nickname: string
+    phone?: string
+    isDisable?: boolean
+    Board?: BoardCreateNestedManyWithoutUserInput
+    BoardReply?: BoardReplyCreateNestedManyWithoutUserInput
+    Notice?: NoticeCreateNestedManyWithoutUserInput
+    Gym?: GymCreateNestedManyWithoutUserInput
+    assignedGymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutAssignUserInput
+    GymMembership?: GymMembershipCreateNestedManyWithoutUserInput
+    assignedGymMemberships?: GymMembershipCreateNestedManyWithoutAssignUserInput
+    FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
+    GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
+    GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutAssignedGymMembershipCancellationsInput = {
+    id?: number
+    createdAt?: Date | string
+    loginId: string
+    loginPw?: string | null
+    username: string
+    loginType: LoginType
+    userType: UserType
+    nickname: string
+    phone?: string
+    isDisable?: boolean
+    Board?: BoardUncheckedCreateNestedManyWithoutUserInput
+    BoardReply?: BoardReplyUncheckedCreateNestedManyWithoutUserInput
+    Notice?: NoticeUncheckedCreateNestedManyWithoutUserInput
+    Gym?: GymUncheckedCreateNestedManyWithoutUserInput
+    assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutAssignUserInput
+    GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutUserInput
+    assignedGymMemberships?: GymMembershipUncheckedCreateNestedManyWithoutAssignUserInput
+    FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
+    GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
+    GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutAssignedGymMembershipCancellationsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutAssignedGymMembershipCancellationsInput, UserUncheckedCreateWithoutAssignedGymMembershipCancellationsInput>
   }
 
   export type GymMembershipCreateWithoutGymMembershipCancellationInput = {
@@ -26852,6 +27106,58 @@ export namespace Prisma {
   export type GymMembershipCreateManyGymMembershipCancellationInputEnvelope = {
     data: Enumerable<GymMembershipCreateManyGymMembershipCancellationInput>
     skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutAssignedGymMembershipCancellationsInput = {
+    update: XOR<UserUpdateWithoutAssignedGymMembershipCancellationsInput, UserUncheckedUpdateWithoutAssignedGymMembershipCancellationsInput>
+    create: XOR<UserCreateWithoutAssignedGymMembershipCancellationsInput, UserUncheckedCreateWithoutAssignedGymMembershipCancellationsInput>
+  }
+
+  export type UserUpdateWithoutAssignedGymMembershipCancellationsInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    loginId?: StringFieldUpdateOperationsInput | string
+    loginPw?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    loginType?: EnumLoginTypeFieldUpdateOperationsInput | LoginType
+    userType?: EnumUserTypeFieldUpdateOperationsInput | UserType
+    nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
+    Board?: BoardUpdateManyWithoutUserInput
+    BoardReply?: BoardReplyUpdateManyWithoutUserInput
+    Notice?: NoticeUpdateManyWithoutUserInput
+    Gym?: GymUpdateManyWithoutUserInput
+    assignedGymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutAssignUserInput
+    GymMembership?: GymMembershipUpdateManyWithoutUserInput
+    assignedGymMemberships?: GymMembershipUpdateManyWithoutAssignUserInput
+    FavoriteGyms?: FavoriteGymUpdateManyWithoutUserInput
+    GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserInput
+    GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryUpdateManyWithoutUserInput
+  }
+
+  export type UserUncheckedUpdateWithoutAssignedGymMembershipCancellationsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    loginId?: StringFieldUpdateOperationsInput | string
+    loginPw?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: StringFieldUpdateOperationsInput | string
+    loginType?: EnumLoginTypeFieldUpdateOperationsInput | LoginType
+    userType?: EnumUserTypeFieldUpdateOperationsInput | UserType
+    nickname?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    isDisable?: BoolFieldUpdateOperationsInput | boolean
+    Board?: BoardUncheckedUpdateManyWithoutUserInput
+    BoardReply?: BoardReplyUncheckedUpdateManyWithoutUserInput
+    Notice?: NoticeUncheckedUpdateManyWithoutUserInput
+    Gym?: GymUncheckedUpdateManyWithoutUserInput
+    assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutAssignUserInput
+    GymMembership?: GymMembershipUncheckedUpdateManyWithoutUserInput
+    assignedGymMemberships?: GymMembershipUncheckedUpdateManyWithoutAssignUserInput
+    FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserInput
+    GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserInput
+    GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserInput
+    GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutUserInput
   }
 
   export type GymMembershipUpsertWithWhereUniqueWithoutGymMembershipCancellationInput = {
@@ -26937,6 +27243,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutAssignUserInput
     GymMembership?: GymMembershipCreateNestedManyWithoutUserInput
     assignedGymMemberships?: GymMembershipCreateNestedManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationCreateNestedManyWithoutAssignUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
     GymPassHistory?: GymPassHistoryCreateNestedManyWithoutUserInput
@@ -26960,6 +27267,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutAssignUserInput
     GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUncheckedCreateNestedManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedCreateNestedManyWithoutAssignUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
     GymPassHistory?: GymPassHistoryUncheckedCreateNestedManyWithoutUserInput
@@ -27042,6 +27350,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutAssignUserInput
     GymMembership?: GymMembershipUpdateManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUpdateManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUpdateManyWithoutAssignUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserInput
     GymPassHistory?: GymPassHistoryUpdateManyWithoutUserInput
@@ -27065,6 +27374,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutAssignUserInput
     GymMembership?: GymMembershipUncheckedUpdateManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUncheckedUpdateManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedUpdateManyWithoutAssignUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserInput
     GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutUserInput
@@ -27137,6 +27447,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutAssignUserInput
     GymMembership?: GymMembershipCreateNestedManyWithoutUserInput
     assignedGymMemberships?: GymMembershipCreateNestedManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
     GymPassHistory?: GymPassHistoryCreateNestedManyWithoutUserInput
@@ -27160,6 +27471,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutAssignUserInput
     GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUncheckedCreateNestedManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
     GymPassHistory?: GymPassHistoryUncheckedCreateNestedManyWithoutUserInput
@@ -27242,6 +27554,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutAssignUserInput
     GymMembership?: GymMembershipUpdateManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUpdateManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUpdateManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUpdateManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserInput
     GymPassHistory?: GymPassHistoryUpdateManyWithoutUserInput
@@ -27265,6 +27578,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutAssignUserInput
     GymMembership?: GymMembershipUncheckedUpdateManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUncheckedUpdateManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedUpdateManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserInput
     GymPassHistory?: GymPassHistoryUncheckedUpdateManyWithoutUserInput
@@ -27337,6 +27651,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsCreateNestedManyWithoutAssignUserInput
     GymMembership?: GymMembershipCreateNestedManyWithoutUserInput
     assignedGymMemberships?: GymMembershipCreateNestedManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryCreateNestedManyWithoutUserInput
@@ -27360,6 +27675,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedCreateNestedManyWithoutAssignUserInput
     GymMembership?: GymMembershipUncheckedCreateNestedManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUncheckedCreateNestedManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedCreateNestedManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedCreateNestedManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedCreateNestedManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedCreateNestedManyWithoutUserInput
@@ -27442,6 +27758,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUpdateManyWithoutAssignUserInput
     GymMembership?: GymMembershipUpdateManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUpdateManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUpdateManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUpdateManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUpdateManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUpdateManyWithoutUserInput
@@ -27465,6 +27782,7 @@ export namespace Prisma {
     assignedGymEquipments?: GymEuquipmentsOnGymsUncheckedUpdateManyWithoutAssignUserInput
     GymMembership?: GymMembershipUncheckedUpdateManyWithoutUserInput
     assignedGymMemberships?: GymMembershipUncheckedUpdateManyWithoutAssignUserInput
+    assignedGymMembershipCancellations?: GymMembershipCancellationUncheckedUpdateManyWithoutAssignUserInput
     FavoriteGyms?: FavoriteGymUncheckedUpdateManyWithoutUserInput
     GymEquipmentUserHistory?: GymEquipmentUserHistoryUncheckedUpdateManyWithoutUserInput
     GymAccessHistory?: GymAccessHistoryUncheckedUpdateManyWithoutUserInput
@@ -27544,6 +27862,12 @@ export namespace Prisma {
     startDay?: Date | string
     endDay: Date | string
     gymMembershipCancellationId?: number | null
+  }
+
+  export type GymMembershipCancellationCreateManyAssignUserInput = {
+    id?: number
+    createdAt?: Date | string
+    reason?: string | null
   }
 
   export type FavoriteGymCreateManyUserInput = {
@@ -27801,6 +28125,25 @@ export namespace Prisma {
     startDay?: DateTimeFieldUpdateOperationsInput | Date | string
     endDay?: DateTimeFieldUpdateOperationsInput | Date | string
     gymMembershipCancellationId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type GymMembershipCancellationUpdateWithoutAssignUserInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    GymMembership?: GymMembershipUpdateManyWithoutGymMembershipCancellationInput
+  }
+
+  export type GymMembershipCancellationUncheckedUpdateWithoutAssignUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    GymMembership?: GymMembershipUncheckedUpdateManyWithoutGymMembershipCancellationInput
+  }
+
+  export type GymMembershipCancellationUncheckedUpdateManyWithoutAssignedGymMembershipCancellationsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type FavoriteGymUpdateWithoutUserInput = {

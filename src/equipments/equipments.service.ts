@@ -389,4 +389,98 @@ export class EquipmentsService {
       GymEquipment:  this.convertBodyPartOutput(input.GymEquipment)
     }
   }
+
+  async createGymEquipmentUserHistory(gymEuquipmentsOnGymsId:number, userId:number) {
+    const distinct = await this.prisma.gymEquipmentUserHistory.findFirst({where:{gymEuquipmentsOnGymsId, endAt:null}});
+
+    if(distinct) throw new ForbiddenException("이미지 사용 중입니다");
+
+    await this.prisma.gymEquipmentUserHistory.updateMany({
+      where:{userId, endAt:null},
+      data:{
+        endAt:new Date()
+      }
+    });
+
+    return this.prisma.gymEquipmentUserHistory.create({
+      data:{
+        gymEuquipmentsOnGymsId,
+        userId
+      }
+    })
+  }
+
+  
+  // async createGymEquipmentUserHistoryByEqupimentId(equipmentId:number, userId:number) {
+  //   const distinct = await this.prisma.gymEquipmentUserHistory.findFirst({where:{GymEuquipmentsOnGyms:{gymEquipmentId:equipmentId}, endAt:null}});
+
+  //   if(distinct) throw new ForbiddenException("이미지 사용 중입니다");
+
+  //   await this.prisma.gymEquipmentUserHistory.updateMany({
+  //     where:{userId, endAt:null},
+  //     data:{
+  //       endAt:new Date()
+  //     }
+  //   });
+
+  //   return this.prisma.gymEquipmentUserHistory.create({
+  //     data:{
+  //       gymEuquipmentsOnGymsId,
+  //       userId
+  //     }
+  //   })
+  // }
+
+  findValidGymEquipmentUserHistory(userId:number, gymId:number) {
+    return this.prisma.gymEquipmentUserHistory.findFirst({
+      where:{
+        userId,
+        endAt:null,
+        GymEuquipmentsOnGyms:{
+          gymId
+        },
+      },
+      include:{
+        GymEuquipmentsOnGyms:{
+          include:{
+            GymEquipment:true
+          }
+        }
+      }
+    })
+  }
+
+  findGymEquipmentUserHistoryByGymId(gymId:number) {
+    return this.prisma.gymEquipmentUserHistory.findMany({
+      where:{
+        endAt:null,
+        GymEuquipmentsOnGyms:{
+          gymId
+        },
+      },
+      include:{
+        GymEuquipmentsOnGyms:true
+      }
+    })
+  }
+
+  findGymEquipmentUserHistory(id:number) {
+    return this.prisma.gymEquipmentUserHistory.findUnique({
+      where:{id},
+    })
+  }
+
+  endGymEquipmentUserHistoryTarget(id:number) {
+    return this.prisma.gymEquipmentUserHistory.update({
+      where:{id},
+      data:{endAt:new Date()}
+    })
+  }
+
+  endGymEquipmentUserHistoryByUserId(userId:number) {
+    return this.prisma.gymEquipmentUserHistory.updateMany({
+      where:{userId, endAt:null},
+      data:{endAt:new Date()}
+    })
+  }
 }
