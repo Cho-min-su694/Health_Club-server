@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { BodyPartsService } from './body-parts.service';
 import { CreateBodyPartDto } from './dto/create-body-part.dto';
 import { UpdateBodyPartDto } from './dto/update-body-part.dto';
+import { Public } from 'src/util/decorators';
 
 @Controller('body-parts')
 export class BodyPartsController {
@@ -17,6 +18,7 @@ export class BodyPartsController {
     return this.bodyPartsService.findAll();
   }
 
+  @Public()
   @Get('category')
   findBodyPartCategories() {
     return this.bodyPartsService.findBodyPartCategories();

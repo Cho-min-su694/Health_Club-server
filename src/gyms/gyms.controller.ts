@@ -51,7 +51,7 @@ export class GymsController {
   //   return this.gymsService.findAdminAll();
   // }
 
-  @Get()
+  @Get('')
   findAll() {
     return this.gymsService.findAll();
   }
@@ -59,6 +59,20 @@ export class GymsController {
   @Get('user/:userId')
   findOneByUserId(@Param('userId') userId: string) {
     return this.gymsService.findOneByUserId(+userId);
+  }
+
+  @Public()
+  @Get('test/:id')
+  findPublicOne(
+    @Param('id') id: number
+  ) {
+    return this.gymsService.findPublicOne(+id);
+  }
+
+  @Public()
+  @Get('test')
+  findTestOne() {
+    return this.gymsService.findTestOne();
   }
 
   //유저 페이징

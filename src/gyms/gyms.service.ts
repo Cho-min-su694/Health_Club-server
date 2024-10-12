@@ -39,6 +39,7 @@ export class GymsService {
     const create = await this.prisma.gym.create({
       data: {
         ...createGymDto,
+        isCertified:true,
         userId,
       },
     });
@@ -96,6 +97,33 @@ export class GymsService {
   findAll() {
     return this.prisma.gym.findMany({
       where: {
+        isCertified: true,
+        isDisable: false
+      },
+      include: {
+        GymImage: true,
+        User: true,
+      },
+    });
+  }
+
+  findTestOne() {
+    return this.prisma.gym.findFirst({
+      where: {
+        isCertified: true,
+        isDisable: false
+      },
+      include: {
+        GymImage: true,
+        User: true,
+      },
+    });
+  }
+
+  findPublicOne(id: number) {
+    return this.prisma.gym.findFirst({
+      where: {
+        id: id,
         isCertified: true,
         isDisable: false
       },

@@ -95,6 +95,7 @@ export class EquipmentsController {
     );
   }
 
+  @Public()
   @Get('history/gym/:gymId')
   findGymEquipmentUserHistoryByGymId(
     @Param('gymId') gymId: string,
@@ -110,6 +111,7 @@ export class EquipmentsController {
     return this.equipmentsService.findValidGymEquipmentUserHistory(+userId, +gymId);
   }
 
+  @Public()
   @Get('gymequipment/:gymId')
   findEquipmentsOnGyms(
     @Param('gymId') gymId: string,
