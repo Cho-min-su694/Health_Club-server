@@ -115,14 +115,14 @@ export class GymmembershipsService {
     return where;
   }
 
-  async findUserGymMembership(gymId:number, userId: number) {
+  async findUserGymMembership(gymId:number, userId: number, all:boolean) {
     const today = new Date();
     const result = await this.prisma.gymMembership.findMany({
       where: {
         gymId,
         userId,
         gymMembershipCancellationId:null,
-        endDay:{
+        endDay: all? undefined: {
           gte:today
         },
       },
@@ -256,7 +256,7 @@ export class GymmembershipsService {
 
   // 헬스장 입장
   async createGymAccessHistory(gymId:number, userId:number) {
-    const gymMembership = await this.findUserGymMembership(gymId, userId);
+    const gymMembership = await this.findUserGymMembership(gymId, userId, false);
     if(gymMembership == null || gymMembership.length == 0) throw new ForbiddenException("부적절한 접근");
 
     await this.updateGymAccessHistoryList(gymId, userId, {exitAt:new Date()})
@@ -269,16 +269,36 @@ export class GymmembershipsService {
     })
   }
 
-  async findValidGymAccessHistory(gymId:number, userId:number) {
+  async findValidGymAccessHistory(gymId:number, userId:number, all:boolean) {
+
+    let where = {};
+    if(all == false) {
+      where = {
+        exitAt:null,
+        entryAt:{
+          lte:new Date()
+        }
+      };
+    }
 
     return this.prisma.gymAccessHistory.findFirst({
       where:{
         gymId,
         userId,
-        exitAt:null,
-        entryAt:{
-          lte:new Date()
-        }
+        ...where
+      },
+      orderBy:{
+        entryAt:'desc'
+      }
+    })
+  }
+  
+  async findGymAccessHistoryList(gymId:number, userId:number) {
+
+    return this.prisma.gymAccessHistory.findMany({
+      where:{
+        gymId,
+        userId,
       },
       orderBy:{
         entryAt:'desc'

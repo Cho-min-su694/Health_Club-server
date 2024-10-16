@@ -431,11 +431,38 @@ export class EquipmentsService {
   //   })
   // }
 
-  findValidGymEquipmentUserHistory(userId:number, gymId:number) {
+  findValidGymEquipmentUserHistory(userId:number, gymId:number, all:boolean) {
+
+    let where = {};
+    if(all == false) {
+      where = {
+        endAt:null
+      };
+    }
+
     return this.prisma.gymEquipmentUserHistory.findFirst({
       where:{
         userId,
-        endAt:null,
+        ...where,
+        GymEuquipmentsOnGyms:{
+          gymId
+        },
+      },
+      include:{
+        GymEuquipmentsOnGyms:{
+          include:{
+            GymEquipment:true
+          }
+        }
+      }
+    })
+  }
+
+  findSpecGymEquipmentUserHistory(userId:number, gymId:number) {
+
+    return this.prisma.gymEquipmentUserHistory.findMany({
+      where:{
+        userId,
         GymEuquipmentsOnGyms:{
           gymId
         },

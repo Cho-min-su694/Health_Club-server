@@ -18,7 +18,7 @@ export class GymmembershipsController {
   @Post('access/:gymId')
   createGymAccessHistory(
     @Param('gymId') membershipId: string,
-    @Body() createGymAccessHIstoryDto: {userId:number}
+    @Body() createGymAccessHIstoryDto: { userId: number }
   ) {
     return this.gymmembershipsService.createGymAccessHistory(+membershipId, createGymAccessHIstoryDto.userId);
   }
@@ -26,11 +26,11 @@ export class GymmembershipsController {
   @Post('extend/:gymId')
   extendGymMembership(
     @Param('gymId') gymId: string,
-    @Body() createGymmembershipDto: {userId:number, assignBy:number},
+    @Body() createGymmembershipDto: { userId: number, assignBy: number },
     @Query('type') type: string,
     @Query('add') add: string,
   ) {
-    const {userId,assignBy} = createGymmembershipDto;
+    const { userId, assignBy } = createGymmembershipDto;
     return this.gymmembershipsService.extendGymMembership(+gymId, userId, assignBy, type, +add);
   }
 
@@ -56,7 +56,7 @@ export class GymmembershipsController {
 
   @Get('paging/:gymId')
   findPagingGymMembership(
-    @Param('gymId') gymId:string,
+    @Param('gymId') gymId: string,
     @Query('page') page: string,
     @Query('take') take: string,
     @Query('searchType') searchType: string,
@@ -70,8 +70,26 @@ export class GymmembershipsController {
   findValidGymAccessHistory(
     @Param('gymId') gymId: string,
     @Param('userId') userId: string,
+    @Query('all') all: string,
   ) {
-    return this.gymmembershipsService.findValidGymAccessHistory(+gymId, +userId);
+    return this.gymmembershipsService.findValidGymAccessHistory(+gymId, +userId, all == "true");
+  }
+
+  @Get('access/history/:gymId/:userId')
+  findGymAccessHistoryList(
+    @Param('gymId') gymId: string,
+    @Param('userId') userId: string,
+  ) {
+    return this.gymmembershipsService.findGymAccessHistoryList(+gymId, +userId);
+  }
+
+  @Get('usergym/:gymId')
+  findUserGymMembership(
+    @Param('gymId') gymId: string,
+    @Query('userId') userId: string,
+    @Query('all') all: string
+  ) {
+    return this.gymmembershipsService.findUserGymMembership(+gymId, +userId, all == 'true');
   }
 
 
@@ -88,14 +106,6 @@ export class GymmembershipsController {
     @Param('userId') id: string,
   ) {
     return this.gymmembershipsService.findGymMembershipByUserId(+id);
-  }
-
-  @Get('gym/:gymId/:userId')
-  findUserGymMembership(
-    @Param('gymId') id: string,
-    @Param('userId') userId: string
-  ) {
-    return this.gymmembershipsService.findUserGymMembership(+id, +userId);
   }
 
   @Get()

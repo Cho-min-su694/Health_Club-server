@@ -107,8 +107,17 @@ export class EquipmentsController {
   findValidGymEquipmentUserHistory(
     @Param('userId') userId: string,
     @Query('gymId') gymId: string,
+    @Query('all') all: string,
   ) {
-    return this.equipmentsService.findValidGymEquipmentUserHistory(+userId, +gymId);
+    return this.equipmentsService.findValidGymEquipmentUserHistory(+userId, +gymId, all == "true");
+  }
+
+  @Get('history/:userId')
+  findSpecGymEquipmentUserHistory(
+    @Param('userId') userId: string,
+    @Query('gymId') gymId: string,
+  ) {
+    return this.equipmentsService.findSpecGymEquipmentUserHistory(+userId, +gymId);
   }
 
   @Public()
