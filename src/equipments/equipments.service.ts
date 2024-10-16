@@ -393,7 +393,7 @@ export class EquipmentsService {
   async createGymEquipmentUserHistory(gymEuquipmentsOnGymsId:number, userId:number) {
     const distinct = await this.prisma.gymEquipmentUserHistory.findFirst({where:{gymEuquipmentsOnGymsId, endAt:null}});
 
-    if(distinct) throw new ForbiddenException("이미지 사용 중입니다");
+    if(distinct) throw new ForbiddenException("이미 사용 중입니다");
 
     await this.prisma.gymEquipmentUserHistory.updateMany({
       where:{userId, endAt:null},
@@ -414,7 +414,7 @@ export class EquipmentsService {
   // async createGymEquipmentUserHistoryByEqupimentId(equipmentId:number, userId:number) {
   //   const distinct = await this.prisma.gymEquipmentUserHistory.findFirst({where:{GymEuquipmentsOnGyms:{gymEquipmentId:equipmentId}, endAt:null}});
 
-  //   if(distinct) throw new ForbiddenException("이미지 사용 중입니다");
+  //   if(distinct) throw new ForbiddenException("이미 사용 중입니다");
 
   //   await this.prisma.gymEquipmentUserHistory.updateMany({
   //     where:{userId, endAt:null},
